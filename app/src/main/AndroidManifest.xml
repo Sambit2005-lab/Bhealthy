@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Bhealthy"
         tools:targetApi="31">
         <activity
+            android:name=".SmartInsights"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeToBhealthy"
             android:exported="false" />
         <activity
