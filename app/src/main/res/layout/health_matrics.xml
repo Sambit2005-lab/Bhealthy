@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HealthMatrics"
+    android:background="#E0FBFC">
+
+    <TextView
+        android:id="@+id/track_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track your health"
+        android:textSize="31sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15">
+
+    </TextView>
+
+
+
+    <TextView
+        android:id="@+id/metrics_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="metrics!"
+        android:textSize="31sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@id/track_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/dashed_line"
+        android:layout_width="360dp"
+        android:layout_height="1dp"
+        android:background="#090909"
+        android:padding="8dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/metrics_text"
+        app:layout_constraintVertical_bias="0.0">
+
+    </ImageView>
+
+
+    <TextView
+        android:id="@+id/height_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. What is your height?"
+        android:textSize="16sp"
+        android:textColor="#090909"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="@id/dashed_line"
+        app:layout_constraintTop_toBottomOf="@id/dashed_line"
+        app:layout_constraintVertical_bias="0.01">
+
+    </TextView>
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/height_edit"
+        android:layout_width="199dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/height_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.320">
+
+    </androidx.appcompat.widget.AppCompatEditText>
+
+
+    <Spinner
+        android:id="@+id/height_menu"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_3"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/height_edit"
+        app:layout_constraintEnd_toEndOf="@+id/height_edit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/height_edit"
+        app:layout_constraintTop_toTopOf="@+id/height_edit"
+        app:layout_constraintVertical_bias="0.320" />
+
+    <TextView
+        android:id="@+id/weight_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2. What is your weight?"
+        android:textColor="#090909"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/height_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382">
+
+    </TextView>
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/weight_edit"
+        android:layout_width="199dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/weight_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.432">
+
+    </androidx.appcompat.widget.AppCompatEditText>
+
+    <Spinner
+        android:id="@+id/weight_menu"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_3"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/weight_edit"
+        app:layout_constraintEnd_toEndOf="@+id/weight_edit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/weight_edit"
+        app:layout_constraintTop_toTopOf="@+id/weight_edit"
+        app:layout_constraintVertical_bias="0.320" />
+
+
+
+    <TextView
+        android:id="@+id/blood_pressure_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3. What is your usual blood pressure?"
+        android:textColor="#090909"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/weight_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494">
+
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/bp_edit_1"
+        android:layout_width="199dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:textSize="17sp"
+        android:hint="    Systolic"
+        android:textColor="@color/black"
+
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/blood_pressure_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.544">
+
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/bp_edit_2"
+        android:layout_width="199dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:hint="    Diastolic"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/blood_pressure_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.606">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/blood_sugar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4. What is your usual blood sugar level?"
+        android:textColor="#090909"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/blood_pressure_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.656">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/bs_edit"
+        android:layout_width="199dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/black"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/blood_sugar_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.708">
+
+    </EditText>
+
+
+    <TextView
+        android:id="@+id/health_goals_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5. Do you have any health goals?"
+        android:textColor="#090909"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/blood_sugar_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.758">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/goals_edit"
+        android:layout_width="229dp"
+        android:layout_height="45dp"
+        android:background="@drawable/background_intro_2"
+        android:drawablePadding="10dp"
+        android:paddingStart="5dp"
+        android:hint="If yes please mention"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:backgroundTint="#FFCEC8C8"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="@id/blood_sugar_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82">
+
+    </EditText>
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:background="@null"
+        android:src="@drawable/back_btn"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955">
+
+    </androidx.appcompat.widget.AppCompatImageButton>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:background="@null"
+        android:src="@drawable/next_btn"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955">
+
+    </androidx.appcompat.widget.AppCompatImageButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
