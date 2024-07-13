@@ -1,0 +1,190 @@
+Index: app/src/main/res/layout/activity_onboarding_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".onboarding_background\"\n    android:background=\"#98C1D9\"\n    >\n\n    <com.airbnb.lottie.LottieAnimationView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.511\"\n        app:lottie_autoPlay=\"true\"\n        app:lottie_loop=\"true\"\n        app:lottie_rawRes=\"@raw/onboarding_background\"\n        app:lottie_speed=\"1\">\n\n\n    </com.airbnb.lottie.LottieAnimationView>\n\n\n    <androidx.viewpager2.widget.ViewPager2\n        android:id=\"@+id/viewPager\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\" />\n\n\n\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_onboarding_background.xml b/app/src/main/res/layout/activity_onboarding_background.xml
+--- a/app/src/main/res/layout/activity_onboarding_background.xml	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/res/layout/activity_onboarding_background.xml	(date 1720867051458)
+@@ -6,12 +6,12 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".onboarding_background"
+-    android:background="#98C1D9"
++    android:background="#9ccbe3"
+     >
+ 
+     <com.airbnb.lottie.LottieAnimationView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+Index: app/src/main/res/layout/understand_your_health.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#98C1D9\">\n\n    <com.airbnb.lottie.LottieAnimationView\n        android:layout_width=\"405dp\"\n        android:layout_height=\"275dp\"\n        app:layout_constraintBottom_toBottomOf=\"@id/textview1\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.646\"\n        app:lottie_autoPlay=\"true\"\n        app:lottie_rawRes=\"@raw/understand_your_health_lottie\"\n        tools:ignore=\"MissingConstraints\">\n\n\n    </com.airbnb.lottie.LottieAnimationView>\n\n\n    <TextView\n        android:id=\"@+id/textview1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"455dp\"\n        android:text=\"Understand Your Health\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"35sp\"\n        android:textStyle=\"bold\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"510dp\"\n        android:text=\"Know how your body is doing with easy-to-\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"535dp\"\n        android:text=\"read reports that break down complex\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview4\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"560dp\"\n        android:text=\"medical data into simple terms.\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview5\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"652dp\"\n        android:text=\"Skip\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"25sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.096\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n    <androidx.appcompat.widget.AppCompatImageButton\n        android:id=\"@+id/next_btn\"\n        android:layout_width=\"62dp\"\n        android:layout_height=\"62dp\"\n        android:layout_alignParentRight=\"true\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_marginTop=\"640dp\"\n        android:background=\"@null\"\n        android:src=\"@drawable/arrow_forward_btn\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n    </androidx.appcompat.widget.AppCompatImageButton>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/understand_your_health.xml b/app/src/main/res/layout/understand_your_health.xml
+--- a/app/src/main/res/layout/understand_your_health.xml	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/res/layout/understand_your_health.xml	(date 1720867675885)
+@@ -5,7 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#98C1D9">
++    >
+ 
+     <com.airbnb.lottie.LottieAnimationView
+         android:layout_width="405dp"
+Index: app/src/main/res/layout/welcome_to_bhealthy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#98C1D9\">\n\n    <com.airbnb.lottie.LottieAnimationView\n        android:layout_width=\"405dp\"\n        android:layout_height=\"275dp\"\n        app:layout_constraintBottom_toBottomOf=\"@id/textview1\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.646\"\n        app:lottie_autoPlay=\"true\"\n        app:lottie_rawRes=\"@raw/welcome_to_bhealthy_lottie\"\n        tools:ignore=\"MissingConstraints\">\n\n\n    </com.airbnb.lottie.LottieAnimationView>\n\n    <TextView\n        android:id=\"@+id/textview1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"480dp\"\n        android:text=\"Welcome To B-Healthy!\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"35sp\"\n        android:textStyle=\"bold\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"540dp\"\n        android:text=\"Your own comprehensive medical assistant.\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.47\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"568dp\"\n        android:text=\"Now at your finger tips.\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview4\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"652dp\"\n        android:text=\"Skip\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"25sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.096\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n    <androidx.appcompat.widget.AppCompatImageButton\n        android:id=\"@+id/next_btn\"\n        android:layout_width=\"62dp\"\n        android:layout_height=\"62dp\"\n        android:layout_alignParentRight=\"true\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_marginTop=\"640dp\"\n        android:background=\"@null\"\n        android:src=\"@drawable/arrow_forward_btn\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n    </androidx.appcompat.widget.AppCompatImageButton>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/welcome_to_bhealthy.xml b/app/src/main/res/layout/welcome_to_bhealthy.xml
+--- a/app/src/main/res/layout/welcome_to_bhealthy.xml	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/res/layout/welcome_to_bhealthy.xml	(date 1720867675893)
+@@ -5,7 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#98C1D9">
++    >
+ 
+     <com.airbnb.lottie.LottieAnimationView
+         android:layout_width="405dp"
+Index: app/src/main/res/layout/engage_with_people.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#98C1D9\">\n\n    <com.airbnb.lottie.LottieAnimationView\n        android:layout_width=\"405dp\"\n        android:layout_height=\"275dp\"\n        app:layout_constraintBottom_toBottomOf=\"@id/textview1\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.646\"\n        app:lottie_autoPlay=\"true\"\n        app:lottie_rawRes=\"@raw/engage_with_people_lottie\"\n        tools:ignore=\"MissingConstraints\">\n\n\n    </com.airbnb.lottie.LottieAnimationView>\n\n\n    <TextView\n        android:id=\"@+id/textview1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"455dp\"\n        android:text=\"Engage with People\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"35sp\"\n        android:textStyle=\"bold\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"510dp\"\n        android:text=\"Join a supportive community of individuals\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"535dp\"\n        android:text=\"with similar health conditions and share\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview4\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"560dp\"\n        android:text=\"experiences, tips and encouragement.\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n    <androidx.appcompat.widget.AppCompatImageButton\n        android:id=\"@+id/get_started_btn\"\n        android:layout_width=\"110dp\"\n        android:layout_height=\"31.42dp\"\n        android:layout_alignParentRight=\"true\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_marginTop=\"640dp\"\n        android:layout_marginBottom=\"30dp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        android:background=\"@null\"\n        android:src=\"@drawable/get_started_btn\"\n        android:layout_marginRight=\"30dp\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n    </androidx.appcompat.widget.AppCompatImageButton>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/engage_with_people.xml b/app/src/main/res/layout/engage_with_people.xml
+--- a/app/src/main/res/layout/engage_with_people.xml	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/res/layout/engage_with_people.xml	(date 1720867675861)
+@@ -5,7 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#98C1D9">
++    >
+ 
+     <com.airbnb.lottie.LottieAnimationView
+         android:layout_width="405dp"
+Index: app/src/main/java/com/codexnovas/bhealthy/onboarding_background.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy;\n\nimport android.os.Bundle;\n\nimport androidx.activity.EdgeToEdge;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.core.graphics.Insets;\nimport androidx.core.view.ViewCompat;\nimport androidx.core.view.WindowInsetsCompat;\n\npublic class onboarding_background extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        EdgeToEdge.enable(this);\n        setContentView(R.layout.activity_onboarding_background);\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\n            return insets;\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/onboarding_background.java b/app/src/main/java/com/codexnovas/bhealthy/onboarding_background.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/onboarding_background.java	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/java/com/codexnovas/bhealthy/onboarding_background.java	(date 1720867881839)
+@@ -1,24 +1,26 @@
+ package com.codexnovas.bhealthy;
+ 
+ import android.os.Bundle;
++import android.os.Handler;
+ 
+ import androidx.activity.EdgeToEdge;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.core.graphics.Insets;
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
++import androidx.viewpager2.widget.ViewPager2;
+ 
+ public class onboarding_background extends AppCompatActivity {
++    private ViewPager2 viewPager;
++    private ScreenSlidePagerAdapter pagerAdapter;
++    private Handler sliderHandler = new Handler();
++
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        EdgeToEdge.enable(this);
+         setContentView(R.layout.activity_onboarding_background);
+-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+-            return insets;
+-        });
++
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/smart_insights.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"#98C1D9\">\n\n\n    <com.airbnb.lottie.LottieAnimationView\n        android:layout_width=\"405dp\"\n        android:layout_height=\"275dp\"\n        app:layout_constraintBottom_toBottomOf=\"@id/textview1\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.646\"\n        app:lottie_autoPlay=\"true\"\n        app:lottie_rawRes=\"@raw/smart_insights_for_you_lottie\"\n        tools:ignore=\"MissingConstraints\">\n\n\n    </com.airbnb.lottie.LottieAnimationView>\n\n    <TextView\n        android:id=\"@+id/textview1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"455dp\"\n        android:text=\"Smart insights for you\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"35sp\"\n        android:textStyle=\"bold\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"510dp\"\n        android:text=\"Chat with our AI for personalized health\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"535dp\"\n        android:text=\"advice and discover tailored natural\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview4\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"560dp\"\n        android:text=\"remedies.\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"20sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <TextView\n        android:id=\"@+id/textview5\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginTop=\"652dp\"\n        android:text=\"Skip\"\n        android:textColor=\"#ffffff\"\n        android:textSize=\"25sp\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.096\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n    <androidx.appcompat.widget.AppCompatImageButton\n        android:id=\"@+id/next_btn\"\n        android:layout_width=\"62dp\"\n        android:layout_height=\"62dp\"\n        android:layout_alignParentRight=\"true\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_marginTop=\"640dp\"\n        android:background=\"@null\"\n        android:src=\"@drawable/arrow_forward_btn\"\n\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n    </androidx.appcompat.widget.AppCompatImageButton>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/smart_insights.xml b/app/src/main/res/layout/smart_insights.xml
+--- a/app/src/main/res/layout/smart_insights.xml	(revision 302b630cbbd9ddc7938fc3418deabf08a15af68b)
++++ b/app/src/main/res/layout/smart_insights.xml	(date 1720867675873)
+@@ -5,7 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#98C1D9">
++    >
+ 
+ 
+     <com.airbnb.lottie.LottieAnimationView
+Index: app/src/main/java/com/codexnovas/bhealthy/ScreenSlidePagerAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/ScreenSlidePagerAdapter.java b/app/src/main/java/com/codexnovas/bhealthy/ScreenSlidePagerAdapter.java
+new file mode 100644
+--- /dev/null	(date 1720867308430)
++++ b/app/src/main/java/com/codexnovas/bhealthy/ScreenSlidePagerAdapter.java	(date 1720867308430)
+@@ -0,0 +1,34 @@
++package com.codexnovas.bhealthy;
++
++import androidx.annotation.NonNull;
++import androidx.fragment.app.Fragment;
++import androidx.fragment.app.FragmentActivity;
++import androidx.viewpager2.adapter.FragmentStateAdapter;
++
++public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
++    public ScreenSlidePagerAdapter(@NonNull FragmentActivity fa) {
++        super(fa);
++    }
++
++    @NonNull
++    @Override
++    public Fragment createFragment(int position) {
++        switch (position) {
++            case 0:
++                return new welcome_to_bhealthy();
++            case 1:
++                return new smart_insights();
++            case 2:
++                return new understand_your_health();
++            case 3:
++                return new engage_with_people();
++            default:
++                return new welcome_to_bhealthy();
++        }
++    }
++
++    @Override
++    public int getItemCount() {
++        return 4; // Number of screens
++    }
++}

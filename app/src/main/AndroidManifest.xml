@@ -17,28 +17,19 @@
             android:exported="false" />
         <activity
             android:name=".onboarding_background"
-            android:exported="false" />
-        <activity
-            android:name=".EngageWithPeople"
-            android:exported="false" />
-        <activity
-            android:name=".UnderstandYourHealth"
-            android:exported="false" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".UploadPic"
             android:exported="false" />
-        <activity
-            android:name=".SmartInsights"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeToBhealthy"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false"></activity>
