@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginPage"
-    android:background="#E0FBFC">
+    android:background="@drawable/login_signup_background">
 
 
     <TextView
