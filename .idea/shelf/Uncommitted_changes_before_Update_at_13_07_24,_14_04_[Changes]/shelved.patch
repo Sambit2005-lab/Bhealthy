@@ -1,0 +1,37 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.Bhealthy\"\n        tools:targetApi=\"31\">\n        <activity\n            android:name=\".UnderstandYourHealth\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".UploadPic\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".SmartInsights\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".WelcomeToBhealthy\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"false\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision b240ef2b7ad5a0c8678f98ab5a4ed413fa02cafd)
++++ b/app/src/main/AndroidManifest.xml	(date 1720859102980)
+@@ -23,15 +23,18 @@
+             android:exported="false" />
+         <activity
+             android:name=".WelcomeToBhealthy"
+-            android:exported="false" />
+-        <activity
+-            android:name=".MainActivity"
+-            android:exported="false">
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
++            android:exported="true">
++        <intent-filter>
++            <action android:name="android.intent.action.MAIN" />
+ 
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
++            <category android:name="android.intent.category.LAUNCHER" />
++        </intent-filter>
++        </activity>
++
++        <activity
++            android:name=".MainActivity"
++            android:exported="false">
++
+         </activity>
+     </application>
+ 

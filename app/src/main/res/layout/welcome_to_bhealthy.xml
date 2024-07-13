@@ -8,20 +8,34 @@
     tools:context=".WelcomeToBhealthy"
     android:background="#98C1D9">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="405dp"
+        android:layout_height="275dp"
+        app:layout_constraintBottom_toBottomOf="@id/textview1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.646"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/welcome_to_bhealthy_lottie"
+        tools:ignore="MissingConstraints">
+
+
+    </com.airbnb.lottie.LottieAnimationView>
 
     <TextView
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="455dp"
+        android:layout_marginTop="480dp"
         android:text="Welcome To B-Healthy!"
         android:textColor="#ffffff"
         android:textSize="35sp"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,13 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="540dp"
         android:text="Your own comprehensive medical assistant."
         android:textColor="#ffffff"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,13 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="535dp"
+        android:layout_marginTop="568dp"
         android:text="Now at your finger tips."
         android:textColor="#ffffff"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
