@@ -25,10 +25,15 @@
         </intent-filter>
         </activity>
 
-
         <activity
             android:name=".UploadPic"
             android:exported="false" />
+
+        <activity
+            android:name=".SignupPage"
+            android:exported="false" />
+
+
 
         <activity
             android:name=".MainActivity"

@@ -74,5 +74,9 @@ public class onboarding_background extends AppCompatActivity {
             sliderHandler.postDelayed(sliderRunnable, 3000); // Resume with 3 seconds delay
         }
     }
+
+    public ViewPager2 getViewPager() {
+        return viewPager;
+    }
 }
 
