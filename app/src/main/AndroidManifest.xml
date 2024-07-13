@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Bhealthy"
         tools:targetApi="31">
         <activity
+            android:name=".UnderstandYourHealth"
+            android:exported="false" />
+        <activity
             android:name=".UploadPic"
             android:exported="false" />
         <activity
