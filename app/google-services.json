@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "818264577152",
+    "project_id": "bhealthy-c69e5",
+    "storage_bucket": "bhealthy-c69e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818264577152:android:5e8c5d2f870f1e987c8265",
+        "android_client_info": {
+          "package_name": "com.codexnovas.bhealthy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO-pZoIIcpOwnRxoLpqcRDOnCkU-GIaMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
