@@ -30,7 +30,7 @@ public class engage_with_people extends Fragment {
         getStartedButton = view.findViewById(R.id.get_started_btn);
 
         getStartedButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(),LoginPage.class);
+            Intent intent = new Intent(getActivity(),HealthMatrics.class);
             startActivity(intent);
         });
 

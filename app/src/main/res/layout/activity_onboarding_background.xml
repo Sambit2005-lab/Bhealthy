@@ -9,6 +9,8 @@
     android:background="#9ccbe3"
     >
 
+
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="2076dp"
         android:layout_height="924dp"
