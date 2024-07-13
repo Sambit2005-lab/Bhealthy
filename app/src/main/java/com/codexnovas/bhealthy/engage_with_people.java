@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class welcome_to_bhealthy extends Fragment {
+public class engage_with_people extends Fragment {
 
 
 
-    public welcome_to_bhealthy() {
+    public engage_with_people() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class welcome_to_bhealthy extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.welcome_to_bhealthy, container, false);
+        View view= inflater.inflate(R.layout.engage_with_people, container, false);
         return view;
     }
 }
