@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MedicalHistory"
+    android:background="#E0FBFC">
+
+
+    <TextView
+        android:id="@+id/tell_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tell us about your"
+        android:textSize="31sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15">
+
+    </TextView>
+
+
+
+    <TextView
+        android:id="@+id/medical_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="medical history"
+        android:textSize="31sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tell_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/dashed_line"
+        android:layout_width="360dp"
+        android:layout_height="1dp"
+        android:background="#090909"
+        android:padding="8dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/medical_text"
+        app:layout_constraintVertical_bias="0.0">
+
+    </ImageView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashed_line"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            >
+
+
+            <TextView
+                android:id="@+id/medical_codn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+
+                android:text="1. Do you have any existing medical conditions?"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.01"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+            </TextView>
+
+
+            <RadioGroup
+                android:id="@+id/medical_codn_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+
+                app:layout_constraintStart_toStartOf="@id/medical_codn_text"
+                app:layout_constraintTop_toBottomOf="@id/medical_codn_text"
+
+                >
+
+
+                <RadioButton
+                    android:id="@+id/asthma_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Asthma"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/diabetes_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Diabetes"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/hypten_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Hypertension"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/arth_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Arthritis"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/heart_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Heart Disease"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/other_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Other :"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/medical_codn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:hint="Please mention"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+
+
+                    />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/take_med_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Are you currently taking any medications?"
+                android:textColor="#090909"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/medical_codn_text"
+                app:layout_constraintTop_toBottomOf="@id/medical_codn_btn"
+                app:layout_constraintVertical_bias="0.03">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/take_med_edit"
+                android:layout_width="229dp"
+                android:layout_height="45dp"
+                android:background="@drawable/background_intro_2"
+                android:backgroundTint="#FFCEC8C8"
+                android:drawablePadding="10dp"
+                android:hint="If yes please mention...."
+                android:paddingStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="@id/take_med_text"
+                app:layout_constraintTop_toBottomOf="@id/take_med_text"
+                app:layout_constraintVertical_bias="0.02">
+
+            </EditText>
+
+
+            <TextView
+                android:id="@+id/allergies_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+
+                android:text="3. Do you have any allergies?"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@id/take_med_edit"
+                app:layout_constraintStart_toStartOf="@+id/take_med_text"
+                app:layout_constraintVertical_bias="0.05">
+
+            </TextView>
+
+
+            <RadioGroup
+                android:id="@+id/allergies_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+
+                app:layout_constraintStart_toStartOf="@id/allergies_text"
+                app:layout_constraintTop_toBottomOf="@id/allergies_text"
+
+                >
+
+
+                <RadioButton
+                    android:id="@+id/insect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Insect stings"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/pollen_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Pollen"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/dust_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Dust"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/foods_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Certain Foods"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/medications_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Medications"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/other_allergies_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Other :"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/allergies_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:hint="Please mention"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+
+                    />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/family_hist_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+
+                android:text="4. Does your family has any history of medical "
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@id/allergies_btn"
+                app:layout_constraintStart_toStartOf="@id/allergies_text"
+                app:layout_constraintVertical_bias="0.05">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/family_hist_codn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+
+                android:text="conditions? "
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@id/family_hist_text"
+                app:layout_constraintStart_toStartOf="@id/family_hist_text"
+                app:layout_constraintVertical_bias="0.0">
+
+            </TextView>
+
+
+            <RadioGroup
+                android:id="@+id/family_hist_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+
+                app:layout_constraintStart_toStartOf="@id/family_hist_codn_text"
+                app:layout_constraintTop_toBottomOf="@id/family_hist_codn_text"
+
+                >
+
+
+                <RadioButton
+                    android:id="@+id/osteo_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Osteoporosis"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/diabetes_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Diabetes"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/hypten_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Hypertension"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/arth_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Arthritis"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/heart_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Heart Disease"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/other_family_hist_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="Other :"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/family_hist_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:hint="Please mention"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+
+                    />
+
+            </RadioGroup>
+
+
+
+            <TextView
+                android:id="@+id/past_report_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5. Would you like to report any past"
+                android:textColor="#090909"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/family_hist_text"
+                app:layout_constraintTop_toBottomOf="@id/family_hist_btn"
+                app:layout_constraintVertical_bias="0.11">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/past_medical_report_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="medical reports?"
+                android:textColor="#090909"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/past_report_text"
+                app:layout_constraintTop_toBottomOf="@id/past_report_text"
+                app:layout_constraintVertical_bias="0.03">
+
+            </TextView>
+
+
+
+            <EditText
+                android:id="@+id/past_report_edit"
+                android:layout_width="229dp"
+                android:layout_height="45dp"
+                android:background="@drawable/background_intro_2"
+                android:backgroundTint="#FFCEC8C8"
+                android:drawablePadding="10dp"
+                android:hint="If yes please mention...."
+                android:paddingStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="@id/past_medical_report_text"
+                app:layout_constraintTop_toBottomOf="@id/past_medical_report_text"
+                app:layout_constraintVertical_bias="0.1">
+
+            </EditText>
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/back_btn"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="1000dp"
+                android:layout_marginStart="20dp"
+                android:background="@null"
+                android:src="@drawable/back_btn"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            </androidx.appcompat.widget.AppCompatImageButton>
+
+
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/next_btn"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="1000dp"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:src="@drawable/next_btn"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+            </androidx.appcompat.widget.AppCompatImageButton>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
