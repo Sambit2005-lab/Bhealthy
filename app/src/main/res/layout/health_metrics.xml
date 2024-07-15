@@ -96,31 +96,33 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/height_edit"
-        android:layout_width="199dp"
+        android:layout_width="129dp"
         android:layout_height="35dp"
-        android:background="@drawable/background_intro_2"
+        android:background="@drawable/background_intro_4"
         android:drawablePadding="10dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="@id/height_text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.320"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/height_menu"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="35dp"
         android:background="@drawable/background_intro_3"
         android:layout_margin="0dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="cm"
+
         app:layout_constraintBottom_toBottomOf="@+id/height_edit"
-        app:layout_constraintEnd_toEndOf="@+id/height_edit"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/height_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/height_edit"
         app:layout_constraintTop_toTopOf="@+id/height_edit"
         app:layout_constraintVertical_bias="0.320">
 
@@ -138,6 +140,7 @@
         android:text="2. What is your weight?"
         android:textColor="#090909"
         android:textSize="16sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -147,15 +150,15 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/weight_edit"
-        android:layout_width="199dp"
+        android:layout_width="129dp"
         android:layout_height="35dp"
-        android:background="@drawable/background_intro_2"
+        android:background="@drawable/background_intro_4"
         android:drawablePadding="10dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="@id/weight_text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.432"/>
@@ -169,9 +172,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="kg"
         app:layout_constraintBottom_toBottomOf="@+id/weight_edit"
-        app:layout_constraintEnd_toEndOf="@+id/weight_edit"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/weight_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/weight_edit"
         app:layout_constraintTop_toTopOf="@+id/weight_edit"
         app:layout_constraintVertical_bias="0.320">
 
