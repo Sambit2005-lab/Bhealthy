@@ -3,6 +3,7 @@ package com.codexnovas.bhealthy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -76,7 +77,8 @@ public class SignupPage extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         Toast.makeText(SignupPage.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                        // Navigate to another activity if needed
+                        Intent intent = new Intent(SignupPage.this, PersonelInfoPage.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(SignupPage.this, "Registration failed", Toast.LENGTH_SHORT).show();
                     }
