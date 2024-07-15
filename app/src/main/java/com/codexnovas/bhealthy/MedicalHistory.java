@@ -41,7 +41,7 @@ public class MedicalHistory extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MedicalHistory.this, PersonelInfoPage.class);
+                Intent intent = new Intent(MedicalHistory.this, PersonalInfoPage.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +85,7 @@ public class MedicalHistory extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             Toast.makeText(MedicalHistory.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MedicalHistory.this, HealthMatrics.class);
+                            Intent intent = new Intent(MedicalHistory.this, HealthMetrics.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(MedicalHistory.this, "Failed to save data", Toast.LENGTH_SHORT).show();

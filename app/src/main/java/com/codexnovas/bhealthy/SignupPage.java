@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -77,7 +76,7 @@ public class SignupPage extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         Toast.makeText(SignupPage.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignupPage.this, PersonelInfoPage.class);
+                        Intent intent = new Intent(SignupPage.this, PersonalInfoPage.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignupPage.this, "Registration failed", Toast.LENGTH_SHORT).show();

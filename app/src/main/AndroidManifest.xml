@@ -20,7 +20,7 @@
             android:exported="false"
             />
         <activity
-            android:name=".HealthMatrics"
+            android:name=".HealthMetrics"
             android:exported="false"
             />
         <activity
