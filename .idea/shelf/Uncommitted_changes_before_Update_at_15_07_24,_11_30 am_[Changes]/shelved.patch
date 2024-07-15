@@ -1,0 +1,293 @@
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\nplugins {\n    alias(libs.plugins.android.application) apply false\n    alias(libs.plugins.jetbrains.kotlin.android) apply false\n    alias(libs.plugins.google.gms.google.services) apply false\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
++++ b/build.gradle.kts	(date 1721023221190)
+@@ -3,4 +3,6 @@
+     alias(libs.plugins.android.application) apply false
+     alias(libs.plugins.jetbrains.kotlin.android) apply false
+     alias(libs.plugins.google.gms.google.services) apply false
+-}
+\ No newline at end of file
++}
++
++
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.android.application)\n    alias(libs.plugins.jetbrains.kotlin.android)\n    alias(libs.plugins.google.gms.google.services)\n}\n\nandroid {\n    namespace = \"com.codexnovas.bhealthy\"\n    compileSdk = 34\n\n    defaultConfig {\n        applicationId = \"com.codexnovas.bhealthy\"\n        minSdk = 24\n        targetSdk = 34\n        versionCode = 1\n        versionName = \"1.0\"\n\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            isMinifyEnabled = false\n            proguardFiles(\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\n                \"proguard-rules.pro\"\n            )\n        }\n    }\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_1_8\n        targetCompatibility = JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = \"1.8\"\n    }\n}\n\ndependencies {\n\n    implementation(libs.androidx.core.ktx)\n    implementation(libs.androidx.appcompat)\n    implementation (\"com.airbnb.android:lottie:6.4.1\")\n    implementation(libs.material)\n    implementation(libs.androidx.activity)\n    implementation(libs.androidx.constraintlayout)\n    implementation(libs.firebase.auth)\n    implementation(libs.firebase.database)\n    testImplementation(libs.junit)\n    androidTestImplementation(libs.androidx.junit)\n    androidTestImplementation(libs.androidx.espresso.core)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
++++ b/app/build.gradle.kts	(date 1721023221156)
+@@ -40,7 +40,7 @@
+ 
+     implementation(libs.androidx.core.ktx)
+     implementation(libs.androidx.appcompat)
+-    implementation ("com.airbnb.android:lottie:6.4.1")
++    implementation("com.airbnb.android:lottie:6.4.1")
+     implementation(libs.material)
+     implementation(libs.androidx.activity)
+     implementation(libs.androidx.constraintlayout)
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
++++ /dev/null	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_13_07_24,_15_59_[Changes]" date="1720866588480" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24,_15_59_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13/07/24, 15:59 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: app/src/main/res/layout/personel_info_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/personel_info_page.xml b/app/src/main/res/layout/personel_info_page.xml
+new file mode 100644
+--- /dev/null	(date 1721023221185)
++++ b/app/src/main/res/layout/personel_info_page.xml	(date 1721023221185)
+@@ -0,0 +1,167 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".PersonelInfoPage"
++    android:background="#E0FBFC">
++
++
++    <TextView
++        android:id="@+id/know_better"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Let's get to know"
++        android:textSize="28sp"
++        android:textStyle="bold"
++        android:layout_marginLeft="20dp"
++        android:layout_marginBottom="500dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintLeft_toLeftOf="parent"
++        >
++
++    </TextView>
++
++    <TextView
++        android:id="@+id/you_better"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="20dp"
++        android:layout_marginBottom="500dp"
++        android:text="you better!"
++        android:textSize="28sp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/know_better"
++        app:layout_constraintVertical_bias="0.0">
++
++    </TextView>
++
++    <ImageView
++        android:id="@+id/mid_line"
++        android:layout_width="365dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="10dp"
++        android:background="@null"
++        android:src="@drawable/mid_line"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/you_better">
++
++    </ImageView>
++
++    <EditText
++        android:id="@+id/enter_fullname"
++        android:layout_width="match_parent"
++        android:layout_height="28dp"
++        android:layout_marginTop="100dp"
++        android:layout_marginRight="40dp"
++        android:layout_marginLeft="40dp"
++        android:background="@drawable/edit_text_transparent"
++        android:hint="  Enter your fullname"
++        android:paddingStart="5dp"
++        android:textSize="12dp"
++        app:layout_constraintBottom_toTopOf="@+id/enter_date"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/mid_line">
++
++    </EditText>
++
++    <EditText
++        android:id="@+id/enter_date"
++        android:layout_height="28dp"
++        android:layout_width="match_parent"
++        app:layout_constraintRight_toRightOf="parent"
++        android:layout_marginRight="40dp"
++        app:layout_constraintTop_toBottomOf="@+id/enter_fullname"
++        app:layout_constraintLeft_toLeftOf="parent"
++        android:layout_marginLeft="40dp"
++        android:layout_marginTop="20dp"
++        android:paddingStart="5dp"
++        app:layout_constraintBottom_toTopOf="@id/pronouns"
++        android:hint="  dd/mm/yy"
++        android:drawableRight="@drawable/calendar_month"
++        android:paddingRight="15dp"
++        android:textSize="12dp"
++        android:background="@drawable/edit_text_transparent"
++        >
++
++    </EditText>
++
++    <EditText
++        android:id="@+id/pronouns"
++        android:layout_height="28dp"
++        android:layout_width="match_parent"
++        app:layout_constraintRight_toRightOf="parent"
++        android:layout_marginRight="40dp"
++        app:layout_constraintTop_toBottomOf="@+id/enter_date"
++        app:layout_constraintLeft_toLeftOf="parent"
++        android:layout_marginLeft="40dp"
++        android:layout_marginTop="20dp"
++
++        android:paddingStart="5dp"
++        app:layout_constraintBottom_toTopOf="@id/phone"
++        android:hint="  What pronouns do you use?"
++        android:textSize="12dp"
++        android:background="@drawable/edit_text_transparent"
++        >
++
++    </EditText>
++
++    <EditText
++        android:id="@+id/phone"
++        android:layout_height="28dp"
++        android:layout_width="match_parent"
++        app:layout_constraintRight_toRightOf="parent"
++        android:layout_marginRight="40dp"
++        app:layout_constraintTop_toBottomOf="@+id/pronouns"
++        app:layout_constraintLeft_toLeftOf="parent"
++        android:layout_marginLeft="40dp"
++        android:layout_marginTop="20dp"
++        android:paddingStart="5dp"
++        app:layout_constraintBottom_toTopOf="@id/email"
++        android:textSize="12dp"
++        android:background="@drawable/edit_text_transparent"
++        >
++
++    </EditText>
++
++    <EditText
++        android:id="@+id/email"
++        android:layout_height="28dp"
++        android:layout_width="match_parent"
++        app:layout_constraintRight_toRightOf="parent"
++        android:layout_marginRight="40dp"
++        app:layout_constraintTop_toBottomOf="@+id/phone"
++        app:layout_constraintLeft_toLeftOf="parent"
++        android:layout_marginLeft="40dp"
++        android:layout_marginTop="20dp"
++        android:paddingStart="5dp"
++        app:layout_constraintBottom_toTopOf="@id/phone"
++        android:hint="  Enter your email"
++        android:textSize="12dp"
++        android:background="@drawable/edit_text_transparent"
++        >
++
++    </EditText>
++
++    <ImageButton
++        android:layout_width="35dp"
++        android:layout_height="35dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        android:src="@drawable/next_arrow_right"
++        android:background="@null"
++        android:layout_marginRight="36dp"
++        android:layout_marginBottom="18dp">
++
++    </ImageButton>
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.Bhealthy\"\n        tools:targetApi=\"31\">\n        <activity\n            android:name=\".LoginPage\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".onboarding_background\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".EngageWithPeople\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".UnderstandYourHealth\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".UploadPic\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".SmartInsights\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".WelcomeToBhealthy\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"false\"></activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
++++ b/app/src/main/AndroidManifest.xml	(date 1720937404454)
+@@ -13,6 +13,9 @@
+         android:theme="@style/Theme.Bhealthy"
+         tools:targetApi="31">
+         <activity
++            android:name=".PersonelInfoPage"
++            android:exported="false" />
++        <activity
+             android:name=".LoginPage"
+             android:exported="false" />
+         <activity
+@@ -41,7 +44,7 @@
+         </activity>
+         <activity
+             android:name=".MainActivity"
+-            android:exported="false"></activity>
++            android:exported="false" />
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java b/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java
+new file mode 100644
+--- /dev/null	(date 1720937404365)
++++ b/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java	(date 1720937404365)
+@@ -0,0 +1,24 @@
++package com.codexnovas.bhealthy;
++
++import android.os.Bundle;
++
++import androidx.activity.EdgeToEdge;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.graphics.Insets;
++import androidx.core.view.ViewCompat;
++import androidx.core.view.WindowInsetsCompat;
++
++public class PersonelInfoPage extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        EdgeToEdge.enable(this);
++        setContentView(R.layout.personel_info_page);
++        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
++            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
++            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
++            return insets;
++        });
++    }
++}
+\ No newline at end of file
