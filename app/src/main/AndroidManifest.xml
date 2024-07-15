@@ -16,17 +16,17 @@
         android:theme="@style/Theme.Bhealthy"
         tools:targetApi="31">
         <activity
+            android:name=".Loading_page"
+            android:exported="false" />
+        <activity
             android:name=".MedicalHistory"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".HealthMetrics"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".LoginPage"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".OnboardingSlidePages.onboarding_background"
             android:exported="true">
@@ -38,26 +38,16 @@
         </activity>
         <activity
             android:name=".UploadPic"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".SignupPage"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            />
-
+            android:exported="false" />
         <activity
             android:name=".PersonalInfoPage"
-            android:exported="false"
-            />
-
+            android:exported="false" />
     </application>
-
-
-
-
 
 </manifest>
