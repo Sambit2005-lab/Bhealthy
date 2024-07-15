@@ -37,6 +37,14 @@ public class LoginPage extends AppCompatActivity {
         forgotPasswordText = findViewById(R.id.forgot_password);
         signupButton = findViewById(R.id.sign_up_button);
 
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginPage.this, SignupPage.class);
+                startActivity(intent);
+            }
+        });
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,18 +103,7 @@ public class LoginPage extends AppCompatActivity {
                 });
 
 
-
-        signupButton.setOnClickListener(new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View v){
-        Intent intent = new Intent(LoginPage.this, SignupPage.class);
-        startActivity(intent);
     }
-    });
-
-}
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
