@@ -1,4 +1,4 @@
-package com.codexnovas.bhealthy;
+package com.codexnovas.bhealthy.OnboardingSlidePages;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.codexnovas.bhealthy.R;
 
 public class onboarding_background extends AppCompatActivity {
     private ViewPager2 viewPager;

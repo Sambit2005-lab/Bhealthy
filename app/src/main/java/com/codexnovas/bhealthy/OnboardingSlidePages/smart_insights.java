@@ -1,7 +1,6 @@
-package com.codexnovas.bhealthy;
+package com.codexnovas.bhealthy.OnboardingSlidePages;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -13,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-public class welcome_to_bhealthy extends Fragment {
-
+import com.codexnovas.bhealthy.R;
 
 
-    public welcome_to_bhealthy() {
+public class smart_insights extends Fragment {
+
+
+
+    public smart_insights() {
         // Required empty public constructor
     }
 
@@ -28,9 +29,9 @@ public class welcome_to_bhealthy extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.welcome_to_bhealthy, container, false);
+        View view= inflater.inflate(R.layout.smart_insights, container, false);
 
-        TextView skipButton = view.findViewById(R.id.skip_text);
+         TextView skipButton = view.findViewById(R.id.text_skip);
         AppCompatImageButton nextButton = view.findViewById(R.id.next_btn);
 
         ViewPager2 viewPager = ((onboarding_background) getActivity()).getViewPager();
@@ -38,10 +39,7 @@ public class welcome_to_bhealthy extends Fragment {
         skipButton.setOnClickListener(v -> viewPager.setCurrentItem(3)); // Assuming 3 is the last fragment index
         nextButton.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() + 1));
 
+
         return view;
-
-
-
     }
-
 }

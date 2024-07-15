@@ -1,4 +1,4 @@
-package com.codexnovas.bhealthy;
+package com.codexnovas.bhealthy.OnboardingSlidePages;
 
 import android.os.Bundle;
 
@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.codexnovas.bhealthy.R;
 
 
 public class understand_your_health extends Fragment {

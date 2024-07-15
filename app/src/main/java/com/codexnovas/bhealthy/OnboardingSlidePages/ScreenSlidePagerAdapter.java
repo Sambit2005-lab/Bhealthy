@@ -1,4 +1,4 @@
-package com.codexnovas.bhealthy;
+package com.codexnovas.bhealthy.OnboardingSlidePages;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

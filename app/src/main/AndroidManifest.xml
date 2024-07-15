@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +25,7 @@
             android:name=".LoginPage"
             android:exported="false" />
         <activity
-            android:name=".onboarding_background"
+            android:name=".OnboardingSlidePages.onboarding_background"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
