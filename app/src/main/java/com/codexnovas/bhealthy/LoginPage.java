@@ -1,8 +1,12 @@
 package com.codexnovas.bhealthy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -43,19 +47,66 @@ public class LoginPage extends AppCompatActivity {
         forgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Implement forgot password logic if needed
-            }
-        });
-
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, SignupPage.class);
-                startActivity(intent);
+                showForgotPasswordDialog();
             }
         });
     }
 
+    private void showForgotPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        input.setHint("Enter your email"); // Set hint for the email input
+        builder.setView(input);
+
+
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = input.getText().toString().trim();
+                if (!email.isEmpty()) {
+                    resetPassword(email);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void resetPassword(String email) {
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Reset link sent to your email", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+        signupButton.setOnClickListener(new View.OnClickListener()
+
+    {
+        @Override
+        public void onClick (View v){
+        Intent intent = new Intent(LoginPage.this, SignupPage.class);
+        startActivity(intent);
+    }
+    });
+
+}
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -79,7 +130,9 @@ public class LoginPage extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
-                        // Navigate to another activity if needed
+                        Intent intent = new Intent(LoginPage.this, MedicalHistory.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginPage.this, "Login failed", Toast.LENGTH_SHORT).show();
                     }
