@@ -33,7 +33,7 @@
         android:layout_marginTop="480dp"
         android:text="Welcome To B-Healthy!"
         android:textColor="#ffffff"
-        android:textSize="35sp"
+        android:textSize="33sp"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         android:layout_marginTop="540dp"
         android:text="Your own comprehensive medical assistant."
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="18sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
@@ -63,7 +63,7 @@
         android:layout_marginTop="568dp"
         android:text="Now at your finger tips."
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="18sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

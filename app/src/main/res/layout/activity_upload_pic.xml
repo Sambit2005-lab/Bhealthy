@@ -164,13 +164,15 @@
 
     </androidx.appcompat.widget.AppCompatButton>
 
-    <Spinner
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lang_menu"
         android:layout_width="60dp"
         android:layout_height="35dp"
+        android:layout_margin="0dp"
         android:background="@drawable/background_intro_3"
-        android:paddingStart="3dp"
-        android:paddingEnd="3dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="English"
+
 
         app:layout_constraintBottom_toBottomOf="@+id/pre_language_btn"
         app:layout_constraintEnd_toEndOf="@+id/pre_language_btn"
