@@ -26,11 +26,11 @@
     </TextView>
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/enter_username"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="Email"
         android:textSize="18dp"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="40dp"
@@ -45,7 +45,7 @@
         android:layout_marginRight="40dp"
         android:layout_height="28dp"
         app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
@@ -81,7 +81,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
         android:paddingStart="5dp"
-        app:layout_constraintBottom_toTopOf="@id/forgot_password"
+        app:layout_constraintBottom_toTopOf="@id/confirm_password"
         android:hint="  Enter your password"
         android:textSize="12dp"
         android:background="@drawable/edit_text_transparent"
@@ -113,7 +113,6 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
         android:paddingStart="5dp"
-        app:layout_constraintBottom_toTopOf="@id/forgot_password"
         android:hint="  Confirm your password"
         android:textSize="12dp"
         android:background="@drawable/edit_text_transparent"
@@ -129,7 +128,6 @@
         android:layout_marginLeft="35dp"
         android:layout_height="15dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/dont_have"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:src="@drawable/or_line"
@@ -153,6 +151,7 @@
         >
 
     </ImageButton>
+
 
     <TextView
         android:id="@+id/textview1"
