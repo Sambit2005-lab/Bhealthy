@@ -8,6 +8,20 @@
     tools:context=".UploadPic"
     android:background="#E0FBFC">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="2076dp"
+        android:layout_height="924dp"
+        app:lottie_rawRes="@raw/user_details_background"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
 
     <TextView
         android:id="@+id/almost_there"
