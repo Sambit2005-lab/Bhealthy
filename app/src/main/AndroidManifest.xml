@@ -49,6 +49,10 @@
             android:exported="false"
             />
 
+        <activity
+            android:name=".PersonalInfoPage"
+            android:exported="false"
+            />
 
     </application>
 

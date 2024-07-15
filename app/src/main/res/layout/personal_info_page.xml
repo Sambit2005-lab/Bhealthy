@@ -70,7 +70,7 @@
     <EditText
         android:id="@+id/enter_fullname"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
@@ -90,7 +90,7 @@
 
     <EditText
         android:id="@+id/enter_date"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_width="match_parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="40dp"
@@ -101,7 +101,6 @@
         android:paddingStart="5dp"
         app:layout_constraintBottom_toTopOf="@id/pronouns"
         android:hint="  dd/mm/yy"
-        android:drawableRight="@drawable/calendar_month"
         android:paddingRight="15dp"
         android:textSize="12dp"
         android:background="@drawable/edit_text_transparent"
@@ -109,9 +108,25 @@
 
     </EditText>
 
+    <ImageButton
+        android:id="@+id/CalendarBtn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/calendar_month"
+        app:layout_constraintBottom_toBottomOf="@+id/enter_date"
+        app:layout_constraintEnd_toEndOf="@+id/enter_date"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="@+id/enter_date"
+        app:layout_constraintTop_toTopOf="@+id/enter_date"
+        app:layout_constraintVertical_bias="0.8"
+        tools:ignore="MissingConstraints">
+
+
+    </ImageButton>
+
     <EditText
         android:id="@+id/pronouns"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_width="match_parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="40dp"
@@ -129,9 +144,28 @@
 
     </EditText>
 
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="135dp"
+        android:layout_height="37dp"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_autoDetectLanguage="true"
+        app:ccp_hintExampleNumber="true"
+        app:ccp_showArrow="true"
+        app:ccp_showFullName="false"
+        app:ccp_showNameCode="true"
+        app:ccp_showPhoneCode="true"
+        app:layout_constraintBottom_toBottomOf="@+id/phone"
+        app:layout_constraintEnd_toEndOf="@+id/phone"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="@+id/phone"
+        app:layout_constraintTop_toTopOf="@+id/phone"
+        app:layout_constraintVertical_bias="0.504" />
+
     <EditText
         android:id="@+id/phone"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_width="match_parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="40dp"
@@ -139,17 +173,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
-        android:paddingStart="5dp"
+        android:paddingStart="135dp"
         app:layout_constraintBottom_toTopOf="@id/email"
         android:textSize="12dp"
         android:background="@drawable/edit_text_transparent"
         >
 
+
+
+
     </EditText>
+
+
 
     <EditText
         android:id="@+id/email"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_width="match_parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="40dp"
@@ -167,6 +206,7 @@
     </EditText>
 
     <ImageButton
+        android:id="@+id/nextBtn"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
