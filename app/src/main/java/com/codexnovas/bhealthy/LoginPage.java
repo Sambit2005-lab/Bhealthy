@@ -3,6 +3,7 @@ package com.codexnovas.bhealthy;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,9 @@ public class LoginPage extends AppCompatActivity {
     private ImageButton loginButton, signupButton;
     private TextView forgotPasswordText;
     private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class LoginPage extends AppCompatActivity {
         loginButton = findViewById(R.id.login_btn);
         forgotPasswordText = findViewById(R.id.forgot_password);
         signupButton = findViewById(R.id.sign_up_button);
+        progressBar = findViewById(R.id.progress_bar);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,8 +127,11 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
+                    progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginPage.this, PersonalInfoPage.class);

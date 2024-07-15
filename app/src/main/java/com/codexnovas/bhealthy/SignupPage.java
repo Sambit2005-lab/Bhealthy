@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupPage extends AppCompatActivity {
     private EditText emailEditText, passwordEditText, confirmPasswordEditText;
     private ImageButton signupButton;
+    private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -32,6 +34,8 @@ public class SignupPage extends AppCompatActivity {
         passwordEditText = findViewById(R.id.enter_password);
         confirmPasswordEditText = findViewById(R.id.enter_confirm_password);
         signupButton = findViewById(R.id.sign_up_button);
+        progressBar = findViewById(R.id.progress_bar);
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +75,11 @@ public class SignupPage extends AppCompatActivity {
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
+                    progressBar.setVisibility(View.VISIBLE);
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         Toast.makeText(SignupPage.this, "Registration successful", Toast.LENGTH_SHORT).show();
