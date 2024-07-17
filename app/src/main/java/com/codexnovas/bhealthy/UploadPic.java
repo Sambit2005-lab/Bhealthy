@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -30,11 +33,13 @@ public class UploadPic extends AppCompatActivity {
     private ImageView pfpPreview;
     private AppCompatButton uploadBtn, skipBtn, preLanguageBtn;
     private AppCompatImageButton backBtn, nextBtn;
+    private Spinner langSpinner;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private FirebaseAuth mAuth;
     private Uri imageUri;
     private DatabaseReference mDatabase;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,26 +49,29 @@ public class UploadPic extends AppCompatActivity {
         pfpPreview = findViewById(R.id.pfp_preview);
         uploadBtn = findViewById(R.id.upload_btn);
         skipBtn = findViewById(R.id.skip_for_now);
-        preLanguageBtn = findViewById(R.id.pre_language_btn);
         backBtn = findViewById(R.id.back_btn);
         nextBtn = findViewById(R.id.next_btn);
+        progressBar = findViewById(R.id.progress_bar);
+        langSpinner = findViewById(R.id.lang_spinner);
 
+        // Initialize Firebase instances
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference("profile_pictures");
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Set up the Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.language_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        langSpinner.setAdapter(adapter);
+
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle skip button action
-            }
-        });
-
-        preLanguageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle preferred language button action
+                Intent intent = new Intent(UploadPic.this, Loading_page.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -71,6 +79,8 @@ public class UploadPic extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle back button action
+                Intent intent = new Intent(UploadPic.this, HealthMetrics.class);
+                startActivity(intent);
             }
         });
 
@@ -78,6 +88,10 @@ public class UploadPic extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle next button action
+                savePreferredLanguage();
+                Intent intent = new Intent(UploadPic.this, Loading_page.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -107,6 +121,7 @@ public class UploadPic extends AppCompatActivity {
             if (currentUser != null) {
                 String userId = currentUser.getUid();
                 StorageReference fileReference = storageReference.child(userId + ".jpg");
+                progressBar.setVisibility(View.VISIBLE);
 
                 fileReference.putFile(imageUri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -120,12 +135,9 @@ public class UploadPic extends AppCompatActivity {
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
+                                                        progressBar.setVisibility(View.GONE);
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(UploadPic.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(UploadPic.this, Loading_page.class);
-                                                            intent.putExtra("profileImageUrl", imageUrl);
-                                                            startActivity(intent);
-                                                            finish();
                                                         } else {
                                                             Toast.makeText(UploadPic.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
                                                         }
@@ -146,6 +158,27 @@ public class UploadPic extends AppCompatActivity {
             }
         } else {
             Toast.makeText(UploadPic.this, "No image selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void savePreferredLanguage() {
+        String selectedLanguage = langSpinner.getSelectedItem().toString();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            mDatabase.child("users").child(userId).child("preferredLanguage").setValue(selectedLanguage)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(UploadPic.this, "Preferred language saved successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(UploadPic.this, "Failed to save preferred language", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(UploadPic.this, "User not authenticated", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -147,38 +147,22 @@
     </androidx.appcompat.widget.AppCompatButton>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/pre_language_btn"
+    <Spinner
+        android:id="@+id/lang_spinner"
         android:layout_width="229dp"
         android:layout_height="35dp"
         android:background="@drawable/background_intro_2"
         android:drawablePadding="10dp"
         android:paddingStart="5dp"
 
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/language"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777">
+        app:layout_constraintVertical_bias="0.777"/>
 
-    </androidx.appcompat.widget.AppCompatButton>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/lang_menu"
-        android:layout_width="60dp"
-        android:layout_height="35dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/background_intro_3"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:hint="English"
-        app:layout_constraintBottom_toBottomOf="@+id/pre_language_btn"
-        app:layout_constraintEnd_toEndOf="@+id/pre_language_btn"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/pre_language_btn"
-        app:layout_constraintTop_toTopOf="@+id/pre_language_btn"
-        app:layout_constraintVertical_bias="0.320" />
 
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -215,5 +199,19 @@
 
     </androidx.appcompat.widget.AppCompatImageButton>
 
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+         <ProgressBar
+             android:id="@+id/progress_bar"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:visibility="gone"
+             tools:ignore="MissingConstraints" />
+
+     </RelativeLayout>
+
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
