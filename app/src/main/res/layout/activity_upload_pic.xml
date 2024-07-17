@@ -8,20 +8,21 @@
     tools:context=".UploadPic"
     android:background="#E0FBFC">
 
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="2076dp"
         android:layout_height="924dp"
-        app:lottie_rawRes="@raw/user_details_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.564"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_speed="1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:lottie_rawRes="@raw/user_details_background"
+        app:lottie_speed="1">
 
     </com.airbnb.lottie.LottieAnimationView>
-
 
     <TextView
         android:id="@+id/almost_there"
@@ -172,8 +173,6 @@
         android:background="@drawable/background_intro_3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="English"
-
-
         app:layout_constraintBottom_toBottomOf="@+id/pre_language_btn"
         app:layout_constraintEnd_toEndOf="@+id/pre_language_btn"
         app:layout_constraintHorizontal_bias="1.0"
