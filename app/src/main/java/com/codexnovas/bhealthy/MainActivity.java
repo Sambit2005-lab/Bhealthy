@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set home fragment as default
         setFragment(new Home_Fragment());
+        updateTabUI(1, homeImage, R.drawable.home_icon_selected);
 
         // Set click listeners
         homeLayout.setOnClickListener(new View.OnClickListener() {

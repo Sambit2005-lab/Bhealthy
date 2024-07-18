@@ -285,6 +285,24 @@
                 android:background="@drawable/talk_about_health_bkg">
 
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:rotation="340"
+                    android:translationX="30dp"
+                    android:translationY="10dp"
+                    android:transformPivotX="1dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/chatbot"
+
+
+                    >
+
+
+                </com.airbnb.lottie.LottieAnimationView>
+
                 <TextView
                     android:id="@+id/talk_about_health_text"
                     android:layout_width="wrap_content"
@@ -309,6 +327,8 @@
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold" />
+
+
 
 
             </FrameLayout>
