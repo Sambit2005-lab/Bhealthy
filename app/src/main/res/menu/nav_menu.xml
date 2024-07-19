@@ -8,36 +8,26 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/home_icon_navbar"
-            android:title="Home"/>
-
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/community_icon_nav"
-            android:title="Community"/>
-
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/leaderboard_icon_nav"
-            android:title="Leaderboard"/>
-
-        <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/profile_icon_nav"
-            android:title="Profile"/>
+            android:icon="@drawable/about_us_icon"
+            android:title="About Us"/>
+
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/feedback_icon"
+            android:title="Feedback"/>
+
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/contact_us_icon"
+            android:title="Contact Us"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout"/>
     </group>
-    <item
-        android:title="">
 
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/logout_icon"
-                android:title="Logout"/>
-        </menu>
-
-    </item>
 
     <item
         android:title="">
@@ -48,6 +38,11 @@
                 android:title="Version 1.0"/>
         </menu>
 
+
     </item>
+    <item
+        android:id="@+id/nav_team"
+        android:title="Designed by Code-X-Novas"/>
+
 
 </menu>

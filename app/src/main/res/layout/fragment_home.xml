@@ -41,7 +41,7 @@
             android:paddingEnd="1.5dp"
             tools:ignore="MissingConstraints">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/nav_drawer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
