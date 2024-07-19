@@ -18,7 +18,8 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/weather_gif"
             android:layout_width="420dp"
-            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:layout_height="360dp"
             app:lottie_rawRes="@raw/rain_backgroundmp4lottie"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"

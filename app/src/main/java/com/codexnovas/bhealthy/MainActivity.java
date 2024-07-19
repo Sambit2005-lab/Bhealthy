@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import com.codexnovas.bhealthy.CommunityFragment.Community_Fragment;
-import com.codexnovas.bhealthy.HomeFragment.Home_Fragment;
+import com.codexnovas.bhealthy.HomeFragment.HomeFragment;
 import com.codexnovas.bhealthy.LeaderboardFragment.Leaderboard_Fragment;
 import com.codexnovas.bhealthy.ProfileFragment.Profile_Fragment;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         TextView profileText = findViewById(R.id.text_profile);
 
         // Set home fragment as default
-        setFragment(new Home_Fragment());
+        setFragment(new HomeFragment());
         updateTabUI(1, homeImage, R.drawable.home_icon_selected);
 
         // Set click listeners
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedTab != 1) {
-                    setFragment(new Home_Fragment());
+                    setFragment(new HomeFragment());
 
                     // Update UI for selected tab
                     updateTabUI(1, homeImage, R.drawable.home_icon_selected);
