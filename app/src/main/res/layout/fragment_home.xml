@@ -252,6 +252,9 @@
             android:background="@drawable/med_alert_bkg"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
+            android:scrollbars="horizontal"
+
+                    tools:listitem="@layout/med_type1_card"
 
             app:layout_constraintStart_toEndOf="@id/today_goal_card"
             app:layout_constraintTop_toTopOf="parent"
