@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Bhealthy"
         tools:targetApi="31">
         <activity
+            android:name=".GiftPage"
+            android:exported="false" />
+        <activity
             android:name=".Loading_page"
             android:exported="false" />
         <activity

@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation("com.airbnb.android:lottie:6.4.1")
     implementation ("com.hbb20:ccp:2.7.3")
+    implementation ("org.threeten:threetenbp:1.5.1")
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)

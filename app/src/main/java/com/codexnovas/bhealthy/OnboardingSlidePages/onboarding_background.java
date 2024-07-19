@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.codexnovas.bhealthy.R;
 
-public class onboarding_background extends AppCompatActivity {
+public class onboarding_background extends AppCompatActivity implements engage_with_people.StreakUpdateListener {
     private ViewPager2 viewPager;
     private ScreenSlidePagerAdapter pagerAdapter;
     private Handler sliderHandler = new Handler();
@@ -41,7 +41,7 @@ public class onboarding_background extends AppCompatActivity {
         });
 
         // Start the slider handler
-        sliderHandler.postDelayed(sliderRunnable, 6000); // 3 seconds delay
+        sliderHandler.postDelayed(sliderRunnable, 6000); // 6 seconds delay
     }
 
     private Runnable sliderRunnable = new Runnable() {
@@ -58,7 +58,7 @@ public class onboarding_background extends AppCompatActivity {
                     sliderHandler.removeCallbacks(sliderRunnable);
                     return;
                 }
-                sliderHandler.postDelayed(this, 6000); // 3 seconds delay
+                sliderHandler.postDelayed(this, 6000); // 6 seconds delay
             }
         }
     };
@@ -73,12 +73,21 @@ public class onboarding_background extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (!isUserInteracting) {
-            sliderHandler.postDelayed(sliderRunnable, 3000); // Resume with 3 seconds delay
+            sliderHandler.postDelayed(sliderRunnable, 3000); // Resume with 6 seconds delay
         }
+    }
+
+    @Override
+    public void updateStreakCount(long streakCount) {
+        // Handle streak count update (e.g., update UI)
+    }
+
+    @Override
+    public void showGiftAnimation() {
+        // Handle showing gift animation (e.g., show a dialog or animation)
     }
 
     public ViewPager2 getViewPager() {
         return viewPager;
     }
 }
-
