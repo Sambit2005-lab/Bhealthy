@@ -191,10 +191,10 @@
             android:id="@+id/action_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/streak"
+            app:srcCompat="@drawable/flame_icon"
             android:visibility="visible"
              app:fabSize="normal"
-             app:rippleColor="?attr/colorControlHighlight"
+            app:rippleColor="?attr/colorControlHighlight"
 
 
             app:maxImageSize="30dp"
