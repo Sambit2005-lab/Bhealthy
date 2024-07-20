@@ -45,8 +45,15 @@ public class WeatherAPIResponse {
             @SerializedName("text")
             private String text;
 
+            @SerializedName("icon")
+            private String icon;
+
             public String getText() {
                 return text;
+            }
+
+            public String getIcon() {
+                return icon;
             }
         }
     }

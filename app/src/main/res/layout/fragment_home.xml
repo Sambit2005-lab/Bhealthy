@@ -78,16 +78,16 @@
 
         <ImageView
             android:id="@+id/weather_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rainy_icon"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+
 
             app:layout_constraintBottom_toBottomOf="@id/weather_gif"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.93" />
+            app:layout_constraintVertical_bias="0.888" />
 
 
         <TextView
@@ -100,11 +100,10 @@
 
             app:layout_constraintBottom_toBottomOf="@id/weather_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.072"
+            app:layout_constraintStart_toEndOf="@id/weather_image"
             app:layout_constraintTop_toBottomOf="@id/temp_text"
-            app:layout_constraintStart_toEndOf="@id/weather_image" />
-
+            app:layout_constraintVertical_bias="0.304" />
 
 
         <TextView
@@ -117,13 +116,10 @@
 
             app:layout_constraintBottom_toBottomOf="@id/weather_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toEndOf="@id/weather_image"
             app:layout_constraintTop_toTopOf="@id/weather_image"
-            app:layout_constraintStart_toEndOf="@id/weather_image" />
-
-
-
+            app:layout_constraintVertical_bias="0.132" />
 
         <TextView
             android:id="@+id/hello_user_text"

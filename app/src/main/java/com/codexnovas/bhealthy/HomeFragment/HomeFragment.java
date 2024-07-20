@@ -1,13 +1,16 @@
 package com.codexnovas.bhealthy.HomeFragment;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +22,9 @@ import androidx.fragment.app.Fragment;
 import com.codexnovas.bhealthy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +36,7 @@ public class HomeFragment extends Fragment {
 
     private TextView tempTextView;
     private TextView weatherTextView;
+    private ImageView weatherIconImageView;
     private static final String API_KEY = "e09e69b5f8ee432a803173837241907";
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -42,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         tempTextView = view.findViewById(R.id.temp_text);
         weatherTextView = view.findViewById(R.id.weather_text);
+        weatherIconImageView = view.findViewById(R.id.weather_image);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
@@ -51,11 +58,21 @@ public class HomeFragment extends Fragment {
             // Request location permissions
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
         } else {
-            // Permissions already granted, get the location
-            getLocationAndFetchWeather();
+            // Permissions already granted, check if location services are enabled
+            if (isLocationEnabled()) {
+                // Location services enabled, get the location
+                getLocationAndFetchWeather();
+            } else {
+                Log.e("Location", "Location services are disabled");
+            }
         }
 
         return view;
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     private void getLocationAndFetchWeather() {
@@ -77,6 +94,12 @@ public class HomeFragment extends Fragment {
                                 Log.e("Location", "Failed to get location");
                             }
                         }
+                    })
+                    .addOnFailureListener(requireActivity(), new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("Location", "Failed to get location", e);
+                        }
                     });
         } catch (SecurityException e) {
             Log.e("Location", "Location permission error", e);
@@ -89,7 +112,7 @@ public class HomeFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        com.codexnovas.bhealthy.HomeFragment.WeatherAPIService service = retrofit.create(com.codexnovas.bhealthy.HomeFragment.WeatherAPIService.class);
+        WeatherAPIService service = retrofit.create(WeatherAPIService.class);
         Call<WeatherAPIResponse> call = service.getCurrentWeather(API_KEY, location);
 
         call.enqueue(new Callback<WeatherAPIResponse>() {
@@ -100,10 +123,12 @@ public class HomeFragment extends Fragment {
                     if (weatherResponse != null) {
                         float temperature = weatherResponse.getCurrent().getTempC();
                         String weatherDescription = weatherResponse.getCurrent().getCondition().getText();
+                        String iconUrl = "https:" + weatherResponse.getCurrent().getCondition().getIcon();
                         String weatherText = "Temperature is " + temperature + "°C, " + weatherDescription;
 
                         tempTextView.setText(String.format("%d°C", (int) temperature));
                         weatherTextView.setText(weatherText);
+                        Picasso.get().load(iconUrl).into(weatherIconImageView);
                         Log.i("WeatherAPI", weatherText);
                     }
                 } else {
@@ -123,7 +148,11 @@ public class HomeFragment extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLocationAndFetchWeather();
+                if (isLocationEnabled()) {
+                    getLocationAndFetchWeather();
+                } else {
+                    Log.e("Location", "Location services are disabled");
+                }
             } else {
                 Log.e("Location", "Location permission denied");
             }
