@@ -31,7 +31,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/coord_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+    </FrameLayout>
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -56,6 +59,8 @@
             app:fabAnchorMode="cradle"
             app:fabAlignmentMode="center"
             >
+
+
 
 
 
@@ -200,6 +205,11 @@
                 </LinearLayout>
             </LinearLayout>
 
+
+
+
+
+
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -219,18 +229,21 @@
             />
 
         <!-- TextView to Display Streak Count -->
+
+        <!-- Streak Count TextView positioned exactly where FAB is -->
         <TextView
             android:id="@+id/streak_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/thumbs_up_icon"
+            android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="30sp"
-            android:visibility="gone" />
-
-
+            android:visibility="gone"
+            app:layout_anchor="@+id/action_btn"
+            app:layout_anchorGravity="center" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
