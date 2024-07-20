@@ -1,4 +1,4 @@
-package com.codexnovas.bhealthy.network;
+package com.codexnovas.bhealthy.HomeFragment;
 
 import com.codexnovas.bhealthy.HomeFragment.WeatherAPIResponse;
 

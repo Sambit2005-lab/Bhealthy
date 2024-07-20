@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        com.codexnovas.bhealthy.network.WeatherAPIService service = retrofit.create(com.codexnovas.bhealthy.network.WeatherAPIService.class);
+        com.codexnovas.bhealthy.HomeFragment.WeatherAPIService service = retrofit.create(com.codexnovas.bhealthy.HomeFragment.WeatherAPIService.class);
         Call<WeatherAPIResponse> call = service.getCurrentWeather(API_KEY, location);
 
         call.enqueue(new Callback<WeatherAPIResponse>() {
