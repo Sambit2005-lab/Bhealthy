@@ -19,12 +19,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.codexnovas.bhealthy.R;
+import com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +42,7 @@ public class HomeFragment extends Fragment {
     private TextView tempTextView;
     private TextView weatherTextView;
     private ImageView weatherIconImageView;
+    private LottieAnimationView weatherLottieView;
     private static final String API_KEY = "e09e69b5f8ee432a803173837241907";
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -49,6 +55,7 @@ public class HomeFragment extends Fragment {
         tempTextView = view.findViewById(R.id.temp_text);
         weatherTextView = view.findViewById(R.id.weather_text);
         weatherIconImageView = view.findViewById(R.id.weather_image);
+        weatherLottieView = view.findViewById(R.id.weather_gif);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
@@ -89,7 +96,7 @@ public class HomeFragment extends Fragment {
                                 double latitude = location.getLatitude();
                                 double longitude = location.getLongitude();
                                 String locationString = latitude + "," + longitude;
-                                fetchWeather(locationString);
+                                fetchWeather(locationString, latitude, longitude);
                             } else {
                                 Log.e("Location", "Failed to get location");
                             }
@@ -106,7 +113,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void fetchWeather(String location) {
+    private void fetchWeather(String location, double latitude, double longitude) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.weatherapi.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -129,6 +136,8 @@ public class HomeFragment extends Fragment {
                         tempTextView.setText(String.format("%d°C", (int) temperature));
                         weatherTextView.setText(weatherText);
                         Picasso.get().load(iconUrl).into(weatherIconImageView);
+
+                        setWeatherAnimation(weatherDescription, latitude, longitude);
                         Log.i("WeatherAPI", weatherText);
                     }
                 } else {
@@ -141,6 +150,44 @@ public class HomeFragment extends Fragment {
                 Log.e("WeatherAPI", "Weather API call failed", t);
             }
         });
+    }
+
+    private void setWeatherAnimation(String weatherCondition, double latitude, double longitude) {
+        boolean isDayTime = isDayTime(latitude, longitude);
+        int animationResource;
+        switch (weatherCondition.toLowerCase()) {
+            case "clear":
+                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;
+                break;
+            case "light rain":
+            case "rain":
+                animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;
+                break;
+            case "sunny":
+                animationResource = R.raw.sunny_day;
+                break;
+            case "cloudy":
+                animationResource = isDayTime ? R.raw.cloudy_day : R.raw.cloudy_night;
+                break;
+            case "mist":
+            case "fog":
+                animationResource = isDayTime ? R.raw.foggy_day : R.raw.foggy_night;
+                break;
+            // if any other weather condition is found, I will add here THE animation
+            default:
+                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;
+                break;
+        }
+        weatherLottieView.setAnimation(animationResource);
+        weatherLottieView.playAnimation();
+    }
+    private boolean isDayTime(double latitude, double longitude) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        Calendar sunrise = SunriseSunsetCalculator.getSunrise(calendar, latitude, longitude);
+        Calendar sunset = SunriseSunsetCalculator.getSunset(calendar, latitude, longitude);
+
+        return calendar.after(sunrise) && calendar.before(sunset);
     }
 
     @Override
@@ -157,5 +204,4 @@ public class HomeFragment extends Fragment {
                 Log.e("Location", "Location permission denied");
             }
         }
-    }
-}
+    }}
