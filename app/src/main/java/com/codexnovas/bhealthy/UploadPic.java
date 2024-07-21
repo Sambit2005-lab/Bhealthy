@@ -90,6 +90,7 @@ public class UploadPic extends AppCompatActivity {
                 // Handle next button action
                 savePreferredLanguage();
                 Intent intent = new Intent(UploadPic.this, Loading_page.class);
+                intent.putExtra("profileImageUrl", imageUri);
                 startActivity(intent);
                 finish();
             }
@@ -138,6 +139,7 @@ public class UploadPic extends AppCompatActivity {
                                                         progressBar.setVisibility(View.GONE);
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(UploadPic.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+
                                                         } else {
                                                             Toast.makeText(UploadPic.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
                                                         }

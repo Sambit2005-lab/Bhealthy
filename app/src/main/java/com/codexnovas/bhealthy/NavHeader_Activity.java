@@ -90,6 +90,7 @@ public class NavHeader_Activity extends AppCompatActivity {
                 // Load the image using Glide or any other image loading library
                 Glide.with(NavHeader_Activity.this)
                         .load(uri)
+                        .circleCrop()
                         .into(profilePic);
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -1,7 +1,10 @@
 package com.codexnovas.bhealthy;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -36,7 +41,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity   {
     private int selectedTab = 1;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -47,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean showingIcon = true;
     private boolean isGiftDay = false;
     private int streakCount;
-    private DrawerLayout drawerLayout;
+    DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
+    AppCompatImageButton menuButton;
 
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        drawerLayout=findViewById(R.id.nav_drawer);
 
-        // Setting up ActionBarDrawerToggle
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.OpenDrawer, R.string.CloseDrawer);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
 
 
@@ -266,5 +271,5 @@ public class MainActivity extends AppCompatActivity {
         // Intent intent = new Intent(this, GiftActivity.class);
         // startActivity(intent);
     }
-}
 
+}
