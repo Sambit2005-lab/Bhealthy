@@ -219,12 +219,52 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/today_goal_recyclerview"
                     android:layout_width="160dp"
-                    android:layout_height="250dp"
+                    android:layout_height="220dp"
                     android:orientation="vertical"
                     android:layout_marginStart="14dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="90dp"
 
                     />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/set_medicine_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="57dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/today_goal_bkg"
+                    app:cardCornerRadius="17dp"
+                    app:cardElevation="17dp"
+                    >
+
+                    <FrameLayout
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/today_goal_bkg">
+
+
+                        <TextView
+                            android:id="@+id/set_med_reminder_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Medicine Reminder"
+                            android:paddingStart="7dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingEnd="5dp"
+                            android:textColor="@color/white"/>
+
+
+
+                    </FrameLayout>
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
 
 
             </FrameLayout>
