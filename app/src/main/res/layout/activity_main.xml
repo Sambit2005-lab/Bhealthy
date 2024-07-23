@@ -232,7 +232,7 @@
             android:background="@drawable/thumbs_up_icon"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="0sp"
             android:visibility="gone"
             app:layout_anchor="@+id/action_btn"
             app:layout_anchorGravity="center" />

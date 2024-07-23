@@ -20,12 +20,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
@@ -33,7 +36,9 @@ import com.codexnovas.bhealthy.AboutFragment;
 import com.codexnovas.bhealthy.ContactFragment;
 import com.codexnovas.bhealthy.FeedbackFragment;
 import com.codexnovas.bhealthy.LogoutFragment;
+import com.codexnovas.bhealthy.MedicineAdapter;
 import com.codexnovas.bhealthy.MedicineCard;
+import com.codexnovas.bhealthy.MedicineDetails;
 import com.codexnovas.bhealthy.R;
 import com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -50,7 +55,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import retrofit2.Call;
@@ -79,6 +86,11 @@ public class HomeFragment extends Fragment {
 
     private TextView setMedicine;
 
+    private RecyclerView recyclerView;
+    private MedicineAdapter medicineAdapter;
+    private List<MedicineDetails> medicineList = new ArrayList<>();
+
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -86,6 +98,10 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        // Force light mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         tempTextView = view.findViewById(R.id.temp_text);
         weatherTextView = view.findViewById(R.id.weather_text);
@@ -102,7 +118,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Initialize RecyclerView
+        recyclerView = view.findViewById(R.id.med_alert_card_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+
 
           profilePic = view.findViewById(R.id.profile);
 
@@ -119,6 +141,28 @@ public class HomeFragment extends Fragment {
 
             loadProfileImage();
         }
+
+        DatabaseReference databaseReferenceMed = FirebaseDatabase.getInstance().getReference("users").child(userId).child("medicineDetails");
+        databaseReferenceMed.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                medicineList.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    MedicineDetails medicine = postSnapshot.getValue(MedicineDetails.class);
+                    medicineList.add(medicine);
+                }
+                medicineAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
+        medicineAdapter = new MedicineAdapter(medicineList);
+        recyclerView.setAdapter(medicineAdapter);
+
 
         // Check location permissions
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
