@@ -281,21 +281,22 @@
             android:layout_width="135dp"
             android:layout_height="110dp"
             android:background="@drawable/med_alert_bkg"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+
 
             app:layout_constraintStart_toEndOf="@id/today_goal_card"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintVertical_bias="0.04"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/today_goal_card"
-
-            />
+            app:layout_constraintBottom_toBottomOf="@id/today_goal_card"/>
 
 
-        <androidx.cardview.widget.CardView
+
+
+                <androidx.cardview.widget.CardView
             android:id="@+id/talk_about_health_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

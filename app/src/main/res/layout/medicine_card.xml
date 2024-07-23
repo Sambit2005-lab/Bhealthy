@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="Medicine Name*"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dosage in mg"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:text="Medicine Type"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -283,7 +283,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginEnd="6dp"
                     android:text="Bottle"
-                    android:textColor="#5AD5D1"
+                    android:textColor="#CC444B"
                     android:gravity="center"
                     android:textSize="20sp"/>
 
@@ -297,7 +297,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginEnd="6dp"
                     android:text="Pill"
-                    android:textColor="#5AD5D1"
+                    android:textColor="#CC444B"
                     android:gravity="center"
                     android:textSize="20sp"/>
 
@@ -310,7 +310,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginEnd="6dp"
                     android:text="Syringe"
-                    android:textColor="#5AD5D1"
+                    android:textColor="#CC444B"
                     android:gravity="center"
                     android:textSize="20sp"/>
 
@@ -323,7 +323,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginEnd="6dp"
                     android:text="Tablet"
-                    android:textColor="#5AD5D1"
+                    android:textColor="#CC444B"
                     android:gravity="center"
                     android:textSize="20sp"/>
 
@@ -342,7 +342,7 @@
                 android:layout_height="wrap_content"
                 android:text="Interval Selection"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -369,36 +369,20 @@
                 app:layout_constraintVertical_bias="0.075" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/select_interval"
-                android:layout_width="170dp"
-                android:layout_height="35dp"
-                android:layout_margin="0dp"
-                android:elevation="4dp"
-                app:boxCornerRadiusTopStart="11dp"
-                app:boxCornerRadiusTopEnd="11dp"
-                app:boxCornerRadiusBottomStart="11dp"
-                app:boxCornerRadiusBottomEnd="11dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:hint="Select an interval"
-                android:textColorHint="#5AD5D1"
+            <Spinner
+                android:id="@+id/selected_interval"
+                android:layout_width="145dp"
+                android:layout_height="28dp"
+                android:background="@drawable/background_intro_2"
+                android:drawablePadding="10dp"
+                android:paddingStart="5dp"
 
-
-                app:layout_constraintStart_toEndOf="@id/remind_me_text"
-                app:layout_constraintTop_toTopOf="@id/remind_me_text"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-
-                <AutoCompleteTextView
-                    android:id="@+id/autocomplete_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:inputType="text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintHorizontal_bias="0.705"
+                app:layout_constraintStart_toStartOf="@id/remind_me_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.689" />
 
             <TextView
                 android:id="@+id/hours_text"
@@ -411,18 +395,33 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/select_interval"
+                app:layout_constraintStart_toEndOf="@id/selected_interval"
                 app:layout_constraintTop_toTopOf="@id/remind_me_text"
                 app:layout_constraintVertical_bias="0.0" />
 
+
+            <Spinner
+                android:id="@+id/selected_time"
+                android:layout_width="145dp"
+                android:layout_height="28dp"
+                android:background="@drawable/background_intro_2"
+                android:drawablePadding="10dp"
+                android:paddingStart="5dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.706"
+                app:layout_constraintStart_toStartOf="@id/remind_me_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.769" />
 
             <TextView
                 android:id="@+id/start_time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Starting Time"
+                android:text="specific Time"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -440,7 +439,8 @@
                 android:textAllCaps="false"
                 android:padding="16dp"
                 android:background="@drawable/med_card_btn_bkg"
-                android:text="Select Time"
+                android:backgroundTint="#CC444B"
+                android:text="Select Starting date and time"
                 android:textColor="@color/white"
 
                 app:layout_constraintStart_toStartOf="@id/start_time_text"
@@ -460,6 +460,7 @@
                 android:padding="16dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/med_card_btn_bkg"
+                android:backgroundTint="#CC444B"
                 android:text="Confirm"
                 android:textColor="@color/white"
 

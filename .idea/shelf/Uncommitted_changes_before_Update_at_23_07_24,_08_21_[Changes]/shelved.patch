@@ -1,0 +1,522 @@
+Index: app/src/main/res/layout/medicine_card.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".MedicineCard\">\n\n\n    <androidx.appcompat.widget.AppCompatImageButton\n        android:id=\"@+id/back_btn\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:background=\"@drawable/back_btn2\"\n\n\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.041\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.043\" />\n\n    <TextView\n        android:id=\"@+id/add_new_text\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Add New\"\n        android:textStyle=\"bold\"\n        android:textColor=\"@color/black\"\n        android:textSize=\"29sp\"\n\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.5\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.03\" />\n\n\n\n    <ScrollView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"0dp\"\n        android:orientation=\"vertical\"\n        android:layout_marginBottom=\"10dp\"\n\n\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/add_new_text\"\n        app:layout_constraintBottom_toBottomOf=\"parent\">\n\n        <androidx.constraintlayout.widget.ConstraintLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:paddingBottom=\"10dp\">\n\n            <TextView\n                android:id=\"@+id/med_name_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Medicine Name*\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"15sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.082\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:layout_constraintVertical_bias=\"0.065\" />\n\n            <EditText\n                android:id=\"@+id/med_name_edit\"\n                android:layout_width=\"350dp\"\n                android:layout_height=\"50dp\"\n                android:paddingStart=\"5dp\"\n                android:paddingEnd=\"5dp\"\n\n                app:layout_constraintStart_toStartOf=\"@id/med_name_text\"\n                app:layout_constraintTop_toBottomOf=\"@id/med_name_text\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintVertical_bias=\"0.0\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                />\n\n\n            <TextView\n                android:id=\"@+id/dosage_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Dosage in mg\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"15sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintStart_toStartOf=\"@id/med_name_edit\"\n                app:layout_constraintTop_toBottomOf=\"@id/med_name_edit\"\n                app:layout_constraintVertical_bias=\"0.045\" />\n\n            <EditText\n                android:id=\"@+id/dosage_edit\"\n                android:layout_width=\"350dp\"\n                android:layout_height=\"50dp\"\n                android:paddingStart=\"5dp\"\n                android:paddingEnd=\"5dp\"\n\n                app:layout_constraintStart_toStartOf=\"@id/dosage_text\"\n                app:layout_constraintTop_toBottomOf=\"@id/dosage_text\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintVertical_bias=\"0.0\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                />\n\n\n            <TextView\n                android:id=\"@+id/med_type_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Medicine Type\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"15sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintStart_toStartOf=\"@id/dosage_edit\"\n                app:layout_constraintTop_toBottomOf=\"@id/dosage_edit\"\n                app:layout_constraintVertical_bias=\"0.045\" />\n\n\n            <LinearLayout\n                android:id=\"@+id/med_type_cards\"\n                android:layout_width=\"380dp\"\n                android:layout_height=\"wrap_content\"\n                android:orientation=\"horizontal\"\n\n\n                app:layout_constraintStart_toStartOf=\"@id/med_type_text\"\n                app:layout_constraintTop_toBottomOf=\"@id/med_type_text\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintVertical_bias=\"0.03\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n\n                >\n\n                <androidx.cardview.widget.CardView\n                    android:id=\"@+id/bottle_card\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    app:cardCornerRadius=\"17dp\"\n                    app:cardElevation=\"4dp\"\n\n\n                    >\n\n                    <FrameLayout\n                        android:layout_width=\"81dp\"\n                        android:layout_height=\"77dp\"\n                        android:background=\"@drawable/bottle_icon\">\n\n\n                    </FrameLayout>\n\n\n                </androidx.cardview.widget.CardView>\n\n\n\n                <androidx.cardview.widget.CardView\n                    android:id=\"@+id/pill_card\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    app:cardCornerRadius=\"17dp\"\n                    app:cardElevation=\"4dp\"\n\n\n                    >\n\n                    <FrameLayout\n                        android:layout_width=\"81dp\"\n                        android:layout_height=\"77dp\"\n                        android:background=\"@drawable/pill_icon\">\n\n\n                    </FrameLayout>\n\n\n                </androidx.cardview.widget.CardView>\n\n                <androidx.cardview.widget.CardView\n                    android:id=\"@+id/syringe_card\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"8dp\"\n                    app:cardCornerRadius=\"17dp\"\n                    app:cardElevation=\"4dp\"\n\n\n                    >\n\n                    <FrameLayout\n                        android:layout_width=\"81dp\"\n                        android:layout_height=\"77dp\"\n                        android:background=\"@drawable/syringe_icon\">\n\n\n                    </FrameLayout>\n\n\n                </androidx.cardview.widget.CardView>\n\n                <androidx.cardview.widget.CardView\n                    android:id=\"@+id/tablet_card\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    app:cardCornerRadius=\"17dp\"\n                    app:cardElevation=\"4dp\"\n\n\n                    >\n\n                    <FrameLayout\n                        android:layout_width=\"81dp\"\n                        android:layout_height=\"77dp\"\n                        android:background=\"@drawable/tablet_icon\">\n\n\n                    </FrameLayout>\n\n\n                </androidx.cardview.widget.CardView>\n\n\n\n            </LinearLayout>\n\n\n            <LinearLayout\n                android:id=\"@+id/med_type_card_name\"\n                android:layout_width=\"380dp\"\n                android:layout_height=\"wrap_content\"\n                android:orientation=\"horizontal\"\n\n\n                app:layout_constraintStart_toStartOf=\"@id/med_type_cards\"\n                app:layout_constraintTop_toBottomOf=\"@id/med_type_cards\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintVertical_bias=\"0.0\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\">\n\n\n\n                <TextView\n                    android:id=\"@+id/bottle_text\"\n                    android:layout_width=\"81dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    android:text=\"Bottle\"\n                    android:textColor=\"#5AD5D1\"\n                    android:gravity=\"center\"\n                    android:textSize=\"20sp\"/>\n\n\n                <TextView\n                    android:id=\"@+id/pill_text\"\n                    android:layout_width=\"81dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    android:text=\"Pill\"\n                    android:textColor=\"#5AD5D1\"\n                    android:gravity=\"center\"\n                    android:textSize=\"20sp\"/>\n\n                <TextView\n                    android:id=\"@+id/syringe_text\"\n                    android:layout_width=\"81dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    android:text=\"Syringe\"\n                    android:textColor=\"#5AD5D1\"\n                    android:gravity=\"center\"\n                    android:textSize=\"20sp\"/>\n\n                <TextView\n                    android:id=\"@+id/tablet_text\"\n                    android:layout_width=\"81dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"6dp\"\n                    android:layout_marginTop=\"6dp\"\n                    android:layout_marginBottom=\"6dp\"\n                    android:layout_marginEnd=\"6dp\"\n                    android:text=\"Tablet\"\n                    android:textColor=\"#5AD5D1\"\n                    android:gravity=\"center\"\n                    android:textSize=\"20sp\"/>\n\n\n\n\n\n\n            </LinearLayout>\n\n\n\n            <TextView\n                android:id=\"@+id/interval_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Interval Selection\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"15sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintStart_toStartOf=\"@id/med_type_card_name\"\n                app:layout_constraintTop_toBottomOf=\"@id/med_type_card_name\"\n                app:layout_constraintVertical_bias=\"0.045\" />\n\n\n\n            <TextView\n                android:id=\"@+id/remind_me_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Remind me every\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"20sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintStart_toStartOf=\"@id/interval_text\"\n                app:layout_constraintTop_toBottomOf=\"@id/interval_text\"\n                app:layout_constraintVertical_bias=\"0.075\" />\n\n\n            <com.google.android.material.textfield.TextInputLayout\n                android:id=\"@+id/select_interval\"\n                android:layout_width=\"170dp\"\n                android:layout_height=\"35dp\"\n                android:layout_margin=\"0dp\"\n                android:elevation=\"4dp\"\n                app:boxCornerRadiusTopStart=\"11dp\"\n                app:boxCornerRadiusTopEnd=\"11dp\"\n                app:boxCornerRadiusBottomStart=\"11dp\"\n                app:boxCornerRadiusBottomEnd=\"11dp\"\n                style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu\"\n                android:hint=\"Select an interval\"\n                android:textColorHint=\"#5AD5D1\"\n\n\n                app:layout_constraintStart_toEndOf=\"@id/remind_me_text\"\n                app:layout_constraintTop_toTopOf=\"@id/remind_me_text\"\n                app:layout_constraintHorizontal_bias=\"0.1\"\n                app:layout_constraintVertical_bias=\"0.0\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\">\n\n\n                <AutoCompleteTextView\n                    android:id=\"@+id/autocomplete_time\"\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"35dp\"\n                    android:inputType=\"text\"/>\n\n            </com.google.android.material.textfield.TextInputLayout>\n\n            <TextView\n                android:id=\"@+id/hours_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"hours\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"20sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.5\"\n                app:layout_constraintStart_toEndOf=\"@id/select_interval\"\n                app:layout_constraintTop_toTopOf=\"@id/remind_me_text\"\n                app:layout_constraintVertical_bias=\"0.0\" />\n\n\n            <TextView\n                android:id=\"@+id/start_time_text\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Starting Time\"\n                android:textColor=\"@color/black\"\n                android:textSize=\"15sp\"\n\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintStart_toStartOf=\"@id/remind_me_text\"\n                app:layout_constraintTop_toBottomOf=\"@id/remind_me_text\"\n                app:layout_constraintVertical_bias=\"0.15\" />\n\n\n            <androidx.appcompat.widget.AppCompatButton\n                android:id=\"@+id/select_time_btn\"\n                android:layout_width=\"350dp\"\n                android:layout_height=\"55dp\"\n                android:layout_centerInParent=\"true\"\n                android:textAllCaps=\"false\"\n                android:padding=\"16dp\"\n                android:background=\"@drawable/med_card_btn_bkg\"\n                android:text=\"Select Time\"\n                android:textColor=\"@color/white\"\n\n                app:layout_constraintStart_toStartOf=\"@id/start_time_text\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintVertical_bias=\"0.27\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintTop_toBottomOf=\"@id/start_time_text\"/>\n\n\n            <androidx.appcompat.widget.AppCompatButton\n                android:id=\"@+id/confirm_btn\"\n                android:layout_width=\"300dp\"\n                android:layout_height=\"55dp\"\n                android:layout_centerInParent=\"true\"\n                android:textAllCaps=\"false\"\n                android:padding=\"16dp\"\n                android:layout_marginTop=\"20dp\"\n                android:background=\"@drawable/med_card_btn_bkg\"\n                android:text=\"Confirm\"\n                android:textColor=\"@color/white\"\n\n                app:layout_constraintStart_toStartOf=\"@id/select_time_btn\"\n                app:layout_constraintEnd_toEndOf=\"@id/select_time_btn\"\n                app:layout_constraintHorizontal_bias=\"0.5\"\n                app:layout_constraintVertical_bias=\"0.3\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintTop_toBottomOf=\"@id/select_time_btn\"/>\n\n\n        </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n    </ScrollView>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/medicine_card.xml b/app/src/main/res/layout/medicine_card.xml
+--- a/app/src/main/res/layout/medicine_card.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/layout/medicine_card.xml	(date 1721665304635)
+@@ -63,7 +63,7 @@
+                 android:layout_height="wrap_content"
+                 android:text="Medicine Name*"
+                 android:textColor="@color/black"
+-                android:textSize="15sp"
++                android:textSize="20sp"
+ 
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+@@ -94,7 +94,7 @@
+                 android:layout_height="wrap_content"
+                 android:text="Dosage in mg"
+                 android:textColor="@color/black"
+-                android:textSize="15sp"
++                android:textSize="20sp"
+ 
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+@@ -125,7 +125,7 @@
+                 android:layout_height="wrap_content"
+                 android:text="Medicine Type"
+                 android:textColor="@color/black"
+-                android:textSize="15sp"
++                android:textSize="20sp"
+ 
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+@@ -283,7 +283,7 @@
+                     android:layout_marginBottom="6dp"
+                     android:layout_marginEnd="6dp"
+                     android:text="Bottle"
+-                    android:textColor="#5AD5D1"
++                    android:textColor="#CC444B"
+                     android:gravity="center"
+                     android:textSize="20sp"/>
+ 
+@@ -297,7 +297,7 @@
+                     android:layout_marginBottom="6dp"
+                     android:layout_marginEnd="6dp"
+                     android:text="Pill"
+-                    android:textColor="#5AD5D1"
++                    android:textColor="#CC444B"
+                     android:gravity="center"
+                     android:textSize="20sp"/>
+ 
+@@ -310,7 +310,7 @@
+                     android:layout_marginBottom="6dp"
+                     android:layout_marginEnd="6dp"
+                     android:text="Syringe"
+-                    android:textColor="#5AD5D1"
++                    android:textColor="#CC444B"
+                     android:gravity="center"
+                     android:textSize="20sp"/>
+ 
+@@ -323,7 +323,7 @@
+                     android:layout_marginBottom="6dp"
+                     android:layout_marginEnd="6dp"
+                     android:text="Tablet"
+-                    android:textColor="#5AD5D1"
++                    android:textColor="#CC444B"
+                     android:gravity="center"
+                     android:textSize="20sp"/>
+ 
+@@ -342,7 +342,7 @@
+                 android:layout_height="wrap_content"
+                 android:text="Interval Selection"
+                 android:textColor="@color/black"
+-                android:textSize="15sp"
++                android:textSize="20sp"
+ 
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+@@ -369,36 +369,20 @@
+                 app:layout_constraintVertical_bias="0.075" />
+ 
+ 
+-            <com.google.android.material.textfield.TextInputLayout
+-                android:id="@+id/select_interval"
+-                android:layout_width="170dp"
+-                android:layout_height="35dp"
+-                android:layout_margin="0dp"
+-                android:elevation="4dp"
+-                app:boxCornerRadiusTopStart="11dp"
+-                app:boxCornerRadiusTopEnd="11dp"
+-                app:boxCornerRadiusBottomStart="11dp"
+-                app:boxCornerRadiusBottomEnd="11dp"
+-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+-                android:hint="Select an interval"
+-                android:textColorHint="#5AD5D1"
++            <Spinner
++                android:id="@+id/selected_interval"
++                android:layout_width="145dp"
++                android:layout_height="28dp"
++                android:background="@drawable/background_intro_2"
++                android:drawablePadding="10dp"
++                android:paddingStart="5dp"
+ 
+-
+-                app:layout_constraintStart_toEndOf="@id/remind_me_text"
+-                app:layout_constraintTop_toTopOf="@id/remind_me_text"
+-                app:layout_constraintHorizontal_bias="0.1"
+-                app:layout_constraintVertical_bias="0.0"
++                app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+-                app:layout_constraintBottom_toBottomOf="parent">
+-
+-
+-                <AutoCompleteTextView
+-                    android:id="@+id/autocomplete_time"
+-                    android:layout_width="match_parent"
+-                    android:layout_height="35dp"
+-                    android:inputType="text"/>
+-
+-            </com.google.android.material.textfield.TextInputLayout>
++                app:layout_constraintHorizontal_bias="0.705"
++                app:layout_constraintStart_toStartOf="@id/remind_me_text"
++                app:layout_constraintTop_toTopOf="parent"
++                app:layout_constraintVertical_bias="0.689" />
+ 
+             <TextView
+                 android:id="@+id/hours_text"
+@@ -411,18 +395,33 @@
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintHorizontal_bias="0.5"
+-                app:layout_constraintStart_toEndOf="@id/select_interval"
++                app:layout_constraintStart_toEndOf="@id/selected_interval"
+                 app:layout_constraintTop_toTopOf="@id/remind_me_text"
+                 app:layout_constraintVertical_bias="0.0" />
+ 
+ 
++            <Spinner
++                android:id="@+id/selected_time"
++                android:layout_width="145dp"
++                android:layout_height="28dp"
++                android:background="@drawable/background_intro_2"
++                android:drawablePadding="10dp"
++                android:paddingStart="5dp"
++
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintHorizontal_bias="0.706"
++                app:layout_constraintStart_toStartOf="@id/remind_me_text"
++                app:layout_constraintTop_toTopOf="parent"
++                app:layout_constraintVertical_bias="0.769" />
++
+             <TextView
+                 android:id="@+id/start_time_text"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:text="Starting Time"
++                android:text="specific Time"
+                 android:textColor="@color/black"
+-                android:textSize="15sp"
++                android:textSize="20sp"
+ 
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+@@ -440,7 +439,8 @@
+                 android:textAllCaps="false"
+                 android:padding="16dp"
+                 android:background="@drawable/med_card_btn_bkg"
+-                android:text="Select Time"
++                android:backgroundTint="#CC444B"
++                android:text="Select Starting date and time"
+                 android:textColor="@color/white"
+ 
+                 app:layout_constraintStart_toStartOf="@id/start_time_text"
+@@ -460,6 +460,7 @@
+                 android:padding="16dp"
+                 android:layout_marginTop="20dp"
+                 android:background="@drawable/med_card_btn_bkg"
++                android:backgroundTint="#CC444B"
+                 android:text="Confirm"
+                 android:textColor="@color/white"
+ 
+Index: app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy;\n\nimport android.os.Bundle;\n\nimport androidx.activity.EdgeToEdge;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.core.graphics.Insets;\nimport androidx.core.view.ViewCompat;\nimport androidx.core.view.WindowInsetsCompat;\n\npublic class MedicineCard extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        EdgeToEdge.enable(this);\n        setContentView(R.layout.medicine_card);\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\n            return insets;\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java b/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java	(date 1721701270344)
+@@ -7,18 +7,158 @@
+ import androidx.core.graphics.Insets;
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.app.AlarmManager;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.content.Context;
++import android.content.Intent;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.Spinner;
++import android.widget.TimePicker;
++import android.widget.Toast;
++
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++
++import java.util.Calendar;
++
+ 
+ public class MedicineCard extends AppCompatActivity {
+ 
++    private EditText medicineNameEditText, dosageEditText;
++    private Spinner medicineTypeSpinner, intervalSpinner, specificTimeSpinner;
++    private TimePicker timePicker;
++    private Button confirmButton;
++
++    private DatabaseReference databaseReference;
++    private FirebaseAuth mAuth;
++
++    private String[] medicineTypes = {"Tablet", "Capsule", "Syrup", "Injection"};
++    private String[] intervals = {"Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours"};
++    private String[] specificTimes = {"Before Breakfast", "After Breakfast", "Before Lunch", "After Lunch", "Before Dinner", "After Dinner"};
++
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        EdgeToEdge.enable(this);
+         setContentView(R.layout.medicine_card);
+-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+-            return insets;
++
++
++        // Initialize Firebase Auth
++        mAuth = FirebaseAuth.getInstance();
++
++        // Initialize Firebase Database
++        databaseReference = FirebaseDatabase.getInstance().getReference("users");
++
++        // Initialize views
++        medicineNameEditText = findViewById(R.id.med_name_edit);
++        dosageEditText = findViewById(R.id.dosage_edit);
++        medicineTypeSpinner = findViewById(R.id.medicineTypeSpinner);
++        intervalSpinner = findViewById(R.id.selected_interval);
++        specificTimeSpinner = findViewById(R.id.selected_time);
++        timePicker = findViewById(R.id.timePicker);
++        confirmButton = findViewById(R.id.confirmButton);
++
++        // Set up spinners
++        ArrayAdapter<String> medicineTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, medicineTypes);
++        medicineTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        medicineTypeSpinner.setAdapter(medicineTypeAdapter);
++
++        ArrayAdapter<String> intervalAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, intervals);
++        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        intervalSpinner.setAdapter(intervalAdapter);
++
++        ArrayAdapter<String> specificTimeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, specificTimes);
++        specificTimeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        specificTimeSpinner.setAdapter(specificTimeAdapter);
++
++        // Set on click listener for confirm button
++        confirmButton.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                saveMedicine();
++            }
+         });
++
++        // Set up the notification channel
++        createNotificationChannel();
++    }
++
++    private void saveMedicine() {
++        String medicineName = medicineNameEditText.getText().toString().trim();
++        String dosage = dosageEditText.getText().toString().trim();
++        String medicineType = medicineTypeSpinner.getSelectedItem().toString();
++        String interval = intervalSpinner.getSelectedItem().toString();
++        String specificTime = specificTimeSpinner.getSelectedItem().toString();
++
++        if (medicineName.isEmpty() || dosage.isEmpty()) {
++            Toast.makeText(this, "Please enter all details", Toast.LENGTH_SHORT).show();
++            return;
++        }
++
++        int hour = timePicker.getCurrentHour();
++        int minute = timePicker.getCurrentMinute();
++
++        FirebaseUser currentUser = mAuth.getCurrentUser();
++        if (currentUser != null) {
++            String userId = currentUser.getUid();
++
++            // Save medicine information to Firebase under the user's ID and medicinedetails node
++            DatabaseReference userMedicineRef = databaseReference.child(userId).child("medicinedetails");
++            String id = userMedicineRef.push().getKey();
++            Medicine medicine = new Medicine(id, medicineName, dosage, medicineType, interval, specificTime, hour, minute);
++            if (id != null) {
++                userMedicineRef.child(id).setValue(medicine);
++
++                // Set alarm for the reminder
++                setAlarm(hour, minute, medicineName);
++
++                Toast.makeText(this, "Medicine reminder set", Toast.LENGTH_SHORT).show();
++                finish();
++            } else {
++                Toast.makeText(this, "Failed to create medicine ID", Toast.LENGTH_SHORT).show();
++            }
++        } else {
++            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
++        }
++    }
++
++    private void setAlarm(int hour, int minute, String medicineName) {
++        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
++        Intent intent = new Intent(this, AlarmReceiver.class);
++        intent.putExtra("medicineName", medicineName);
++        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
++
++        Calendar calendar = Calendar.getInstance();
++        calendar.set(Calendar.HOUR_OF_DAY, hour);
++        calendar.set(Calendar.MINUTE, minute);
++        calendar.set(Calendar.SECOND, 0);
++
++        if (alarmManager != null) {
++            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
++        }
++    }
++
++    private void createNotificationChannel() {
++        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
++            CharSequence name = "MedicineReminderChannel";
++            String description = "Channel for Medicine Reminder";
++            int importance = NotificationManager.IMPORTANCE_HIGH;
++            NotificationChannel channel = new NotificationChannel("MedicineReminder", name, importance);
++            channel.setDescription(description);
++            NotificationManager notificationManager = getSystemService(NotificationManager.class);
++            notificationManager.createNotificationChannel(channel);
++        }
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    tools:context=\".HomeFragment.HomeFragment\">\n\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n\n        <com.airbnb.lottie.LottieAnimationView\n            android:id=\"@+id/weather_gif\"\n            android:layout_width=\"420dp\"\n            android:layout_height=\"360dp\"\n            android:scaleType=\"fitXY\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.0\"\n\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintVertical_bias=\"0.0\"\n            app:lottie_autoPlay=\"true\"\n            app:lottie_loop=\"true\"\n            app:lottie_rawRes=\"@raw/rain_backgroundmp4lottie\" />\n\n        <androidx.constraintlayout.widget.ConstraintLayout\n            xmlns:android=\"http://schemas.android.com/apk/res/android\"\n            xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:paddingStart=\"5dp\"\n            android:paddingEnd=\"1.5dp\"\n            tools:ignore=\"MissingConstraints\">\n\n            <androidx.appcompat.widget.AppCompatImageButton\n                android:id=\"@+id/nav_drawer\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"15dp\"\n                android:background=\"@drawable/navigation_drawer_icon\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"/>\n\n            <androidx.appcompat.widget.SearchView\n                android:id=\"@+id/search_view\"\n                android:layout_width=\"0dp\"\n                android:layout_height=\"40dp\"\n                android:layout_marginTop=\"15dp\"\n                android:background=\"@drawable/background_intro_5\"\n                android:iconifiedByDefault=\"false\"\n                app:layout_constraintStart_toEndOf=\"@id/nav_drawer\"\n                app:layout_constraintEnd_toStartOf=\"@id/profile\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"/>\n\n            <ImageView\n                android:id=\"@+id/profile\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"15dp\"\n                android:background=\"@drawable/profile_icon\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"/>\n        </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n        <ImageView\n            android:id=\"@+id/weather_image\"\n            android:layout_width=\"90dp\"\n            android:layout_height=\"90dp\"\n\n\n            app:layout_constraintBottom_toBottomOf=\"@id/weather_gif\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.0\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintVertical_bias=\"0.888\" />\n\n        <TextView\n            android:id=\"@+id/weather_text\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"30dp\"\n            android:text=\"Feels like Rain\"\n            android:textColor=\"@color/white\"\n            android:textSize=\"20sp\"\n\n            app:layout_constraintBottom_toBottomOf=\"@id/weather_image\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.072\"\n            app:layout_constraintStart_toEndOf=\"@id/weather_image\"\n            app:layout_constraintTop_toBottomOf=\"@id/temp_text\"\n            app:layout_constraintVertical_bias=\"0.304\" />\n\n\n        <TextView\n            android:id=\"@+id/temp_text\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"37dp\"\n            android:text=\"28c\"\n            android:textColor=\"@color/white\"\n            android:textSize=\"27sp\"\n\n            app:layout_constraintBottom_toBottomOf=\"@id/weather_image\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.05\"\n            app:layout_constraintStart_toEndOf=\"@id/weather_image\"\n            app:layout_constraintTop_toTopOf=\"@id/weather_image\"\n            app:layout_constraintVertical_bias=\"0.132\" />\n\n        <TextView\n            android:id=\"@+id/hello_user_text\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Hello User!\"\n            android:textColor=\"@color/black\"\n            android:textStyle=\"bold\"\n            android:textSize=\"33sp\"\n\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintVertical_bias=\"0.02\"\n            app:layout_constraintHorizontal_bias=\"0.1\"\n            app:layout_constraintTop_toBottomOf=\"@id/weather_gif\"\n            app:layout_constraintStart_toStartOf=\"parent\" />\n\n\n\n\n\n\n\n\n        <ScrollView\n            android:id=\"@+id/scrollview\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"0dp\"\n            android:orientation=\"vertical\"\n            android:layout_marginBottom=\"10dp\"\n\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/hello_user_text\">\n\n\n\n            <androidx.constraintlayout.widget.ConstraintLayout\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:paddingBottom=\"90dp\"\n                >\n\n\n        <androidx.cardview.widget.CardView\n            android:id=\"@+id/today_goal_card\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_margin=\"7dp\"\n            android:background=\"@drawable/background_intro_5\"\n            app:cardCornerRadius=\"17dp\"\n            app:cardElevation=\"4dp\"\n\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.1\"\n            app:layout_constraintVertical_bias=\"0.0\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n\n\n            >\n\n\n\n\n            <FrameLayout\n                android:layout_width=\"190dp\"\n                android:layout_height=\"350dp\"\n                android:background=\"@drawable/today_goal_bkg\">\n\n\n                <TextView\n                    android:id=\"@+id/today_goal_text\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:text=\"Today's Goal\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"22sp\"\n                    android:textStyle=\"bold\"\n                    android:layout_gravity=\"top|left\"\n                    android:paddingTop=\"15dp\"\n                    android:paddingStart=\"10dp\"\n                    android:paddingBottom=\"13dp\"/>\n\n\n\n                <TextView\n                    android:id=\"@+id/tap_goal_text\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:text=\"Tap each goal to mark as complete\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"8sp\"\n                    android:textStyle=\"bold\"\n                    android:layout_gravity=\"bottom|center\"\n                    android:paddingTop=\"10dp\"\n                    android:paddingStart=\"10dp\"\n                    android:paddingBottom=\"17dp\"/>\n\n\n                <androidx.recyclerview.widget.RecyclerView\n                    android:id=\"@+id/today_goal_recyclerview\"\n                    android:layout_width=\"160dp\"\n                    android:layout_height=\"250dp\"\n                    android:orientation=\"vertical\"\n                    android:layout_marginStart=\"14dp\"\n                    android:layout_marginTop=\"60dp\"\n\n                    />\n\n\n            </FrameLayout>\n\n\n\n\n\n\n        </androidx.cardview.widget.CardView>\n\n        <androidx.recyclerview.widget.RecyclerView\n            android:id=\"@+id/med_alert_card_recyclerview\"\n            android:layout_width=\"135dp\"\n            android:layout_height=\"110dp\"\n            android:background=\"@drawable/med_alert_bkg\"\n            app:layoutManager=\"androidx.recyclerview.widget.LinearLayoutManager\"\n            android:orientation=\"horizontal\"\n            android:scrollbars=\"horizontal\"\n\n            app:layout_constraintStart_toEndOf=\"@id/today_goal_card\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.4\"\n            app:layout_constraintVertical_bias=\"0.04\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintBottom_toBottomOf=\"@id/today_goal_card\"\n\n            />\n\n\n        <androidx.cardview.widget.CardView\n            android:id=\"@+id/talk_about_health_card\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"8dp\"\n            android:layout_marginTop=\"6dp\"\n            android:layout_marginEnd=\"8dp\"\n            app:cardCornerRadius=\"17dp\"\n            app:cardElevation=\"4dp\"\n\n            app:layout_constraintStart_toEndOf=\"@id/today_goal_card\"\n            app:layout_constraintTop_toBottomOf=\"@id/med_alert_card_recyclerview\"\n            app:layout_constraintHorizontal_bias=\"0.4\"\n            app:layout_constraintVertical_bias=\"0.02\"\n            app:layout_constraintBottom_toBottomOf=\"@id/today_goal_card\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n\n            >\n\n            <FrameLayout\n                android:layout_width=\"135dp\"\n                android:layout_height=\"110dp\"\n                android:background=\"@drawable/talk_about_health_bkg\">\n\n\n                <com.airbnb.lottie.LottieAnimationView\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n\n                    android:rotation=\"340\"\n                    android:translationX=\"30dp\"\n                    android:translationY=\"10dp\"\n                    android:transformPivotX=\"1dp\"\n                    app:lottie_autoPlay=\"true\"\n                    app:lottie_loop=\"true\"\n                    app:lottie_rawRes=\"@raw/chatbot\"\n\n\n                    >\n\n\n                </com.airbnb.lottie.LottieAnimationView>\n\n                <TextView\n                    android:id=\"@+id/talk_about_health_text\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_gravity=\"left|bottom\"\n                    android:gravity=\"center\"\n                    android:paddingStart=\"8dp\"\n                    android:paddingBottom=\"32dp\"\n                    android:text=\"Talk about\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"11sp\"\n                    android:textStyle=\"bold\" />\n\n                <TextView\n                    android:id=\"@+id/talk_about_health_text_2\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_gravity=\"left|bottom\"\n                    android:paddingStart=\"8dp\"\n                    android:paddingBottom=\"18dp\"\n                    android:text=\"your health\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"11sp\"\n                    android:textStyle=\"bold\" />\n\n\n\n\n            </FrameLayout>\n        </androidx.cardview.widget.CardView>\n\n\n        <androidx.cardview.widget.CardView\n            android:id=\"@+id/workout_card\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"8dp\"\n            android:layout_marginTop=\"6dp\"\n            android:layout_marginEnd=\"8dp\"\n            app:cardCornerRadius=\"17dp\"\n            app:cardElevation=\"4dp\"\n\n            app:layout_constraintStart_toEndOf=\"@id/today_goal_card\"\n            app:layout_constraintTop_toBottomOf=\"@id/talk_about_health_card\"\n            app:layout_constraintHorizontal_bias=\"0.4\"\n            app:layout_constraintVertical_bias=\"1.0\"\n            app:layout_constraintBottom_toBottomOf=\"@id/today_goal_card\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n\n            >\n\n            <FrameLayout\n                android:layout_width=\"135dp\"\n                android:layout_height=\"110dp\"\n                android:background=\"@drawable/your_workouts_bkg\">\n\n\n                <TextView\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_gravity=\"left|top\"\n                    android:paddingStart=\"8dp\"\n                    android:paddingTop=\"15dp\"\n                    android:text=\"Your Workouts\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"13sp\"\n\n                    android:textStyle=\"bold\" />\n            </FrameLayout>\n\n\n        </androidx.cardview.widget.CardView>\n\n            </androidx.constraintlayout.widget.ConstraintLayout>\n\n        </ScrollView>\n\n    </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n\n\n\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1721655797435)
+@@ -241,21 +241,22 @@
+             android:layout_width="135dp"
+             android:layout_height="110dp"
+             android:background="@drawable/med_alert_bkg"
+-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             android:orientation="horizontal"
+-            android:scrollbars="horizontal"
++            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
++
++
+ 
+             app:layout_constraintStart_toEndOf="@id/today_goal_card"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintHorizontal_bias="0.4"
+             app:layout_constraintVertical_bias="0.04"
+             app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintBottom_toBottomOf="@id/today_goal_card"
++            app:layout_constraintBottom_toBottomOf="@id/today_goal_card"/>
+ 
+-            />
++
+ 
+ 
+-        <androidx.cardview.widget.CardView
++                <androidx.cardview.widget.CardView
+             android:id="@+id/talk_about_health_card"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+Index: app/src/main/res/drawable/tablet_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:height=\"30dp\"\n    android:viewportHeight=\"500\"\n    android:viewportWidth=\"500\"\n    android:width=\"30dp\">\n      \n    <path android:fillColor=\"#5AD5D1\"\n        android:pathData=\"M426.77,73.22C379.54,26.01 316.76,0 249.99,0c-62.84,0 -122.14,23.04 -168.26,65.12l353.12,353.17C476.94,372.16 500,312.86 500,250C500,183.22 473.99,120.44 426.77,73.22z\"/>\n      \n    <path android:fillColor=\"#5AD5D1\"\n        android:pathData=\"M65.14,81.7C23.06,127.83 0,187.14 0,250c0,66.78 26,129.56 73.22,176.77c47.22,47.22 110,73.22 176.77,73.22c62.84,0 122.14,-23.05 168.27,-65.12L65.14,81.7z\"/>\n    \n</vector>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/tablet_icon.xml b/app/src/main/res/drawable/tablet_icon.xml
+--- a/app/src/main/res/drawable/tablet_icon.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/drawable/tablet_icon.xml	(date 1721652122357)
+@@ -4,10 +4,10 @@
+     android:viewportWidth="500"
+     android:width="30dp">
+       
+-    <path android:fillColor="#5AD5D1"
++    <path android:fillColor="#CC444B"
+         android:pathData="M426.77,73.22C379.54,26.01 316.76,0 249.99,0c-62.84,0 -122.14,23.04 -168.26,65.12l353.12,353.17C476.94,372.16 500,312.86 500,250C500,183.22 473.99,120.44 426.77,73.22z"/>
+       
+-    <path android:fillColor="#5AD5D1"
++    <path android:fillColor="#CC444B"
+         android:pathData="M65.14,81.7C23.06,127.83 0,187.14 0,250c0,66.78 26,129.56 73.22,176.77c47.22,47.22 110,73.22 176.77,73.22c62.84,0 122.14,-23.05 168.27,-65.12L65.14,81.7z"/>
+     
+ </vector>
+Index: app/src/main/res/drawable/syringe_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:height=\"30dp\"\n    android:viewportHeight=\"512\"\n    android:viewportWidth=\"512\"\n    android:width=\"30dp\">\n      \n    <path android:fillColor=\"#5AD5D1\" android:pathData=\"M221.11,198.39l47.54,47.54l-21.5,21.5l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-37.32,37.33l15.87,15.87l-43.41,43.41l25.51,25.51l-72.62,72.62l43.81,-4.87l48.28,-48.28l25.51,25.51l43.41,-43.41l15.87,15.87l191.9,-191.9l-102.24,-102.24z\"/>\n      \n    <path android:fillColor=\"#5AD5D1\" android:pathData=\"M488.06,101.02l-67.35,-67.35L396.78,9.74l-2.58,2.58c-4.66,4.66 -6.21,11.57 -4.94,18.96c1.28,7.39 5.37,15.27 11.98,21.87l67.35,67.35c13.22,13.22 31.5,16.37 40.83,7.04l2.58,-2.58L488.06,101.02z\"/>\n      \n    <path android:fillColor=\"#5AD5D1\" android:pathData=\"M394.34,72.21l-60.85,60.86l-31.51,-31.51c-3.44,-3.43 -9.01,-3.43 -12.44,0l-11.9,11.9c-3.44,3.44 -3.44,9.01 0,12.44L395.83,244.1c3.44,3.43 9.01,3.43 12.44,0l11.9,-11.9c3.43,-3.44 3.43,-9.01 0,-12.44l-31.51,-31.51l60.86,-60.85L394.34,72.21z\"/>\n    \n</vector>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/syringe_icon.xml b/app/src/main/res/drawable/syringe_icon.xml
+--- a/app/src/main/res/drawable/syringe_icon.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/drawable/syringe_icon.xml	(date 1721652096844)
+@@ -4,10 +4,10 @@
+     android:viewportWidth="512"
+     android:width="30dp">
+       
+-    <path android:fillColor="#5AD5D1" android:pathData="M221.11,198.39l47.54,47.54l-21.5,21.5l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-37.32,37.33l15.87,15.87l-43.41,43.41l25.51,25.51l-72.62,72.62l43.81,-4.87l48.28,-48.28l25.51,25.51l43.41,-43.41l15.87,15.87l191.9,-191.9l-102.24,-102.24z"/>
++    <path android:fillColor="#CC444B" android:pathData="M221.11,198.39l47.54,47.54l-21.5,21.5l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-21.1,21.1l47.54,47.54l-22.72,22.72l-47.54,-47.54l-37.32,37.33l15.87,15.87l-43.41,43.41l25.51,25.51l-72.62,72.62l43.81,-4.87l48.28,-48.28l25.51,25.51l43.41,-43.41l15.87,15.87l191.9,-191.9l-102.24,-102.24z"/>
+       
+-    <path android:fillColor="#5AD5D1" android:pathData="M488.06,101.02l-67.35,-67.35L396.78,9.74l-2.58,2.58c-4.66,4.66 -6.21,11.57 -4.94,18.96c1.28,7.39 5.37,15.27 11.98,21.87l67.35,67.35c13.22,13.22 31.5,16.37 40.83,7.04l2.58,-2.58L488.06,101.02z"/>
++    <path android:fillColor="#CC444B" android:pathData="M488.06,101.02l-67.35,-67.35L396.78,9.74l-2.58,2.58c-4.66,4.66 -6.21,11.57 -4.94,18.96c1.28,7.39 5.37,15.27 11.98,21.87l67.35,67.35c13.22,13.22 31.5,16.37 40.83,7.04l2.58,-2.58L488.06,101.02z"/>
+       
+-    <path android:fillColor="#5AD5D1" android:pathData="M394.34,72.21l-60.85,60.86l-31.51,-31.51c-3.44,-3.43 -9.01,-3.43 -12.44,0l-11.9,11.9c-3.44,3.44 -3.44,9.01 0,12.44L395.83,244.1c3.44,3.43 9.01,3.43 12.44,0l11.9,-11.9c3.43,-3.44 3.43,-9.01 0,-12.44l-31.51,-31.51l60.86,-60.85L394.34,72.21z"/>
++    <path android:fillColor="#CC444B" android:pathData="M394.34,72.21l-60.85,60.86l-31.51,-31.51c-3.44,-3.43 -9.01,-3.43 -12.44,0l-11.9,11.9c-3.44,3.44 -3.44,9.01 0,12.44L395.83,244.1c3.44,3.43 9.01,3.43 12.44,0l11.9,-11.9c3.43,-3.44 3.43,-9.01 0,-12.44l-31.51,-31.51l60.86,-60.85L394.34,72.21z"/>
+     
+ </vector>
+Index: app/src/main/res/drawable/pill_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:height=\"30dp\"\n    android:viewportHeight=\"32\"\n    android:viewportWidth=\"32\"\n    android:width=\"30dp\">\n      \n    <path android:fillColor=\"#5AD5D1\" android:pathData=\"M28.987,7.898c-1.618,-2.803 -5.215,-3.779 -8.01,-2.146 -9.273,5.417 -6.35,3.666 -15.822,9.135v0c-2.803,1.618 -3.764,5.207 -2.146,8.01s5.214,3.777 8.01,2.146c9.447,-5.512 6.518,-3.772 15.822,-9.135 2.804,-1.616 3.765,-5.207 2.146,-8.01zM26.544,15.141l-7.751,4.475c0.424,-0.245 0.679,-0.623 0.796,-1.089 1.068,-0.623 2.463,-1.428 5.298,-3.054 0.834,-0.478 1.459,-1.163 1.851,-1.969l-0,-0c0.654,-1.343 0.644,-2.99 -0.153,-4.376 -0.115,-0.2 -0.262,-0.368 -0.401,-0.544 0.679,2.05 -0.15,4.373 -2.097,5.489 -2.236,1.282 -3.578,2.057 -4.571,2.636 -0.417,-1.701 -1.638,-3.688 -2.945,-4.926 -1.888,1.115 -2.616,1.559 -7.348,4.271 -1.921,1.101 -2.752,3.377 -2.122,5.407 -0.023,-0.012 -0.046,-0.024 -0.069,-0.036 -0.109,-0.135 -0.217,-0.27 -0.306,-0.426 -0.797,-1.387 -0.807,-3.033 -0.153,-4.376l-0,-0c0.392,-0.806 1.017,-1.49 1.851,-1.969 4.175,-2.393 5.228,-3.01 6.71,-3.88 -0.534,-0.23 -1.037,-0.262 -1.455,-0.017l7.751,-4.475c5.215,-3.011 10.413,5.8 5.115,8.859z\"/>\n    \n</vector>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/pill_icon.xml b/app/src/main/res/drawable/pill_icon.xml
+--- a/app/src/main/res/drawable/pill_icon.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/drawable/pill_icon.xml	(date 1721652059439)
+@@ -4,6 +4,6 @@
+     android:viewportWidth="32"
+     android:width="30dp">
+       
+-    <path android:fillColor="#5AD5D1" android:pathData="M28.987,7.898c-1.618,-2.803 -5.215,-3.779 -8.01,-2.146 -9.273,5.417 -6.35,3.666 -15.822,9.135v0c-2.803,1.618 -3.764,5.207 -2.146,8.01s5.214,3.777 8.01,2.146c9.447,-5.512 6.518,-3.772 15.822,-9.135 2.804,-1.616 3.765,-5.207 2.146,-8.01zM26.544,15.141l-7.751,4.475c0.424,-0.245 0.679,-0.623 0.796,-1.089 1.068,-0.623 2.463,-1.428 5.298,-3.054 0.834,-0.478 1.459,-1.163 1.851,-1.969l-0,-0c0.654,-1.343 0.644,-2.99 -0.153,-4.376 -0.115,-0.2 -0.262,-0.368 -0.401,-0.544 0.679,2.05 -0.15,4.373 -2.097,5.489 -2.236,1.282 -3.578,2.057 -4.571,2.636 -0.417,-1.701 -1.638,-3.688 -2.945,-4.926 -1.888,1.115 -2.616,1.559 -7.348,4.271 -1.921,1.101 -2.752,3.377 -2.122,5.407 -0.023,-0.012 -0.046,-0.024 -0.069,-0.036 -0.109,-0.135 -0.217,-0.27 -0.306,-0.426 -0.797,-1.387 -0.807,-3.033 -0.153,-4.376l-0,-0c0.392,-0.806 1.017,-1.49 1.851,-1.969 4.175,-2.393 5.228,-3.01 6.71,-3.88 -0.534,-0.23 -1.037,-0.262 -1.455,-0.017l7.751,-4.475c5.215,-3.011 10.413,5.8 5.115,8.859z"/>
++    <path android:fillColor="#CC444B" android:pathData="M28.987,7.898c-1.618,-2.803 -5.215,-3.779 -8.01,-2.146 -9.273,5.417 -6.35,3.666 -15.822,9.135v0c-2.803,1.618 -3.764,5.207 -2.146,8.01s5.214,3.777 8.01,2.146c9.447,-5.512 6.518,-3.772 15.822,-9.135 2.804,-1.616 3.765,-5.207 2.146,-8.01zM26.544,15.141l-7.751,4.475c0.424,-0.245 0.679,-0.623 0.796,-1.089 1.068,-0.623 2.463,-1.428 5.298,-3.054 0.834,-0.478 1.459,-1.163 1.851,-1.969l-0,-0c0.654,-1.343 0.644,-2.99 -0.153,-4.376 -0.115,-0.2 -0.262,-0.368 -0.401,-0.544 0.679,2.05 -0.15,4.373 -2.097,5.489 -2.236,1.282 -3.578,2.057 -4.571,2.636 -0.417,-1.701 -1.638,-3.688 -2.945,-4.926 -1.888,1.115 -2.616,1.559 -7.348,4.271 -1.921,1.101 -2.752,3.377 -2.122,5.407 -0.023,-0.012 -0.046,-0.024 -0.069,-0.036 -0.109,-0.135 -0.217,-0.27 -0.306,-0.426 -0.797,-1.387 -0.807,-3.033 -0.153,-4.376l-0,-0c0.392,-0.806 1.017,-1.49 1.851,-1.969 4.175,-2.393 5.228,-3.01 6.71,-3.88 -0.534,-0.23 -1.037,-0.262 -1.455,-0.017l7.751,-4.475c5.215,-3.011 10.413,5.8 5.115,8.859z"/>
+     
+ </vector>
+Index: app/src/main/res/drawable/bottle_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:height=\"30dp\"\n    android:viewportHeight=\"453\"\n    android:viewportWidth=\"453\"\n    android:width=\"30dp\">\n      \n    <path android:fillColor=\"#5AD5D1\"\n        android:pathData=\"M332.5,144.47c0,-1.8 -0.74,-42.76 -62,-56.24V70.9c10.09,-1.01 18,-9.55 18,-19.9V20c0,-11.03 -8.97,-20 -20,-20h-83c-11.03,0 -20,8.97 -20,20v31c0,10.01 7.39,18.3 17,19.75v17.31c-58.89,12.28 -62,48.9 -62,56.41v28.15c0,8.7 3.7,16.73 9.61,22.61c-5.91,5.57 -9.61,13.16 -9.61,21.39v40.56c0,7.93 3.4,15.27 8.87,20.8c-5.47,5.51 -8.87,12.81 -8.87,20.71v40.56c0,8.15 3.61,15.68 9.37,21.25c-5.76,5.56 -9.37,13.07 -9.37,21.2v40.56c0,16.67 15.07,30.75 32.9,30.75h148c17.44,0 31.1,-13.51 31.1,-30.75v-40.56c0,-8.14 -3.31,-15.55 -8.68,-21.05c5.4,-5.5 8.68,-13 8.68,-21.4v-40.56c0,-8.06 -3.02,-15.3 -8.04,-20.72c5.02,-5.44 8.04,-12.7 8.04,-20.78v-40.56c0,-8.47 -3.37,-16.02 -8.9,-21.51c5.5,-5.83 8.9,-13.76 8.9,-22.49V144.47zM185.5,20h83l0,31H185.5V20zM312.5,422.25c0,6.23 -4.67,10.75 -11.1,10.75h-148c-6.87,0 -12.9,-5.02 -12.9,-10.75v-40.56c0,-5.69 6.03,-10.69 12.9,-10.69h102.1c5.52,0 10,-4.48 10,-10c0,-0.17 -0.02,-0.33 -0.03,-0.5c0.01,-0.17 0.03,-0.33 0.03,-0.5c0,-5.52 -4.48,-10 -10,-10H153.4c-6.87,0 -12.9,-5.03 -12.9,-10.76v-40.56c0,-5.69 6.03,-10.68 12.9,-10.68h96.1h2c5.52,0 10,-4.48 10,-10s-4.48,-10 -10,-10h-2h-96.1c-6.75,0 -12.9,-5.16 -12.9,-10.82v-40.56c0,-5.66 6.03,-10.62 12.9,-10.62h93.1c5.52,0 10,-4.48 10,-10c0,-0.17 -0.02,-0.33 -0.03,-0.5c0.01,-0.17 0.03,-0.33 0.03,-0.5c0,-5.52 -4.48,-10 -10,-10h-93.1c-6.75,0 -12.9,-5.9 -12.9,-12.38v-28.15c0,-4.99 2.58,-30.29 53.52,-38.18c5.32,-0.82 8.99,-5.7 8.39,-11c0.05,-0.42 0.09,-0.85 0.09,-1.28V71h48v25c0,4.04 2.4,7.51 5.84,9.08c1.11,0.72 2.38,1.24 3.76,1.48c51.7,8.93 52.4,37.62 52.4,37.9v28.15c0,6.83 -5.2,12.38 -11.6,12.38c-5.52,0 -10,4.48 -10,10c0,0.46 0.04,0.9 0.1,1.34c0.18,5.36 4.57,9.66 9.98,9.66c6.57,0 11.52,4.57 11.52,10.62v40.56c0,6.07 -5.04,10.82 -11.48,10.82c-5.52,0 -10,4.48 -10,10s4.48,10 10,10c0.03,0 0.06,-0 0.09,-0c0.01,0 0.03,0 0.04,0c6.47,0 11.35,4.59 11.35,10.68v40.56c0,6.03 -5.04,10.76 -11.48,10.76c-4.73,0 -8.69,3.29 -9.73,7.71c-0.36,1.03 -0.57,2.14 -0.57,3.29c0,5.52 4.48,10 10,10c6.6,0 11.77,4.7 11.77,10.69V422.25z\"/>\n    \n</vector>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/bottle_icon.xml b/app/src/main/res/drawable/bottle_icon.xml
+--- a/app/src/main/res/drawable/bottle_icon.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/drawable/bottle_icon.xml	(date 1721652028529)
+@@ -4,7 +4,7 @@
+     android:viewportWidth="453"
+     android:width="30dp">
+       
+-    <path android:fillColor="#5AD5D1"
++    <path android:fillColor="#CC444B"
+         android:pathData="M332.5,144.47c0,-1.8 -0.74,-42.76 -62,-56.24V70.9c10.09,-1.01 18,-9.55 18,-19.9V20c0,-11.03 -8.97,-20 -20,-20h-83c-11.03,0 -20,8.97 -20,20v31c0,10.01 7.39,18.3 17,19.75v17.31c-58.89,12.28 -62,48.9 -62,56.41v28.15c0,8.7 3.7,16.73 9.61,22.61c-5.91,5.57 -9.61,13.16 -9.61,21.39v40.56c0,7.93 3.4,15.27 8.87,20.8c-5.47,5.51 -8.87,12.81 -8.87,20.71v40.56c0,8.15 3.61,15.68 9.37,21.25c-5.76,5.56 -9.37,13.07 -9.37,21.2v40.56c0,16.67 15.07,30.75 32.9,30.75h148c17.44,0 31.1,-13.51 31.1,-30.75v-40.56c0,-8.14 -3.31,-15.55 -8.68,-21.05c5.4,-5.5 8.68,-13 8.68,-21.4v-40.56c0,-8.06 -3.02,-15.3 -8.04,-20.72c5.02,-5.44 8.04,-12.7 8.04,-20.78v-40.56c0,-8.47 -3.37,-16.02 -8.9,-21.51c5.5,-5.83 8.9,-13.76 8.9,-22.49V144.47zM185.5,20h83l0,31H185.5V20zM312.5,422.25c0,6.23 -4.67,10.75 -11.1,10.75h-148c-6.87,0 -12.9,-5.02 -12.9,-10.75v-40.56c0,-5.69 6.03,-10.69 12.9,-10.69h102.1c5.52,0 10,-4.48 10,-10c0,-0.17 -0.02,-0.33 -0.03,-0.5c0.01,-0.17 0.03,-0.33 0.03,-0.5c0,-5.52 -4.48,-10 -10,-10H153.4c-6.87,0 -12.9,-5.03 -12.9,-10.76v-40.56c0,-5.69 6.03,-10.68 12.9,-10.68h96.1h2c5.52,0 10,-4.48 10,-10s-4.48,-10 -10,-10h-2h-96.1c-6.75,0 -12.9,-5.16 -12.9,-10.82v-40.56c0,-5.66 6.03,-10.62 12.9,-10.62h93.1c5.52,0 10,-4.48 10,-10c0,-0.17 -0.02,-0.33 -0.03,-0.5c0.01,-0.17 0.03,-0.33 0.03,-0.5c0,-5.52 -4.48,-10 -10,-10h-93.1c-6.75,0 -12.9,-5.9 -12.9,-12.38v-28.15c0,-4.99 2.58,-30.29 53.52,-38.18c5.32,-0.82 8.99,-5.7 8.39,-11c0.05,-0.42 0.09,-0.85 0.09,-1.28V71h48v25c0,4.04 2.4,7.51 5.84,9.08c1.11,0.72 2.38,1.24 3.76,1.48c51.7,8.93 52.4,37.62 52.4,37.9v28.15c0,6.83 -5.2,12.38 -11.6,12.38c-5.52,0 -10,4.48 -10,10c0,0.46 0.04,0.9 0.1,1.34c0.18,5.36 4.57,9.66 9.98,9.66c6.57,0 11.52,4.57 11.52,10.62v40.56c0,6.07 -5.04,10.82 -11.48,10.82c-5.52,0 -10,4.48 -10,10s4.48,10 10,10c0.03,0 0.06,-0 0.09,-0c0.01,0 0.03,0 0.04,0c6.47,0 11.35,4.59 11.35,10.68v40.56c0,6.03 -5.04,10.76 -11.48,10.76c-4.73,0 -8.69,3.29 -9.73,7.71c-0.36,1.03 -0.57,2.14 -0.57,3.29c0,5.52 4.48,10 10,10c6.6,0 11.77,4.7 11.77,10.69V422.25z"/>
+     
+ </vector>
+Index: app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy.HomeFragment;\n\nimport android.Manifest;\nimport android.annotation.SuppressLint;\nimport android.content.Context;\nimport android.content.Intent;\nimport android.content.pm.PackageManager;\nimport android.location.Location;\nimport android.location.LocationManager;\nimport android.os.Bundle;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.ActionBarDrawerToggle;\nimport androidx.appcompat.widget.AppCompatImageButton;\nimport androidx.core.app.ActivityCompat;\nimport androidx.core.content.ContextCompat;\nimport androidx.drawerlayout.widget.DrawerLayout;\nimport androidx.fragment.app.Fragment;\nimport androidx.fragment.app.FragmentManager;\n\nimport com.airbnb.lottie.LottieAnimationView;\nimport com.bumptech.glide.Glide;\nimport com.codexnovas.bhealthy.AboutFragment;\nimport com.codexnovas.bhealthy.ContactFragment;\nimport com.codexnovas.bhealthy.FeedbackFragment;\nimport com.codexnovas.bhealthy.LogoutFragment;\nimport com.codexnovas.bhealthy.R;\nimport com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;\nimport com.google.android.gms.location.FusedLocationProviderClient;\nimport com.google.android.gms.location.LocationServices;\nimport com.google.android.gms.tasks.OnFailureListener;\nimport com.google.android.gms.tasks.OnSuccessListener;\nimport com.google.android.material.navigation.NavigationView;\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.auth.FirebaseUser;\nimport com.google.firebase.database.DataSnapshot;\nimport com.google.firebase.database.DatabaseError;\nimport com.google.firebase.database.DatabaseReference;\nimport com.google.firebase.database.FirebaseDatabase;\nimport com.google.firebase.database.ValueEventListener;\nimport com.squareup.picasso.Picasso;\n\nimport java.util.Calendar;\nimport java.util.TimeZone;\n\nimport retrofit2.Call;\nimport retrofit2.Callback;\nimport retrofit2.Response;\nimport retrofit2.Retrofit;\nimport retrofit2.converter.gson.GsonConverterFactory;\n\npublic class HomeFragment extends Fragment {\n\n    private TextView tempTextView;\n    private TextView weatherTextView;\n    private ImageView weatherIconImageView;\n    private LottieAnimationView weatherLottieView;\n    private static final String API_KEY = \"e09e69b5f8ee432a803173837241907\";\n    private FusedLocationProviderClient fusedLocationClient;\n    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;\n\n    private DatabaseReference databaseReference;\n    private FirebaseAuth auth;\n    private String userId;\n\n    private FirebaseUser currentUser;\n\n    private ImageView profilePic;\n\n\n\n    @SuppressLint(\"MissingInflatedId\")\n    @Nullable\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\n        View view = inflater.inflate(R.layout.fragment_home, container, false);\n\n        tempTextView = view.findViewById(R.id.temp_text);\n        weatherTextView = view.findViewById(R.id.weather_text);\n        weatherIconImageView = view.findViewById(R.id.weather_image);\n        weatherLottieView = view.findViewById(R.id.weather_gif);\n        AppCompatImageButton menuBtn=view.findViewById(R.id.nav_drawer);\n\n        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());\n\n          profilePic = view.findViewById(R.id.profile);\n\n\n        // Initialize Firebase Auth\n        auth = FirebaseAuth.getInstance();\n        currentUser = auth.getCurrentUser();\n\n        if (currentUser != null) {\n            userId = currentUser.getUid();\n            // Initialize Firebase Database\n            databaseReference = FirebaseDatabase.getInstance().getReference(\"users\").child(userId);\n\n\n            loadProfileImage();\n        }\n\n        // Check location permissions\n        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n            // Request location permissions\n            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);\n        } else {\n            // Permissions already granted, check if location services are enabled\n            if (isLocationEnabled()) {\n                // Location services enabled, get the location\n                getLocationAndFetchWeather();\n            } else {\n                Log.e(\"Location\", \"Location services are disabled\");\n            }\n        }\n\n\n        return view;\n\n    }\n\n\n    private void loadProfileImage() {\n        if (currentUser != null) {\n            String userId = currentUser.getUid();\n            DatabaseReference profileImageRef = databaseReference.child(\"profileImage\");\n\n            profileImageRef.addListenerForSingleValueEvent(new ValueEventListener() {\n                @Override\n                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\n                    if (dataSnapshot.exists()) {\n                        String profileImageUrl = dataSnapshot.getValue(String.class);\n                        Glide.with(HomeFragment.this)\n                                .load(profileImageUrl)\n                                .circleCrop()\n                                .into(profilePic);\n                    } else {\n                        Toast.makeText(getContext(), \"Profile image not found\", Toast.LENGTH_SHORT).show();\n                    }\n                }\n\n                @Override\n                public void onCancelled(@NonNull DatabaseError databaseError) {\n                    Toast.makeText(getContext(), \"Failed to load profile image: \" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();\n                }\n            });\n        } else {\n            Toast.makeText(getContext(), \"User not logged in\", Toast.LENGTH_SHORT).show();\n        }\n    }\n\n\n    private boolean isLocationEnabled() {\n        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);\n        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);\n    }\n\n    private void getLocationAndFetchWeather() {\n        try {\n            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n                return;\n            }\n            fusedLocationClient.getLastLocation()\n                    .addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {\n                        @Override\n                        public void onSuccess(Location location) {\n                            if (location != null) {\n                                double latitude = location.getLatitude();\n                                double longitude = location.getLongitude();\n                                String locationString = latitude + \",\" + longitude;\n                                fetchWeather(locationString, latitude, longitude);\n                            } else {\n                                Log.e(\"Location\", \"Failed to get location\");\n                            }\n                        }\n                    })\n                    .addOnFailureListener(requireActivity(), new OnFailureListener() {\n                        @Override\n                        public void onFailure(@NonNull Exception e) {\n                            Log.e(\"Location\", \"Failed to get location\", e);\n                        }\n                    });\n        } catch (SecurityException e) {\n            Log.e(\"Location\", \"Location permission error\", e);\n        }\n    }\n\n    private void fetchWeather(String location, double latitude, double longitude) {\n        Retrofit retrofit = new Retrofit.Builder()\n                .baseUrl(\"https://api.weatherapi.com/v1/\")\n                .addConverterFactory(GsonConverterFactory.create())\n                .build();\n\n        WeatherAPIService service = retrofit.create(WeatherAPIService.class);\n        Call<WeatherAPIResponse> call = service.getCurrentWeather(API_KEY, location);\n\n        call.enqueue(new Callback<WeatherAPIResponse>() {\n            @Override\n            public void onResponse(Call<WeatherAPIResponse> call, Response<WeatherAPIResponse> response) {\n                if (response.isSuccessful()) {\n                    WeatherAPIResponse weatherResponse = response.body();\n                    if (weatherResponse != null) {\n                        float temperature = weatherResponse.getCurrent().getTempC();\n                        String weatherDescription = weatherResponse.getCurrent().getCondition().getText();\n                        String iconUrl = \"https:\" + weatherResponse.getCurrent().getCondition().getIcon();\n                        String weatherText = \"Temperature is \" + temperature + \"°C, \" + weatherDescription;\n\n                        tempTextView.setText(String.format(\"%d°C\", (int) temperature));\n                        weatherTextView.setText(weatherText);\n                        Picasso.get().load(iconUrl).into(weatherIconImageView);\n\n                        setWeatherAnimation(weatherDescription, latitude, longitude);\n                        Log.i(\"WeatherAPI\", weatherText);\n                    }\n                } else {\n                    Log.e(\"WeatherAPI\", \"Weather API call failed: \" + response.message());\n                }\n            }\n\n            @Override\n            public void onFailure(Call<WeatherAPIResponse> call, Throwable t) {\n                Log.e(\"WeatherAPI\", \"Weather API call failed\", t);\n            }\n        });\n    }\n\n    private void setWeatherAnimation(String weatherCondition, double latitude, double longitude) {\n        boolean isDayTime = isDayTime(latitude, longitude);\n        int animationResource;\n        switch (weatherCondition.toLowerCase()) {\n            case \"clear\":\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n            case \"light rain\":\n            case \"rain\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;\n                break;\n            case \"sunny\":\n                animationResource = R.raw.normal_day;\n                break;\n            case \"cloudy\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.cloudy_night;\n                break;\n            case \"mist\":\n            case \"fog\":\n                animationResource = isDayTime ? R.raw.foggy_day : R.raw.foggy_night;\n                break;\n            // Add other cases as needed\n            default:\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n        }\n        weatherLottieView.setAnimation(animationResource);\n        weatherLottieView.playAnimation();\n    }\n\n    private boolean isDayTime(double latitude, double longitude) {\n        Calendar calendar = Calendar.getInstance();\n        calendar.setTimeZone(TimeZone.getDefault());\n        TimeZone timeZone = calendar.getTimeZone();\n        Calendar sunrise = SunriseSunsetCalculator.getSunrise(calendar, latitude, longitude, timeZone);\n        Calendar sunset = SunriseSunsetCalculator.getSunset(calendar, latitude, longitude, timeZone);\n\n        return calendar.after(sunrise) && calendar.before(sunset);\n    }\n\n\n\n\n    @Override\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {\n            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {\n                if (isLocationEnabled()) {\n                    getLocationAndFetchWeather();\n                } else {\n                    Log.e(\"Location\", \"Location services are disabled\");\n                }\n            } else {\n                Log.e(\"Location\", \"Location permission denied\");\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(date 1721651487831)
+@@ -241,7 +241,7 @@
+             case "clear":
+                 animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;
+                 break;
+-            case "light rain":
++            case "Light rain":
+             case "rain":
+                 animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;
+                 break;
+Index: app/src/main/res/drawable/med_alert_bkg.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<selector xmlns:android=\"http://schemas.android.com/apk/res/android\">\n    <item >\n        <shape android:shape=\"rectangle\">\n            <corners android:radius=\"17dp\"\n                android:bottomRightRadius=\"17dp\"\n                android:topRightRadius=\"17dp\"/>\n\n            <gradient\n                android:angle=\"45\" android:startColor=\"#CC444B\"\n                android:endColor=\"#CC444B\"/>\n\n\n            <stroke\n                android:width=\"3dp\"\n                android:color=\"#DA5552\"/>\n\n\n        </shape>\n    </item>\n</selector>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/med_alert_bkg.xml b/app/src/main/res/drawable/med_alert_bkg.xml
+--- a/app/src/main/res/drawable/med_alert_bkg.xml	(revision 68d3575867d7b206361271ed1d8f24a0cb0aaa4f)
++++ b/app/src/main/res/drawable/med_alert_bkg.xml	(date 1721662827831)
+@@ -16,6 +16,9 @@
+                 android:color="#DA5552"/>
+ 
+ 
++
++
++
+         </shape>
+     </item>
+ </selector>

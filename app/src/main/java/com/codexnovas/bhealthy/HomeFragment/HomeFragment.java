@@ -33,6 +33,7 @@ import com.codexnovas.bhealthy.AboutFragment;
 import com.codexnovas.bhealthy.ContactFragment;
 import com.codexnovas.bhealthy.FeedbackFragment;
 import com.codexnovas.bhealthy.LogoutFragment;
+import com.codexnovas.bhealthy.MedicineCard;
 import com.codexnovas.bhealthy.R;
 import com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -76,6 +77,8 @@ public class HomeFragment extends Fragment {
 
     private ImageView profilePic;
 
+    private TextView setMedicine;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -89,6 +92,15 @@ public class HomeFragment extends Fragment {
         weatherIconImageView = view.findViewById(R.id.weather_image);
         weatherLottieView = view.findViewById(R.id.weather_gif);
         AppCompatImageButton menuBtn=view.findViewById(R.id.nav_drawer);
+        setMedicine=view.findViewById(R.id.set_med_reminder_text);
+
+        setMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MedicineCard.class);
+                startActivity(intent);
+            }
+        });
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
@@ -241,7 +253,7 @@ public class HomeFragment extends Fragment {
             case "clear":
                 animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;
                 break;
-            case "light rain":
+            case "Light rain":
             case "rain":
                 animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;
                 break;

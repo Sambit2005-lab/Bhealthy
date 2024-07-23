@@ -1,0 +1,404 @@
+Index: app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy.HomeFragment;\n\nimport android.Manifest;\nimport android.annotation.SuppressLint;\nimport android.content.Context;\nimport android.content.Intent;\nimport android.content.pm.PackageManager;\nimport android.location.Location;\nimport android.location.LocationManager;\nimport android.os.Bundle;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.ActionBarDrawerToggle;\nimport androidx.appcompat.widget.AppCompatImageButton;\nimport androidx.core.app.ActivityCompat;\nimport androidx.core.content.ContextCompat;\nimport androidx.drawerlayout.widget.DrawerLayout;\nimport androidx.fragment.app.Fragment;\nimport androidx.fragment.app.FragmentManager;\n\nimport com.airbnb.lottie.LottieAnimationView;\nimport com.bumptech.glide.Glide;\nimport com.codexnovas.bhealthy.AboutFragment;\nimport com.codexnovas.bhealthy.ContactFragment;\nimport com.codexnovas.bhealthy.FeedbackFragment;\nimport com.codexnovas.bhealthy.LogoutFragment;\nimport com.codexnovas.bhealthy.R;\nimport com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;\nimport com.google.android.gms.location.FusedLocationProviderClient;\nimport com.google.android.gms.location.LocationServices;\nimport com.google.android.gms.tasks.OnFailureListener;\nimport com.google.android.gms.tasks.OnSuccessListener;\nimport com.google.android.material.navigation.NavigationView;\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.auth.FirebaseUser;\nimport com.google.firebase.database.DataSnapshot;\nimport com.google.firebase.database.DatabaseError;\nimport com.google.firebase.database.DatabaseReference;\nimport com.google.firebase.database.FirebaseDatabase;\nimport com.google.firebase.database.ValueEventListener;\nimport com.squareup.picasso.Picasso;\n\nimport java.util.Calendar;\nimport java.util.TimeZone;\n\nimport retrofit2.Call;\nimport retrofit2.Callback;\nimport retrofit2.Response;\nimport retrofit2.Retrofit;\nimport retrofit2.converter.gson.GsonConverterFactory;\n\npublic class HomeFragment extends Fragment {\n\n    private TextView tempTextView;\n    private TextView weatherTextView;\n    private ImageView weatherIconImageView;\n    private LottieAnimationView weatherLottieView;\n    private static final String API_KEY = \"e09e69b5f8ee432a803173837241907\";\n    private FusedLocationProviderClient fusedLocationClient;\n    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;\n\n    private DatabaseReference databaseReference;\n    private FirebaseAuth auth;\n    private String userId;\n\n    private FirebaseUser currentUser;\n\n    private ImageView profilePic;\n\n\n\n    @SuppressLint(\"MissingInflatedId\")\n    @Nullable\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\n        View view = inflater.inflate(R.layout.fragment_home, container, false);\n\n        tempTextView = view.findViewById(R.id.temp_text);\n        weatherTextView = view.findViewById(R.id.weather_text);\n        weatherIconImageView = view.findViewById(R.id.weather_image);\n        weatherLottieView = view.findViewById(R.id.weather_gif);\n        AppCompatImageButton menuBtn=view.findViewById(R.id.nav_drawer);\n\n        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());\n\n          profilePic = view.findViewById(R.id.profile);\n\n\n        // Initialize Firebase Auth\n        auth = FirebaseAuth.getInstance();\n        currentUser = auth.getCurrentUser();\n\n        if (currentUser != null) {\n            userId = currentUser.getUid();\n            // Initialize Firebase Database\n            databaseReference = FirebaseDatabase.getInstance().getReference(\"users\").child(userId);\n\n\n            loadProfileImage();\n        }\n\n        // Check location permissions\n        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n            // Request location permissions\n            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);\n        } else {\n            // Permissions already granted, check if location services are enabled\n            if (isLocationEnabled()) {\n                // Location services enabled, get the location\n                getLocationAndFetchWeather();\n            } else {\n                Log.e(\"Location\", \"Location services are disabled\");\n            }\n        }\n\n\n        return view;\n\n    }\n\n\n    private void loadProfileImage() {\n        if (currentUser != null) {\n            String userId = currentUser.getUid();\n            DatabaseReference profileImageRef = databaseReference.child(\"profileImage\");\n\n            profileImageRef.addListenerForSingleValueEvent(new ValueEventListener() {\n                @Override\n                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\n                    if (dataSnapshot.exists()) {\n                        String profileImageUrl = dataSnapshot.getValue(String.class);\n                        Glide.with(HomeFragment.this)\n                                .load(profileImageUrl)\n                                .circleCrop()\n                                .into(profilePic);\n                    } else {\n                        Toast.makeText(getContext(), \"Profile image not found\", Toast.LENGTH_SHORT).show();\n                    }\n                }\n\n                @Override\n                public void onCancelled(@NonNull DatabaseError databaseError) {\n                    Toast.makeText(getContext(), \"Failed to load profile image: \" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();\n                }\n            });\n        } else {\n            Toast.makeText(getContext(), \"User not logged in\", Toast.LENGTH_SHORT).show();\n        }\n    }\n\n\n    private boolean isLocationEnabled() {\n        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);\n        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);\n    }\n\n    private void getLocationAndFetchWeather() {\n        try {\n            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n                return;\n            }\n            fusedLocationClient.getLastLocation()\n                    .addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {\n                        @Override\n                        public void onSuccess(Location location) {\n                            if (location != null) {\n                                double latitude = location.getLatitude();\n                                double longitude = location.getLongitude();\n                                String locationString = latitude + \",\" + longitude;\n                                fetchWeather(locationString, latitude, longitude);\n                            } else {\n                                Log.e(\"Location\", \"Failed to get location\");\n                            }\n                        }\n                    })\n                    .addOnFailureListener(requireActivity(), new OnFailureListener() {\n                        @Override\n                        public void onFailure(@NonNull Exception e) {\n                            Log.e(\"Location\", \"Failed to get location\", e);\n                        }\n                    });\n        } catch (SecurityException e) {\n            Log.e(\"Location\", \"Location permission error\", e);\n        }\n    }\n\n    private void fetchWeather(String location, double latitude, double longitude) {\n        Retrofit retrofit = new Retrofit.Builder()\n                .baseUrl(\"https://api.weatherapi.com/v1/\")\n                .addConverterFactory(GsonConverterFactory.create())\n                .build();\n\n        WeatherAPIService service = retrofit.create(WeatherAPIService.class);\n        Call<WeatherAPIResponse> call = service.getCurrentWeather(API_KEY, location);\n\n        call.enqueue(new Callback<WeatherAPIResponse>() {\n            @Override\n            public void onResponse(Call<WeatherAPIResponse> call, Response<WeatherAPIResponse> response) {\n                if (response.isSuccessful()) {\n                    WeatherAPIResponse weatherResponse = response.body();\n                    if (weatherResponse != null) {\n                        float temperature = weatherResponse.getCurrent().getTempC();\n                        String weatherDescription = weatherResponse.getCurrent().getCondition().getText();\n                        String iconUrl = \"https:\" + weatherResponse.getCurrent().getCondition().getIcon();\n                        String weatherText = \"Temperature is \" + temperature + \"°C, \" + weatherDescription;\n\n                        tempTextView.setText(String.format(\"%d°C\", (int) temperature));\n                        weatherTextView.setText(weatherText);\n                        Picasso.get().load(iconUrl).into(weatherIconImageView);\n\n                        setWeatherAnimation(weatherDescription, latitude, longitude);\n                        Log.i(\"WeatherAPI\", weatherText);\n                    }\n                } else {\n                    Log.e(\"WeatherAPI\", \"Weather API call failed: \" + response.message());\n                }\n            }\n\n            @Override\n            public void onFailure(Call<WeatherAPIResponse> call, Throwable t) {\n                Log.e(\"WeatherAPI\", \"Weather API call failed\", t);\n            }\n        });\n    }\n\n    private void setWeatherAnimation(String weatherCondition, double latitude, double longitude) {\n        boolean isDayTime = isDayTime(latitude, longitude);\n        int animationResource;\n        switch (weatherCondition.toLowerCase()) {\n            case \"clear\":\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n            case \"light rain\":\n            case \"rain\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;\n                break;\n            case \"sunny\":\n                animationResource = R.raw.normal_day;\n                break;\n            case \"cloudy\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.cloudy_night;\n                break;\n            case \"mist\":\n            case \"fog\":\n                animationResource = isDayTime ? R.raw.foggy_day : R.raw.foggy_night;\n                break;\n            // Add other cases as needed\n            default:\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n        }\n        weatherLottieView.setAnimation(animationResource);\n        weatherLottieView.playAnimation();\n    }\n\n    private boolean isDayTime(double latitude, double longitude) {\n        Calendar calendar = Calendar.getInstance();\n        calendar.setTimeZone(TimeZone.getDefault());\n        TimeZone timeZone = calendar.getTimeZone();\n        Calendar sunrise = SunriseSunsetCalculator.getSunrise(calendar, latitude, longitude, timeZone);\n        Calendar sunset = SunriseSunsetCalculator.getSunset(calendar, latitude, longitude, timeZone);\n\n        return calendar.after(sunrise) && calendar.before(sunset);\n    }\n\n\n\n\n    @Override\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {\n            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {\n                if (isLocationEnabled()) {\n                    getLocationAndFetchWeather();\n                } else {\n                    Log.e(\"Location\", \"Location services are disabled\");\n                }\n            } else {\n                Log.e(\"Location\", \"Location permission denied\");\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
++++ b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(date 1721651484859)
+@@ -241,7 +241,7 @@
+             case "clear":
+                 animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;
+                 break;
+-            case "light rain":
++            case "Light rain":
+             case "rain":
+                 animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;
+                 break;
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15_07_24__11_30am__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24__11_30am__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24__11_30am__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24__11_30am__Changes_.xml	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
++++ /dev/null	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]" date="1721023250440" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 15/07/24, 11:30 am [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04__Changes_.xml	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
++++ /dev/null	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]" date="1721028884006" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 15-07-2024 13:04 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_24,_11_30 am_[Changes]/shelved.patch	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
++++ /dev/null	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
+@@ -1,293 +0,0 @@
+-Index: build.gradle.kts
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\nplugins {\n    alias(libs.plugins.android.application) apply false\n    alias(libs.plugins.jetbrains.kotlin.android) apply false\n    alias(libs.plugins.google.gms.google.services) apply false\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/build.gradle.kts b/build.gradle.kts
+---- a/build.gradle.kts	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+-+++ b/build.gradle.kts	(date 1721023221190)
+-@@ -3,4 +3,6 @@
+-     alias(libs.plugins.android.application) apply false
+-     alias(libs.plugins.jetbrains.kotlin.android) apply false
+-     alias(libs.plugins.google.gms.google.services) apply false
+--}
+-\ No newline at end of file
+-+}
+-+
+-+
+-Index: app/build.gradle.kts
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>plugins {\n    alias(libs.plugins.android.application)\n    alias(libs.plugins.jetbrains.kotlin.android)\n    alias(libs.plugins.google.gms.google.services)\n}\n\nandroid {\n    namespace = \"com.codexnovas.bhealthy\"\n    compileSdk = 34\n\n    defaultConfig {\n        applicationId = \"com.codexnovas.bhealthy\"\n        minSdk = 24\n        targetSdk = 34\n        versionCode = 1\n        versionName = \"1.0\"\n\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            isMinifyEnabled = false\n            proguardFiles(\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\n                \"proguard-rules.pro\"\n            )\n        }\n    }\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_1_8\n        targetCompatibility = JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = \"1.8\"\n    }\n}\n\ndependencies {\n\n    implementation(libs.androidx.core.ktx)\n    implementation(libs.androidx.appcompat)\n    implementation (\"com.airbnb.android:lottie:6.4.1\")\n    implementation(libs.material)\n    implementation(libs.androidx.activity)\n    implementation(libs.androidx.constraintlayout)\n    implementation(libs.firebase.auth)\n    implementation(libs.firebase.database)\n    testImplementation(libs.junit)\n    androidTestImplementation(libs.androidx.junit)\n    androidTestImplementation(libs.androidx.espresso.core)\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+---- a/app/build.gradle.kts	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+-+++ b/app/build.gradle.kts	(date 1721023221156)
+-@@ -40,7 +40,7 @@
+- 
+-     implementation(libs.androidx.core.ktx)
+-     implementation(libs.androidx.appcompat)
+--    implementation ("com.airbnb.android:lottie:6.4.1")
+-+    implementation("com.airbnb.android:lottie:6.4.1")
+-     implementation(libs.material)
+-     implementation(libs.androidx.activity)
+-     implementation(libs.androidx.constraintlayout)
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24__15_59__Changes_.xml	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+-+++ /dev/null	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Update_at_13_07_24,_15_59_[Changes]" date="1720866588480" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_07_24,_15_59_[Changes]/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13/07/24, 15:59 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: app/src/main/res/layout/personel_info_page.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/personel_info_page.xml b/app/src/main/res/layout/personel_info_page.xml
+-new file mode 100644
+---- /dev/null	(date 1721023221185)
+-+++ b/app/src/main/res/layout/personel_info_page.xml	(date 1721023221185)
+-@@ -0,0 +1,167 @@
+-+<?xml version="1.0" encoding="utf-8"?>
+-+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-+    xmlns:app="http://schemas.android.com/apk/res-auto"
+-+    xmlns:tools="http://schemas.android.com/tools"
+-+    android:id="@+id/main"
+-+    android:layout_width="match_parent"
+-+    android:layout_height="match_parent"
+-+    tools:context=".PersonelInfoPage"
+-+    android:background="#E0FBFC">
+-+
+-+
+-+    <TextView
+-+        android:id="@+id/know_better"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:text="Let's get to know"
+-+        android:textSize="28sp"
+-+        android:textStyle="bold"
+-+        android:layout_marginLeft="20dp"
+-+        android:layout_marginBottom="500dp"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        >
+-+
+-+    </TextView>
+-+
+-+    <TextView
+-+        android:id="@+id/you_better"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginLeft="20dp"
+-+        android:layout_marginBottom="500dp"
+-+        android:text="you better!"
+-+        android:textSize="28sp"
+-+        android:textStyle="bold"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        app:layout_constraintTop_toBottomOf="@+id/know_better"
+-+        app:layout_constraintVertical_bias="0.0">
+-+
+-+    </TextView>
+-+
+-+    <ImageView
+-+        android:id="@+id/mid_line"
+-+        android:layout_width="365dp"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginTop="10dp"
+-+        android:background="@null"
+-+        android:src="@drawable/mid_line"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toBottomOf="@+id/you_better">
+-+
+-+    </ImageView>
+-+
+-+    <EditText
+-+        android:id="@+id/enter_fullname"
+-+        android:layout_width="match_parent"
+-+        android:layout_height="28dp"
+-+        android:layout_marginTop="100dp"
+-+        android:layout_marginRight="40dp"
+-+        android:layout_marginLeft="40dp"
+-+        android:background="@drawable/edit_text_transparent"
+-+        android:hint="  Enter your fullname"
+-+        android:paddingStart="5dp"
+-+        android:textSize="12dp"
+-+        app:layout_constraintBottom_toTopOf="@+id/enter_date"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintHorizontal_bias="0.0"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toBottomOf="@+id/mid_line">
+-+
+-+    </EditText>
+-+
+-+    <EditText
+-+        android:id="@+id/enter_date"
+-+        android:layout_height="28dp"
+-+        android:layout_width="match_parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        android:layout_marginRight="40dp"
+-+        app:layout_constraintTop_toBottomOf="@+id/enter_fullname"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        android:layout_marginLeft="40dp"
+-+        android:layout_marginTop="20dp"
+-+        android:paddingStart="5dp"
+-+        app:layout_constraintBottom_toTopOf="@id/pronouns"
+-+        android:hint="  dd/mm/yy"
+-+        android:drawableRight="@drawable/calendar_month"
+-+        android:paddingRight="15dp"
+-+        android:textSize="12dp"
+-+        android:background="@drawable/edit_text_transparent"
+-+        >
+-+
+-+    </EditText>
+-+
+-+    <EditText
+-+        android:id="@+id/pronouns"
+-+        android:layout_height="28dp"
+-+        android:layout_width="match_parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        android:layout_marginRight="40dp"
+-+        app:layout_constraintTop_toBottomOf="@+id/enter_date"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        android:layout_marginLeft="40dp"
+-+        android:layout_marginTop="20dp"
+-+
+-+        android:paddingStart="5dp"
+-+        app:layout_constraintBottom_toTopOf="@id/phone"
+-+        android:hint="  What pronouns do you use?"
+-+        android:textSize="12dp"
+-+        android:background="@drawable/edit_text_transparent"
+-+        >
+-+
+-+    </EditText>
+-+
+-+    <EditText
+-+        android:id="@+id/phone"
+-+        android:layout_height="28dp"
+-+        android:layout_width="match_parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        android:layout_marginRight="40dp"
+-+        app:layout_constraintTop_toBottomOf="@+id/pronouns"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        android:layout_marginLeft="40dp"
+-+        android:layout_marginTop="20dp"
+-+        android:paddingStart="5dp"
+-+        app:layout_constraintBottom_toTopOf="@id/email"
+-+        android:textSize="12dp"
+-+        android:background="@drawable/edit_text_transparent"
+-+        >
+-+
+-+    </EditText>
+-+
+-+    <EditText
+-+        android:id="@+id/email"
+-+        android:layout_height="28dp"
+-+        android:layout_width="match_parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        android:layout_marginRight="40dp"
+-+        app:layout_constraintTop_toBottomOf="@+id/phone"
+-+        app:layout_constraintLeft_toLeftOf="parent"
+-+        android:layout_marginLeft="40dp"
+-+        android:layout_marginTop="20dp"
+-+        android:paddingStart="5dp"
+-+        app:layout_constraintBottom_toTopOf="@id/phone"
+-+        android:hint="  Enter your email"
+-+        android:textSize="12dp"
+-+        android:background="@drawable/edit_text_transparent"
+-+        >
+-+
+-+    </EditText>
+-+
+-+    <ImageButton
+-+        android:layout_width="35dp"
+-+        android:layout_height="35dp"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintRight_toRightOf="parent"
+-+        android:src="@drawable/next_arrow_right"
+-+        android:background="@null"
+-+        android:layout_marginRight="36dp"
+-+        android:layout_marginBottom="18dp">
+-+
+-+    </ImageButton>
+-+</androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.Bhealthy\"\n        tools:targetApi=\"31\">\n        <activity\n            android:name=\".LoginPage\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".onboarding_background\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".EngageWithPeople\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".UnderstandYourHealth\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".UploadPic\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".SmartInsights\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".WelcomeToBhealthy\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"false\"></activity>\n    </application>\n\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+---- a/app/src/main/AndroidManifest.xml	(revision f57f43caac404fb084e6aa5f231a38d81a13bb90)
+-+++ b/app/src/main/AndroidManifest.xml	(date 1720937404454)
+-@@ -13,6 +13,9 @@
+-         android:theme="@style/Theme.Bhealthy"
+-         tools:targetApi="31">
+-         <activity
+-+            android:name=".PersonelInfoPage"
+-+            android:exported="false" />
+-+        <activity
+-             android:name=".LoginPage"
+-             android:exported="false" />
+-         <activity
+-@@ -41,7 +44,7 @@
+-         </activity>
+-         <activity
+-             android:name=".MainActivity"
+--            android:exported="false"></activity>
+-+            android:exported="false" />
+-     </application>
+- 
+- </manifest>
+-\ No newline at end of file
+-Index: app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java b/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java
+-new file mode 100644
+---- /dev/null	(date 1720937404365)
+-+++ b/app/src/main/java/com/codexnovas/bhealthy/PersonelInfoPage.java	(date 1720937404365)
+-@@ -0,0 +1,24 @@
+-+package com.codexnovas.bhealthy;
+-+
+-+import android.os.Bundle;
+-+
+-+import androidx.activity.EdgeToEdge;
+-+import androidx.appcompat.app.AppCompatActivity;
+-+import androidx.core.graphics.Insets;
+-+import androidx.core.view.ViewCompat;
+-+import androidx.core.view.WindowInsetsCompat;
+-+
+-+public class PersonelInfoPage extends AppCompatActivity {
+-+
+-+    @Override
+-+    protected void onCreate(Bundle savedInstanceState) {
+-+        super.onCreate(savedInstanceState);
+-+        EdgeToEdge.enable(this);
+-+        setContentView(R.layout.personel_info_page);
+-+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+-+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+-+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+-+            return insets;
+-+        });
+-+    }
+-+}
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15-07-2024_13_04_[Changes]/shelved.patch	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
++++ /dev/null	(revision cbcdee9a9b88720fb8892bf042981ca1d3c7d1f3)
+@@ -1,54 +0,0 @@
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Bhealthy\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".MedicalHistory\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".HealthMatrics\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".LoginPage\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".OnboardingSlidePages.onboarding_background\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".UploadPic\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".SignupPage\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"false\" />\r\n    </application>\r\n\r\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+---- a/app/src/main/AndroidManifest.xml	(revision 6fe26b1ac2736333e01e04c063f6629e73281c24)
+-+++ b/app/src/main/AndroidManifest.xml	(date 1721028879970)
+-@@ -42,6 +42,15 @@
+-         <activity
+-             android:name=".MainActivity"
+-             android:exported="false" />
+-+        <activity
+-+            android:name=".SignupPage"
+-+            android:theme="@style/AppTheme.TransparentActionBar">
+-+        </activity>
+-+
+-     </application>
+- 
+-+
+-+
+-+
+-+
+- </manifest>
+-\ No newline at end of file
+-Index: app/src/main/res/values/styles.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/values/styles.xml b/app/src/main/res/values/styles.xml
+-new file mode 100644
+---- /dev/null	(date 1721028383085)
+-+++ b/app/src/main/res/values/styles.xml	(date 1721028383085)
+-@@ -0,0 +1,16 @@
+-+<?xml version="1.0" encoding="utf-8"?>
+-+<resources>
+-+
+-+        <!-- Base application theme -->
+-+        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+-+            <!-- Customize your theme here -->
+-+        </style>
+-+
+-+        <!-- Transparent action bar theme -->
+-+        <style name="AppTheme.TransparentActionBar" parent="AppTheme">
+-+            <item name="android:windowActionBarOverlay">true</item>
+-+            <item name="android:windowActionModeOverlay">true</item>
+-+        </style>
+-+
+-+
+-+</resources>
+-\ No newline at end of file
