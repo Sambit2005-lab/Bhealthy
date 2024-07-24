@@ -48,6 +48,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -142,26 +143,71 @@ public class HomeFragment extends Fragment {
             loadProfileImage();
         }
 
-        DatabaseReference databaseReferenceMed = FirebaseDatabase.getInstance().getReference("users").child(userId).child("medicineDetails");
-        databaseReferenceMed.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                medicineList.clear();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    MedicineDetails medicine = postSnapshot.getValue(MedicineDetails.class);
-                    medicineList.add(medicine);
-                }
-                medicineAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
-            }
-        });
 
-        medicineAdapter = new MedicineAdapter(medicineList);
+
+        medicineList = new ArrayList<>();
+        medicineAdapter = new MedicineAdapter(getContext(), medicineList);
         recyclerView.setAdapter(medicineAdapter);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("medicineDetails");
+
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d("FirebaseData", "Child Added - Key: " + snapshot.getKey() + ", Value: " + snapshot.getValue());
+                MedicineDetails medicine = snapshot.getValue(MedicineDetails.class);
+                if (medicine != null) {
+                    medicine.setKey(snapshot.getKey());
+                    medicineList.add(medicine);
+                    medicineAdapter.notifyItemInserted(medicineList.size() - 1);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d("FirebaseData", "Child Changed - Key: " + snapshot.getKey() + ", Value: " + snapshot.getValue());
+                MedicineDetails updatedMedicine = snapshot.getValue(MedicineDetails.class);
+                if (updatedMedicine != null) {
+                    String key = snapshot.getKey();
+                    for (int i = 0; i < medicineList.size(); i++) {
+                        if (medicineList.get(i).getKey().equals(key)) {
+                            updatedMedicine.setKey(key);
+                            medicineList.set(i, updatedMedicine);
+                            medicineAdapter.notifyItemChanged(i);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Log.d("FirebaseData", "Child Removed - Key: " + snapshot.getKey() + ", Value: " + snapshot.getValue());
+                String key = snapshot.getKey();
+                for (int i = 0; i < medicineList.size(); i++) {
+                    if (medicineList.get(i).getKey().equals(key)) {
+                        medicineList.remove(i);
+                        medicineAdapter.notifyItemRemoved(i);
+                        medicineAdapter.notifyItemRangeChanged(i, medicineList.size());
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // Handle child moved if needed
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors.
+                Log.e("FirebaseData", "DatabaseError: " + error.getMessage());
+            }
+        };
+
+        databaseReference.addChildEventListener(childEventListener);
 
 
         // Check location permissions

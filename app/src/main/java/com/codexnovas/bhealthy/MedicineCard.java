@@ -3,7 +3,6 @@ package com.codexnovas.bhealthy;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,14 +13,8 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class MedicineCard extends AppCompatActivity {
 
@@ -50,21 +42,30 @@ public class MedicineCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medicine_card);
 
+        initViews();
+        setupFirebase();
+        setupSpinners();
+        setupButtons();
+    }
+
+    private void initViews() {
         medEditText = findViewById(R.id.med_name_edit);
         dosageEditText = findViewById(R.id.dosage_edit);
         confirmButton = findViewById(R.id.confirm_btn);
         selectTimeAndDateBtn = findViewById(R.id.select_time_btn);
-        intervalSpinner = findViewById(R.id.selected_interval); // Add this line
-        timeSpinner = findViewById(R.id.selected_time); // Add this line
+        intervalSpinner = findViewById(R.id.selected_interval);
+        timeSpinner = findViewById(R.id.selected_time);
+    }
 
-
-        // Firebase Authentication
+    private void setupFirebase() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             databaseReference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("medicineDetails");
         }
+    }
 
+    private void setupSpinners() {
         // Interval Spinner setup
         ArrayAdapter<CharSequence> intervalAdapter = ArrayAdapter.createFromResource(this,
                 R.array.interval_array, android.R.layout.simple_spinner_item);
@@ -100,13 +101,13 @@ public class MedicineCard extends AppCompatActivity {
                 // Do nothing
             }
         });
+    }
 
-
+    private void setupButtons() {
         selectTimeAndDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePicker();
-                showTimePicker();
             }
         });
 
@@ -122,8 +123,8 @@ public class MedicineCard extends AppCompatActivity {
         findViewById(R.id.pill_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                medType = "";
-                Toast.makeText(getApplicationContext(), "pill selected", Toast.LENGTH_SHORT).show();
+                medType = "Pill";
+                Toast.makeText(getApplicationContext(), "Pill selected", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -143,16 +144,12 @@ public class MedicineCard extends AppCompatActivity {
             }
         });
 
-        // Confirm Button to save data
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveMedicineDetails();
             }
         });
-
-
-
     }
 
     private void showDatePicker() {
@@ -163,6 +160,7 @@ public class MedicineCard extends AppCompatActivity {
                 selectedYear = year;
                 selectedMonth = month;
                 selectedDay = dayOfMonth;
+                showTimePicker(); // Show TimePicker after DatePicker
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
@@ -183,9 +181,8 @@ public class MedicineCard extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-
     private void saveMedicineDetails() {
-        String medName =  medEditText.getText().toString().trim();
+        String medName = medEditText.getText().toString().trim();
         String dosage = dosageEditText.getText().toString().trim();
 
         if (medName.isEmpty() || dosage.isEmpty() || medType.isEmpty() || selectedInterval == null || selectedTime == null) {
@@ -205,6 +202,8 @@ public class MedicineCard extends AppCompatActivity {
         medicineDetails.put("interval", selectedInterval);
         medicineDetails.put("specificTime", selectedTime);
         medicineDetails.put("dateTime", dateTime);
+        medicineDetails.put("key", databaseReference.push().getKey());
+
 
         databaseReference.push().setValue(medicineDetails).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -214,9 +213,7 @@ public class MedicineCard extends AppCompatActivity {
                 Toast.makeText(MedicineCard.this, "Failed to save medicine details", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 }
 
 

@@ -1,0 +1,337 @@
+Index: app/src/main/res/layout/fragment_leaderboard.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:background=\"#98C1D9\"\n    tools:context=\".LeaderboardFragment.Leaderboard_Fragment\">\n\n    <!-- TODO: Update blank fragment layout -->\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n        <androidx.cardview.widget.CardView\n            android:id=\"@+id/top_card\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"80dp\"\n            android:backgroundTint=\"#E0FBFC\"\n\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintLeft_toLeftOf=\"parent\"\n            app:layout_constraintRight_toRightOf=\"parent\"\n            >\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n\n                android:text=\"Leaderboard\"\n                android:textSize=\"30dp\"\n                android:textColor=\"#000000\"\n                android:textStyle=\"bold\"\n                android:layout_marginTop=\"30dp\"\n                android:layout_marginLeft=\"20dp\">\n\n            </TextView>\n        </androidx.cardview.widget.CardView>\n\n        <androidx.cardview.widget.CardView\n            android:id=\"@+id/horizontal_cardview\"\n            android:layout_width=\"390dp\"\n            android:layout_height=\"160dp\"\n\n            android:layout_marginTop=\"20dp\"\n            app:layout_constraintTop_toBottomOf=\"@+id/top_card\"\n            app:layout_constraintLeft_toLeftOf=\"parent\"\n            app:layout_constraintRight_toRightOf=\"parent\">\n\n            <androidx.recyclerview.widget.RecyclerView\n                android:id=\"@+id/med_alert_card_recyclerview\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\"\n                app:layoutManager=\"androidx.recyclerview.widget.LinearLayoutManager\"\n                android:orientation=\"horizontal\"\n                android:scrollbars=\"horizontal\"\n                android:paddingEnd=\"15dp\"\n\n                android:background=\"#98C1D9\"\n\n                tools:listitem=\"@layout/streaks_card\"\n\n\n                />\n\n        </androidx.cardview.widget.CardView>\n\n\n\n\n\n        <androidx.cardview.widget.CardView\n            android:layout_width=\"350dp\"\n            android:layout_height=\"372dp\"\n            android:layout_marginTop=\"20dp\"\n\n            android:backgroundTint=\"#98C1D9\"\n            app:layout_constraintLeft_toLeftOf=\"parent\"\n            app:layout_constraintRight_toRightOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/horizontal_cardview\">\n\n            <androidx.constraintlayout.widget.ConstraintLayout\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\"\n                android:background=\"@drawable/rank_card_background\">\n\n                <ImageView\n                    android:id=\"@+id/prof_ellipse\"\n                    android:layout_width=\"80dp\"\n                    android:layout_height=\"80dp\"\n                    android:layout_marginLeft=\"16dp\"\n\n                    android:layout_marginTop=\"16dp\"\n                    android:layout_marginBottom=\"30dp\"\n                    android:src=\"@drawable/ellipse\"\n\n                    app:layout_constraintLeft_toLeftOf=\"parent\"\n                    app:layout_constraintTop_toTopOf=\"parent\"/>\n\n                <TextView\n                    android:id=\"@+id/rank\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginLeft=\"16dp\"\n                    android:layout_marginTop=\"16dp\"\n                    android:text=\"#x\"\n                    android:textColor=\"#000000\"\n                    android:textSize=\"45dp\"\n                    android:textStyle=\"bold\"\n                    app:layout_constraintLeft_toRightOf=\"@+id/prof_ellipse\"\n                    app:layout_constraintTop_toTopOf=\"parent\">\n\n                </TextView>\n\n                <TextView\n                    android:id=\"@+id/ranking\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"wrap_content\"\n\n                    android:layout_marginLeft=\"16dp\"\n                    android:text=\"Ranking\"\n                    android:textColor=\"#000000\"\n                    android:textSize=\"22dp\"\n\n                    app:layout_constraintLeft_toRightOf=\"@+id/prof_ellipse\"\n                    app:layout_constraintBottom_toTopOf=\"@+id/user_card\"\n                    android:layout_marginBottom=\"30dp\"\n                    app:layout_constraintTop_toBottomOf=\"@+id/rank\">\n\n                </TextView>\n\n\n                <androidx.cardview.widget.CardView\n                    android:id=\"@+id/user_card\"\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"270dp\"\n\n                    android:layout_marginTop=\"10dp\"\n                    android:background=\"@drawable/userlist_card_bkg\"\n                    app:layout_constraintTop_toBottomOf=\"@+id/prof_ellipse\"\n                    >\n\n                    <androidx.constraintlayout.widget.ConstraintLayout\n                        android:layout_width=\"match_parent\"\n                        android:background=\"@drawable/userlist_card_bkg\"\n                        android:layout_height=\"match_parent\">\n\n                        <TextView\n                            android:layout_width=\"wrap_content\"\n                            android:layout_height=\"wrap_content\"\n                            android:text=\"User\"\n                            android:textColor=\"#3D5A80\"\n                            android:textSize=\"22dp\"\n\n                            app:layout_constraintLeft_toLeftOf=\"parent\"\n                            app:layout_constraintTop_toTopOf=\"parent\"\n                            android:layout_marginTop=\"16dp\"\n                            android:layout_marginLeft=\"24dp\">\n\n                        </TextView>\n\n                        <TextView\n                            android:id=\"@+id/total_points\"\n                            android:layout_width=\"wrap_content\"\n                            android:layout_height=\"wrap_content\"\n                            android:text=\"Total points\"\n                            android:textColor=\"#3D5A80\"\n                            android:textSize=\"22dp\"\n\n                            app:layout_constraintRight_toRightOf=\"parent\"\n                            app:layout_constraintTop_toTopOf=\"parent\"\n                            android:layout_marginTop=\"16dp\"\n                            android:layout_marginRight=\"24dp\">\n\n                        </TextView>\n\n                        <ImageView\n                            android:id=\"@+id/line\"\n                            android:layout_width=\"wrap_content\"\n                            android:layout_height=\"wrap_content\"\n                            android:src=\"@drawable/line_grey\"\n\n                            app:layout_constraintTop_toBottomOf=\"@+id/total_points\"\n                            app:layout_constraintLeft_toLeftOf=\"parent\"\n                            app:layout_constraintRight_toRightOf=\"parent\">\n\n                        </ImageView>\n\n                        <FrameLayout\n                            android:layout_width=\"match_parent\"\n                            android:layout_height=\"210dp\"\n                            android:background=\"@drawable/userlist_card_bkg\"\n\n                            android:layout_marginTop=\"5dp\"\n                            app:layout_constraintLeft_toLeftOf=\"parent\"\n                            app:layout_constraintRight_toRightOf=\"parent\"\n                            app:layout_constraintBottom_toBottomOf=\"parent\"\n                            app:layout_constraintTop_toBottomOf=\"@+id/line\"\n                            android:layout_marginLeft=\"15dp\"\n                            android:layout_marginRight=\"15dp\"\n\n                            >\n\n                            <androidx.recyclerview.widget.RecyclerView\n                                android:id=\"@+id/userlist_recyclerview\"\n                                android:layout_width=\"match_parent\"\n                                android:layout_height=\"250dp\"\n                                android:orientation=\"vertical\"\n\n                                />\n\n\n                        </FrameLayout>\n\n\n                    </androidx.constraintlayout.widget.ConstraintLayout>\n\n                </androidx.cardview.widget.CardView>\n\n\n            </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n        </androidx.cardview.widget.CardView>\n\n        <ImageButton\n            android:id=\"@+id/main_button\"\n            android:layout_width=\"44dp\"\n            android:layout_height=\"44dp\"\n\n            android:src=\"@drawable/ellipse\"\n            app:layout_constraintLeft_toLeftOf=\"parent\"\n            app:layout_constraintRight_toRightOf=\"parent\"\n\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            android:layout_marginBottom=\"30dp\">\n\n        </ImageButton>\n    </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_leaderboard.xml b/app/src/main/res/layout/fragment_leaderboard.xml
+--- a/app/src/main/res/layout/fragment_leaderboard.xml	(revision 52661192e61eee824753a5852949183adfe3c144)
++++ b/app/src/main/res/layout/fragment_leaderboard.xml	(date 1721727319983)
+@@ -239,6 +239,4 @@
+         </ImageButton>
+     </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+-
+-
+-
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/codexnovas/bhealthy/MedicineAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy;\n\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\n\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport java.util.List;\n\npublic class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MedicineViewHolder> {\n    private List<MedicineDetails> medicineList;\n\n    public static class MedicineViewHolder extends RecyclerView.ViewHolder {\n        public TextView medName, dosage, specificTime;\n        public ImageView medImage;\n\n        public MedicineViewHolder(View itemView) {\n            super(itemView);\n            medName = itemView.findViewById(R.id.med_name);\n            dosage = itemView.findViewById(R.id.dosage);\n            specificTime = itemView.findViewById(R.id.breakfast);\n            medImage = itemView.findViewById(R.id.med1_img);\n        }\n    }\n\n    public MedicineAdapter(List<MedicineDetails> medicineList) {\n        this.medicineList = medicineList;\n    }\n\n    @Override\n    public MedicineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n        View view = LayoutInflater.from(parent.getContext())\n                .inflate(R.layout.med_type2_card, parent, false);\n        return new MedicineViewHolder(view);\n    }\n\n    @Override\n    public void onBindViewHolder(MedicineViewHolder holder, int position) {\n        MedicineDetails currentMedicine = medicineList.get(position);\n        holder.medName.setText(currentMedicine.getMedicineName());\n        holder.dosage.setText(currentMedicine.getDosage());\n        holder.specificTime.setText(currentMedicine.getSpecificTime());\n\n\n    }\n\n    @Override\n    public int getItemCount() {\n        return medicineList.size();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/MedicineAdapter.java b/app/src/main/java/com/codexnovas/bhealthy/MedicineAdapter.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/MedicineAdapter.java	(revision 52661192e61eee824753a5852949183adfe3c144)
++++ b/app/src/main/java/com/codexnovas/bhealthy/MedicineAdapter.java	(date 1721725997047)
+@@ -1,20 +1,23 @@
+ package com.codexnovas.bhealthy;
+ 
++import android.app.AlertDialog;
++import android.content.Context;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.ImageView;
++import android.widget.RadioButton;
++import android.widget.RadioGroup;
+ import android.widget.TextView;
+-
+ import androidx.recyclerview.widget.RecyclerView;
+-
+ import java.util.List;
+ 
+ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MedicineViewHolder> {
+     private List<MedicineDetails> medicineList;
++    private Context context;
+ 
+     public static class MedicineViewHolder extends RecyclerView.ViewHolder {
+-        public TextView medName, dosage, specificTime;
++        public TextView medName, dosage, specificTime, done;
+         public ImageView medImage;
+ 
+         public MedicineViewHolder(View itemView) {
+@@ -22,11 +25,13 @@
+             medName = itemView.findViewById(R.id.med_name);
+             dosage = itemView.findViewById(R.id.dosage);
+             specificTime = itemView.findViewById(R.id.breakfast);
+-            medImage = itemView.findViewById(R.id.med1_img);
++            medImage = itemView.findViewById(R.id.med2_img);
++            done = itemView.findViewById(R.id.done);
+         }
+     }
+ 
+-    public MedicineAdapter(List<MedicineDetails> medicineList) {
++    public MedicineAdapter(Context context, List<MedicineDetails> medicineList) {
++        this.context = context;
+         this.medicineList = medicineList;
+     }
+ 
+@@ -44,11 +49,46 @@
+         holder.dosage.setText(currentMedicine.getDosage());
+         holder.specificTime.setText(currentMedicine.getSpecificTime());
+ 
++        // Set image based on medicine type or name
++        // holder.medImage.setImageResource(R.drawable.your_image);
+ 
++        holder.done.setOnClickListener(v -> {
++            showMedicineOptionsDialog(holder.getAdapterPosition());
++        });
+     }
+ 
+     @Override
+     public int getItemCount() {
+         return medicineList.size();
+     }
+-}
+\ No newline at end of file
++
++    private void showMedicineOptionsDialog(int position) {
++        AlertDialog.Builder builder = new AlertDialog.Builder(context);
++        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_medicine_options, null);
++        builder.setView(dialogView);
++
++        RadioGroup radioGroupOptions = dialogView.findViewById(R.id.radioGroupOptions);
++        RadioButton radioTakeToday = dialogView.findViewById(R.id.radioTakeToday);
++        RadioButton radioCompleteCourse = dialogView.findViewById(R.id.radioCompleteCourse);
++        RadioButton radioDeleteReminder = dialogView.findViewById(R.id.radioDeleteReminder);
++
++        builder.setPositiveButton("OK", (dialog, which) -> {
++            int selectedOptionId = radioGroupOptions.getCheckedRadioButtonId();
++            if (selectedOptionId == radioTakeToday.getId()) {
++                // Handle taking today's dosage
++            } else if (selectedOptionId == radioCompleteCourse.getId()) {
++                // Handle completing the medicine course
++            } else if (selectedOptionId == radioDeleteReminder.getId()) {
++                // Handle deleting the medicine reminder
++                medicineList.remove(position);
++                notifyItemRemoved(position);
++                notifyItemRangeChanged(position, medicineList.size());
++            }
++        });
++
++        builder.setNegativeButton("Cancel", null);
++
++        AlertDialog dialog = builder.create();
++        dialog.show();
++    }
++}
+Index: app/src/main/java/com/codexnovas/bhealthy/MedicineDetails.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy;\n\npublic class MedicineDetails {\n    private String dateTime;\n    private String dosage;\n    private String interval;\n    private String medicineName;\n    private String medicineType;\n    private String specificTime;\n\n    // Default constructor required for calls to DataSnapshot.getValue(MedicineDetails.class)\n    public MedicineDetails() {\n    }\n\n    public MedicineDetails(String dateTime, String dosage, String interval, String medicineName, String medicineType, String specificTime) {\n        this.dateTime = dateTime;\n        this.dosage = dosage;\n        this.interval = interval;\n        this.medicineName = medicineName;\n        this.medicineType = medicineType;\n        this.specificTime = specificTime;\n    }\n\n    // Getters and setters\n    public String getDateTime() { return dateTime; }\n    public String getDosage() { return dosage; }\n    public String getInterval() { return interval; }\n    public String getMedicineName() { return medicineName; }\n    public String getMedicineType() { return medicineType; }\n    public String getSpecificTime() { return specificTime; }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/MedicineDetails.java b/app/src/main/java/com/codexnovas/bhealthy/MedicineDetails.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/MedicineDetails.java	(revision 52661192e61eee824753a5852949183adfe3c144)
++++ b/app/src/main/java/com/codexnovas/bhealthy/MedicineDetails.java	(date 1721726468349)
+@@ -1,6 +1,7 @@
+ package com.codexnovas.bhealthy;
+ 
+ public class MedicineDetails {
++
+     private String dateTime;
+     private String dosage;
+     private String interval;
+@@ -12,6 +13,9 @@
+     public MedicineDetails() {
+     }
+ 
++
++
++
+     public MedicineDetails(String dateTime, String dosage, String interval, String medicineName, String medicineType, String specificTime) {
+         this.dateTime = dateTime;
+         this.dosage = dosage;
+@@ -19,6 +23,7 @@
+         this.medicineName = medicineName;
+         this.medicineType = medicineType;
+         this.specificTime = specificTime;
++
+     }
+ 
+     // Getters and setters
+@@ -28,4 +33,6 @@
+     public String getMedicineName() { return medicineName; }
+     public String getMedicineType() { return medicineType; }
+     public String getSpecificTime() { return specificTime; }
++
++
+ }
+Index: app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy;\n\nimport android.annotation.SuppressLint;\nimport android.app.DatePickerDialog;\nimport android.app.TimePickerDialog;\nimport android.content.BroadcastReceiver;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.AdapterView;\nimport android.widget.ArrayAdapter;\nimport android.widget.DatePicker;\nimport android.widget.EditText;\nimport android.widget.Spinner;\nimport android.widget.TimePicker;\nimport android.widget.Toast;\n\nimport androidx.activity.EdgeToEdge;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.AppCompatButton;\nimport androidx.core.graphics.Insets;\nimport androidx.core.view.ViewCompat;\nimport androidx.core.view.WindowInsetsCompat;\nimport androidx.annotation.NonNull;\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.auth.FirebaseUser;\nimport com.google.firebase.database.DatabaseReference;\nimport com.google.firebase.database.FirebaseDatabase;\n\nimport java.util.Calendar;\nimport java.util.HashMap;\nimport java.util.Map;\n\n\npublic class MedicineCard extends AppCompatActivity {\n\n    private EditText medEditText, dosageEditText;\n    private AppCompatButton confirmButton, selectTimeAndDateBtn;\n    private Spinner intervalSpinner, timeSpinner;\n    private FirebaseAuth mAuth;\n    private DatabaseReference databaseReference;\n    private String medType = \"\";\n    private String selectedInterval, selectedTime;\n    private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;\n\n    @SuppressLint(\"MissingInflatedId\")\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.medicine_card);\n\n        medEditText = findViewById(R.id.med_name_edit);\n        dosageEditText = findViewById(R.id.dosage_edit);\n        confirmButton = findViewById(R.id.confirm_btn);\n        selectTimeAndDateBtn = findViewById(R.id.select_time_btn);\n        intervalSpinner = findViewById(R.id.selected_interval); // Add this line\n        timeSpinner = findViewById(R.id.selected_time); // Add this line\n\n\n        // Firebase Authentication\n        mAuth = FirebaseAuth.getInstance();\n        FirebaseUser user = mAuth.getCurrentUser();\n        if (user != null) {\n            databaseReference = FirebaseDatabase.getInstance().getReference(\"users\").child(user.getUid()).child(\"medicineDetails\");\n        }\n\n        // Interval Spinner setup\n        ArrayAdapter<CharSequence> intervalAdapter = ArrayAdapter.createFromResource(this,\n                R.array.interval_array, android.R.layout.simple_spinner_item);\n        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\n        intervalSpinner.setAdapter(intervalAdapter);\n\n        intervalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\n            @Override\n            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\n                selectedInterval = parent.getItemAtPosition(position).toString();\n            }\n\n            @Override\n            public void onNothingSelected(AdapterView<?> parent) {\n                // Do nothing\n            }\n        });\n\n        // Time Spinner setup\n        ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(this,\n                R.array.time_array, android.R.layout.simple_spinner_item);\n        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\n        timeSpinner.setAdapter(timeAdapter);\n\n        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\n            @Override\n            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\n                selectedTime = parent.getItemAtPosition(position).toString();\n            }\n\n            @Override\n            public void onNothingSelected(AdapterView<?> parent) {\n                // Do nothing\n            }\n        });\n\n\n        selectTimeAndDateBtn.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                showDatePicker();\n                showTimePicker();\n            }\n        });\n\n        // Medicine Type selection (CardViews)\n        findViewById(R.id.bottle_card).setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                medType = \"Bottle\";\n                Toast.makeText(getApplicationContext(), \"Bottle selected\", Toast.LENGTH_SHORT).show();\n            }\n        });\n\n        findViewById(R.id.pill_card).setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                medType = \"\";\n                Toast.makeText(getApplicationContext(), \"pill selected\", Toast.LENGTH_SHORT).show();\n            }\n        });\n\n        findViewById(R.id.syringe_card).setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                medType = \"Syringe\";\n                Toast.makeText(getApplicationContext(), \"Syringe selected\", Toast.LENGTH_SHORT).show();\n            }\n        });\n\n        findViewById(R.id.tablet_card).setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                medType = \"Tablet\";\n                Toast.makeText(getApplicationContext(), \"Tablet selected\", Toast.LENGTH_SHORT).show();\n            }\n        });\n\n        // Confirm Button to save data\n        confirmButton.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                saveMedicineDetails();\n            }\n        });\n\n\n\n    }\n\n    private void showDatePicker() {\n        Calendar calendar = Calendar.getInstance();\n        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {\n            @Override\n            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {\n                selectedYear = year;\n                selectedMonth = month;\n                selectedDay = dayOfMonth;\n            }\n        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));\n        datePickerDialog.show();\n    }\n\n    private void showTimePicker() {\n        Calendar calendar = Calendar.getInstance();\n        int hour = calendar.get(Calendar.HOUR_OF_DAY);\n        int minute = calendar.get(Calendar.MINUTE);\n\n        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {\n            @Override\n            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {\n                selectedHour = hourOfDay;\n                selectedMinute = minute;\n            }\n        }, hour, minute, true);\n        timePickerDialog.show();\n    }\n\n\n    private void saveMedicineDetails() {\n        String medName =  medEditText.getText().toString().trim();\n        String dosage = dosageEditText.getText().toString().trim();\n\n        if (medName.isEmpty() || dosage.isEmpty() || medType.isEmpty() || selectedInterval == null || selectedTime == null) {\n            Toast.makeText(MedicineCard.this, \"Please fill all fields\", Toast.LENGTH_SHORT).show();\n            return;\n        }\n\n        Calendar calendar = Calendar.getInstance();\n        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute);\n        long dateTimeMillis = calendar.getTimeInMillis();\n        String dateTime = String.format(\"%02d/%02d/%d %02d:%02d\", selectedDay, selectedMonth + 1, selectedYear, selectedHour, selectedMinute);\n\n        Map<String, String> medicineDetails = new HashMap<>();\n        medicineDetails.put(\"medicineName\", medName);\n        medicineDetails.put(\"dosage\", dosage);\n        medicineDetails.put(\"medicineType\", medType);\n        medicineDetails.put(\"interval\", selectedInterval);\n        medicineDetails.put(\"specificTime\", selectedTime);\n        medicineDetails.put(\"dateTime\", dateTime);\n\n        databaseReference.push().setValue(medicineDetails).addOnCompleteListener(task -> {\n            if (task.isSuccessful()) {\n                Toast.makeText(MedicineCard.this, \"Medicine details saved\", Toast.LENGTH_SHORT).show();\n                finish(); // Close the activity\n            } else {\n                Toast.makeText(MedicineCard.this, \"Failed to save medicine details\", Toast.LENGTH_SHORT).show();\n            }\n        });\n\n    }\n\n}\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java b/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java	(revision 52661192e61eee824753a5852949183adfe3c144)
++++ b/app/src/main/java/com/codexnovas/bhealthy/MedicineCard.java	(date 1721726900152)
+@@ -3,7 +3,6 @@
+ import android.annotation.SuppressLint;
+ import android.app.DatePickerDialog;
+ import android.app.TimePickerDialog;
+-import android.content.BroadcastReceiver;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.AdapterView;
+@@ -14,14 +13,8 @@
+ import android.widget.TimePicker;
+ import android.widget.Toast;
+ 
+-import androidx.activity.EdgeToEdge;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.appcompat.widget.AppCompatButton;
+-import androidx.core.graphics.Insets;
+-import androidx.core.view.ViewCompat;
+-import androidx.core.view.WindowInsetsCompat;
+-import androidx.annotation.NonNull;
+-import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
+@@ -32,7 +25,6 @@
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+-
+ public class MedicineCard extends AppCompatActivity {
+ 
+     private EditText medEditText, dosageEditText;
+@@ -50,21 +42,30 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.medicine_card);
+ 
++        initViews();
++        setupFirebase();
++        setupSpinners();
++        setupButtons();
++    }
++
++    private void initViews() {
+         medEditText = findViewById(R.id.med_name_edit);
+         dosageEditText = findViewById(R.id.dosage_edit);
+         confirmButton = findViewById(R.id.confirm_btn);
+         selectTimeAndDateBtn = findViewById(R.id.select_time_btn);
+-        intervalSpinner = findViewById(R.id.selected_interval); // Add this line
+-        timeSpinner = findViewById(R.id.selected_time); // Add this line
++        intervalSpinner = findViewById(R.id.selected_interval);
++        timeSpinner = findViewById(R.id.selected_time);
++    }
+ 
+-
+-        // Firebase Authentication
++    private void setupFirebase() {
+         mAuth = FirebaseAuth.getInstance();
+         FirebaseUser user = mAuth.getCurrentUser();
+         if (user != null) {
+             databaseReference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("medicineDetails");
+         }
++    }
+ 
++    private void setupSpinners() {
+         // Interval Spinner setup
+         ArrayAdapter<CharSequence> intervalAdapter = ArrayAdapter.createFromResource(this,
+                 R.array.interval_array, android.R.layout.simple_spinner_item);
+@@ -100,13 +101,13 @@
+                 // Do nothing
+             }
+         });
++    }
+ 
+-
++    private void setupButtons() {
+         selectTimeAndDateBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 showDatePicker();
+-                showTimePicker();
+             }
+         });
+ 
+@@ -122,8 +123,8 @@
+         findViewById(R.id.pill_card).setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                medType = "";
+-                Toast.makeText(getApplicationContext(), "pill selected", Toast.LENGTH_SHORT).show();
++                medType = "Pill";
++                Toast.makeText(getApplicationContext(), "Pill selected", Toast.LENGTH_SHORT).show();
+             }
+         });
+ 
+@@ -143,16 +144,12 @@
+             }
+         });
+ 
+-        // Confirm Button to save data
+         confirmButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 saveMedicineDetails();
+             }
+         });
+-
+-
+-
+     }
+ 
+     private void showDatePicker() {
+@@ -163,6 +160,7 @@
+                 selectedYear = year;
+                 selectedMonth = month;
+                 selectedDay = dayOfMonth;
++                showTimePicker(); // Show TimePicker after DatePicker
+             }
+         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+         datePickerDialog.show();
+@@ -183,9 +181,8 @@
+         timePickerDialog.show();
+     }
+ 
+-
+     private void saveMedicineDetails() {
+-        String medName =  medEditText.getText().toString().trim();
++        String medName = medEditText.getText().toString().trim();
+         String dosage = dosageEditText.getText().toString().trim();
+ 
+         if (medName.isEmpty() || dosage.isEmpty() || medType.isEmpty() || selectedInterval == null || selectedTime == null) {
+@@ -214,9 +211,7 @@
+                 Toast.makeText(MedicineCard.this, "Failed to save medicine details", Toast.LENGTH_SHORT).show();
+             }
+         });
+-
+     }
+-
+ }
+ 
+ 
+Index: app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy.HomeFragment;\n\nimport android.Manifest;\nimport android.annotation.SuppressLint;\nimport android.content.Context;\nimport android.content.Intent;\nimport android.content.pm.PackageManager;\nimport android.location.Location;\nimport android.location.LocationManager;\nimport android.os.Bundle;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.ActionBarDrawerToggle;\nimport androidx.appcompat.app.AppCompatDelegate;\nimport androidx.appcompat.widget.AppCompatImageButton;\nimport androidx.core.app.ActivityCompat;\nimport androidx.core.content.ContextCompat;\nimport androidx.drawerlayout.widget.DrawerLayout;\nimport androidx.fragment.app.Fragment;\nimport androidx.fragment.app.FragmentManager;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.airbnb.lottie.LottieAnimationView;\nimport com.bumptech.glide.Glide;\nimport com.codexnovas.bhealthy.AboutFragment;\nimport com.codexnovas.bhealthy.ContactFragment;\nimport com.codexnovas.bhealthy.FeedbackFragment;\nimport com.codexnovas.bhealthy.LogoutFragment;\nimport com.codexnovas.bhealthy.MedicineAdapter;\nimport com.codexnovas.bhealthy.MedicineCard;\nimport com.codexnovas.bhealthy.MedicineDetails;\nimport com.codexnovas.bhealthy.R;\nimport com.codexnovas.bhealthy.HomeFragment.SunriseSunsetCalculator;\nimport com.google.android.gms.location.FusedLocationProviderClient;\nimport com.google.android.gms.location.LocationServices;\nimport com.google.android.gms.tasks.OnFailureListener;\nimport com.google.android.gms.tasks.OnSuccessListener;\nimport com.google.android.material.navigation.NavigationView;\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.auth.FirebaseUser;\nimport com.google.firebase.database.DataSnapshot;\nimport com.google.firebase.database.DatabaseError;\nimport com.google.firebase.database.DatabaseReference;\nimport com.google.firebase.database.FirebaseDatabase;\nimport com.google.firebase.database.ValueEventListener;\nimport com.squareup.picasso.Picasso;\n\nimport java.util.ArrayList;\nimport java.util.Calendar;\nimport java.util.List;\nimport java.util.TimeZone;\n\nimport retrofit2.Call;\nimport retrofit2.Callback;\nimport retrofit2.Response;\nimport retrofit2.Retrofit;\nimport retrofit2.converter.gson.GsonConverterFactory;\n\npublic class HomeFragment extends Fragment {\n\n    private TextView tempTextView;\n    private TextView weatherTextView;\n    private ImageView weatherIconImageView;\n    private LottieAnimationView weatherLottieView;\n    private static final String API_KEY = \"e09e69b5f8ee432a803173837241907\";\n    private FusedLocationProviderClient fusedLocationClient;\n    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;\n\n    private DatabaseReference databaseReference;\n    private FirebaseAuth auth;\n    private String userId;\n\n    private FirebaseUser currentUser;\n\n    private ImageView profilePic;\n\n    private TextView setMedicine;\n\n    private RecyclerView recyclerView;\n    private MedicineAdapter medicineAdapter;\n    private List<MedicineDetails> medicineList = new ArrayList<>();\n\n\n\n\n    @SuppressLint(\"MissingInflatedId\")\n    @Nullable\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\n        View view = inflater.inflate(R.layout.fragment_home, container, false);\n\n        // Force light mode\n        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);\n\n\n        tempTextView = view.findViewById(R.id.temp_text);\n        weatherTextView = view.findViewById(R.id.weather_text);\n        weatherIconImageView = view.findViewById(R.id.weather_image);\n        weatherLottieView = view.findViewById(R.id.weather_gif);\n        AppCompatImageButton menuBtn=view.findViewById(R.id.nav_drawer);\n        setMedicine=view.findViewById(R.id.set_med_reminder_text);\n\n        setMedicine.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                Intent intent = new Intent(getActivity(), MedicineCard.class);\n                startActivity(intent);\n            }\n        });\n\n        // Initialize RecyclerView\n        recyclerView = view.findViewById(R.id.med_alert_card_recyclerview);\n        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));\n\n\n        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());\n\n\n          profilePic = view.findViewById(R.id.profile);\n\n\n        // Initialize Firebase Auth\n        auth = FirebaseAuth.getInstance();\n        currentUser = auth.getCurrentUser();\n\n        if (currentUser != null) {\n            userId = currentUser.getUid();\n            // Initialize Firebase Database\n            databaseReference = FirebaseDatabase.getInstance().getReference(\"users\").child(userId);\n\n\n            loadProfileImage();\n        }\n\n        DatabaseReference databaseReferenceMed = FirebaseDatabase.getInstance().getReference(\"users\").child(userId).child(\"medicineDetails\");\n        databaseReferenceMed.addValueEventListener(new ValueEventListener() {\n            @Override\n            public void onDataChange(DataSnapshot dataSnapshot) {\n                medicineList.clear();\n                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {\n                    MedicineDetails medicine = postSnapshot.getValue(MedicineDetails.class);\n                    medicineList.add(medicine);\n                }\n                medicineAdapter.notifyDataSetChanged();\n            }\n\n            @Override\n            public void onCancelled(DatabaseError databaseError) {\n                // Handle possible errors.\n            }\n        });\n\n        medicineAdapter = new MedicineAdapter(medicineList);\n        recyclerView.setAdapter(medicineAdapter);\n\n\n        // Check location permissions\n        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n            // Request location permissions\n            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);\n        } else {\n            // Permissions already granted, check if location services are enabled\n            if (isLocationEnabled()) {\n                // Location services enabled, get the location\n                getLocationAndFetchWeather();\n            } else {\n                Log.e(\"Location\", \"Location services are disabled\");\n            }\n        }\n\n\n        return view;\n\n    }\n\n\n    private void loadProfileImage() {\n        if (currentUser != null) {\n            String userId = currentUser.getUid();\n            DatabaseReference profileImageRef = databaseReference.child(\"profileImage\");\n\n            profileImageRef.addListenerForSingleValueEvent(new ValueEventListener() {\n                @Override\n                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\n                    if (dataSnapshot.exists()) {\n                        String profileImageUrl = dataSnapshot.getValue(String.class);\n                        Glide.with(HomeFragment.this)\n                                .load(profileImageUrl)\n                                .circleCrop()\n                                .into(profilePic);\n                    } else {\n                        Toast.makeText(getContext(), \"Profile image not found\", Toast.LENGTH_SHORT).show();\n                    }\n                }\n\n                @Override\n                public void onCancelled(@NonNull DatabaseError databaseError) {\n                    Toast.makeText(getContext(), \"Failed to load profile image: \" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();\n                }\n            });\n        } else {\n            Toast.makeText(getContext(), \"User not logged in\", Toast.LENGTH_SHORT).show();\n        }\n    }\n\n\n    private boolean isLocationEnabled() {\n        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);\n        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);\n    }\n\n    private void getLocationAndFetchWeather() {\n        try {\n            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\n                    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\n                return;\n            }\n            fusedLocationClient.getLastLocation()\n                    .addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {\n                        @Override\n                        public void onSuccess(Location location) {\n                            if (location != null) {\n                                double latitude = location.getLatitude();\n                                double longitude = location.getLongitude();\n                                String locationString = latitude + \",\" + longitude;\n                                fetchWeather(locationString, latitude, longitude);\n                            } else {\n                                Log.e(\"Location\", \"Failed to get location\");\n                            }\n                        }\n                    })\n                    .addOnFailureListener(requireActivity(), new OnFailureListener() {\n                        @Override\n                        public void onFailure(@NonNull Exception e) {\n                            Log.e(\"Location\", \"Failed to get location\", e);\n                        }\n                    });\n        } catch (SecurityException e) {\n            Log.e(\"Location\", \"Location permission error\", e);\n        }\n    }\n\n    private void fetchWeather(String location, double latitude, double longitude) {\n        Retrofit retrofit = new Retrofit.Builder()\n                .baseUrl(\"https://api.weatherapi.com/v1/\")\n                .addConverterFactory(GsonConverterFactory.create())\n                .build();\n\n        WeatherAPIService service = retrofit.create(WeatherAPIService.class);\n        Call<WeatherAPIResponse> call = service.getCurrentWeather(API_KEY, location);\n\n        call.enqueue(new Callback<WeatherAPIResponse>() {\n            @Override\n            public void onResponse(Call<WeatherAPIResponse> call, Response<WeatherAPIResponse> response) {\n                if (response.isSuccessful()) {\n                    WeatherAPIResponse weatherResponse = response.body();\n                    if (weatherResponse != null) {\n                        float temperature = weatherResponse.getCurrent().getTempC();\n                        String weatherDescription = weatherResponse.getCurrent().getCondition().getText();\n                        String iconUrl = \"https:\" + weatherResponse.getCurrent().getCondition().getIcon();\n                        String weatherText = \"Temperature is \" + temperature + \"°C, \" + weatherDescription;\n\n                        tempTextView.setText(String.format(\"%d°C\", (int) temperature));\n                        weatherTextView.setText(weatherText);\n                        Picasso.get().load(iconUrl).into(weatherIconImageView);\n\n                        setWeatherAnimation(weatherDescription, latitude, longitude);\n                        Log.i(\"WeatherAPI\", weatherText);\n                    }\n                } else {\n                    Log.e(\"WeatherAPI\", \"Weather API call failed: \" + response.message());\n                }\n            }\n\n            @Override\n            public void onFailure(Call<WeatherAPIResponse> call, Throwable t) {\n                Log.e(\"WeatherAPI\", \"Weather API call failed\", t);\n            }\n        });\n    }\n\n    private void setWeatherAnimation(String weatherCondition, double latitude, double longitude) {\n        boolean isDayTime = isDayTime(latitude, longitude);\n        int animationResource;\n        switch (weatherCondition.toLowerCase()) {\n            case \"clear\":\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n            case \"Light rain\":\n            case \"rain\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.rain_backgroundmp4lottie;\n                break;\n            case \"sunny\":\n                animationResource = R.raw.normal_day;\n                break;\n            case \"cloudy\":\n                animationResource = isDayTime ? R.raw.rainy_day : R.raw.cloudy_night;\n                break;\n            case \"mist\":\n            case \"fog\":\n                animationResource = isDayTime ? R.raw.foggy_day : R.raw.foggy_night;\n                break;\n            // Add other cases as needed\n            default:\n                animationResource = isDayTime ? R.raw.normal_day : R.raw.normal_night;\n                break;\n        }\n        weatherLottieView.setAnimation(animationResource);\n        weatherLottieView.playAnimation();\n    }\n\n    private boolean isDayTime(double latitude, double longitude) {\n        Calendar calendar = Calendar.getInstance();\n        calendar.setTimeZone(TimeZone.getDefault());\n        TimeZone timeZone = calendar.getTimeZone();\n        Calendar sunrise = SunriseSunsetCalculator.getSunrise(calendar, latitude, longitude, timeZone);\n        Calendar sunset = SunriseSunsetCalculator.getSunset(calendar, latitude, longitude, timeZone);\n\n        return calendar.after(sunrise) && calendar.before(sunset);\n    }\n\n\n\n\n    @Override\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {\n            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {\n                if (isLocationEnabled()) {\n                    getLocationAndFetchWeather();\n                } else {\n                    Log.e(\"Location\", \"Location services are disabled\");\n                }\n            } else {\n                Log.e(\"Location\", \"Location permission denied\");\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(revision 52661192e61eee824753a5852949183adfe3c144)
++++ b/app/src/main/java/com/codexnovas/bhealthy/HomeFragment/HomeFragment.java	(date 1721724186173)
+@@ -160,10 +160,12 @@
+             }
+         });
+ 
+-        medicineAdapter = new MedicineAdapter(medicineList);
++        medicineList = new ArrayList<>();
++        medicineAdapter = new MedicineAdapter(getContext(), medicineList);
+         recyclerView.setAdapter(medicineAdapter);
+ 
+ 
++
+         // Check location permissions
+         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                 ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

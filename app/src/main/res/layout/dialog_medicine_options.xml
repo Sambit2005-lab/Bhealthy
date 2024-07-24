@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#E95D65"
+    >
+
+    <RadioGroup
+        android:id="@+id/radioGroupOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RadioButton
+            android:id="@+id/radioTakeToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Took today's dosage"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioCompleteCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completed the medicine course suggested by doctor"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioDeleteReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete this medicine reminder"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </RadioGroup>
+</LinearLayout>
