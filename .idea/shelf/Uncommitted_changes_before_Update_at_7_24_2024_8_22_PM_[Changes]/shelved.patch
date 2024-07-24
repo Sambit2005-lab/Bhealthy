@@ -1,0 +1,146 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Bhealthy\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".MedicineCard\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".NavHeader_Activity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".GiftPage\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Loading_page\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MedicalHistory\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".HealthMetrics\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".LoginPage\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".OnboardingSlidePages.onboarding_background\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".UploadPic\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".SignupPage\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".PersonalInfoPage\"\r\n            android:exported=\"false\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision a2761cb1e76faf2411c311ad7776c478488d49f9)
++++ b/app/src/main/AndroidManifest.xml	(date 1721832637250)
+@@ -18,6 +18,9 @@
+         android:theme="@style/Theme.Bhealthy"
+         tools:targetApi="31">
+         <activity
++            android:name=".Community_Activity"
++            android:exported="false" />
++        <activity
+             android:name=".MedicineCard"
+             android:exported="false" />
+         <activity
+Index: app/src/main/java/com/codexnovas/bhealthy/Community_Activity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/Community_Activity.java b/app/src/main/java/com/codexnovas/bhealthy/Community_Activity.java
+new file mode 100644
+--- /dev/null	(date 1721832637186)
++++ b/app/src/main/java/com/codexnovas/bhealthy/Community_Activity.java	(date 1721832637186)
+@@ -0,0 +1,24 @@
++package com.codexnovas.bhealthy;
++
++import android.os.Bundle;
++
++import androidx.activity.EdgeToEdge;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.graphics.Insets;
++import androidx.core.view.ViewCompat;
++import androidx.core.view.WindowInsetsCompat;
++
++public class Community_Activity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        EdgeToEdge.enable(this);
++        setContentView(R.layout.activity_community);
++        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
++            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
++            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
++            return insets;
++        });
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_community.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_community.xml b/app/src/main/res/layout/activity_community.xml
+new file mode 100644
+--- /dev/null	(date 1721832752526)
++++ b/app/src/main/res/layout/activity_community.xml	(date 1721832752526)
+@@ -0,0 +1,80 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Community_Activity">
++
++
++    <TextView
++        android:id="@+id/community_text"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++
++        android:layout_marginLeft="20dp"
++        android:layout_marginTop="30dp"
++        android:text="Community"
++        android:textColor="#000000"
++        android:textSize="30dp"
++        android:textStyle="bold"
++
++
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.0">
++
++    </TextView>
++
++    <androidx.appcompat.widget.SearchView
++        android:id="@+id/search_view"
++        android:layout_width="310dp"
++        android:layout_height="40dp"
++        android:layout_marginTop="15dp"
++        android:background="@drawable/background_intro_5"
++        android:iconifiedByDefault="false"
++
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.5"
++        app:layout_constraintVertical_bias="0.025"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/community_text"
++        />
++
++
++    <com.google.android.material.tabs.TabLayout
++        android:id="@+id/tab_layout"
++        android:layout_width="match_parent"
++        android:layout_height="59dp"
++        android:elevation="20dp"
++        android:background="@color/white"
++
++
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintVertical_bias="0.075"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/search_view"
++        />
++
++
++    <androidx.viewpager2.widget.ViewPager2
++        android:id="@+id/view_pager"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintVertical_bias="0.0"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/tab_layout"
++        />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
