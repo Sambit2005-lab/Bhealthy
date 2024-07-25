@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LeaderboardRankCard_Activity">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_rank_leaderboard"
+        android:layout_width="325dp"
+        android:layout_height="55dp">
+
+        <LinearLayout
+            android:id="@+id/rank_card_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+
+                android:id="@+id/profile_pic"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="20dp"
+
+                app:shapeAppearanceOverlay="@style/circular"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.imageview.ShapeableImageView>
+
+
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/rank_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="140dp"
+                android:layout_gravity="center_vertical"
+                android:text="6969"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
