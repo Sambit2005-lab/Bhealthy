@@ -241,7 +241,7 @@ public class HomeFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String profileImageUrl = dataSnapshot.getValue(String.class);
-                        Glide.with(HomeFragment.this)
+                        Glide.with(getActivity())
                                 .load(profileImageUrl)
                                 .circleCrop()
                                 .into(profilePic);

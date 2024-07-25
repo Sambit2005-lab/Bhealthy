@@ -1,0 +1,518 @@
+Index: app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/Leaderboard_Fragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codexnovas.bhealthy.LeaderboardFragment;\n\nimport android.os.Bundle;\n\nimport androidx.fragment.app.Fragment;\n\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\n\nimport com.codexnovas.bhealthy.R;\n\n/**\n * A simple {@link Fragment} subclass.\n * Use the {@link Leaderboard_Fragment#newInstance} factory method to\n * create an instance of this fragment.\n */\npublic class Leaderboard_Fragment extends Fragment {\n\n    // TODO: Rename parameter arguments, choose names that match\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\n    private static final String ARG_PARAM1 = \"param1\";\n    private static final String ARG_PARAM2 = \"param2\";\n\n    // TODO: Rename and change types of parameters\n    private String mParam1;\n    private String mParam2;\n\n    public Leaderboard_Fragment() {\n        // Required empty public constructor\n    }\n\n    /**\n     * Use this factory method to create a new instance of\n     * this fragment using the provided parameters.\n     *\n     * @param param1 Parameter 1.\n     * @param param2 Parameter 2.\n     * @return A new instance of fragment Leaderboard_Fragment.\n     */\n    // TODO: Rename and change types and number of parameters\n    public static Leaderboard_Fragment newInstance(String param1, String param2) {\n        Leaderboard_Fragment fragment = new Leaderboard_Fragment();\n        Bundle args = new Bundle();\n        args.putString(ARG_PARAM1, param1);\n        args.putString(ARG_PARAM2, param2);\n        fragment.setArguments(args);\n        return fragment;\n    }\n\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        if (getArguments() != null) {\n            mParam1 = getArguments().getString(ARG_PARAM1);\n            mParam2 = getArguments().getString(ARG_PARAM2);\n        }\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        // Inflate the layout for this fragment\n        return inflater.inflate(R.layout.fragment_leaderboard, container, false);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/Leaderboard_Fragment.java b/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/Leaderboard_Fragment.java
+--- a/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/Leaderboard_Fragment.java	(revision 05a484a84d3e3aa6a3693131fa86cf461bdfe6dc)
++++ b/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/Leaderboard_Fragment.java	(date 1721836858947)
+@@ -1,5 +1,6 @@
+ package com.codexnovas.bhealthy.LeaderboardFragment;
+ 
++import android.media.RouteListingPreference;
+ import android.os.Bundle;
+ 
+ import androidx.fragment.app.Fragment;
+@@ -9,58 +10,46 @@
+ import android.view.ViewGroup;
+ 
+ import com.codexnovas.bhealthy.R;
++import android.os.Bundle;
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
++import java.util.ArrayList;
++import java.util.List;
++
+ 
+-/**
+- * A simple {@link Fragment} subclass.
+- * Use the {@link Leaderboard_Fragment#newInstance} factory method to
+- * create an instance of this fragment.
+- */
++
+ public class Leaderboard_Fragment extends Fragment {
+ 
+-    // TODO: Rename parameter arguments, choose names that match
+-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+-    private static final String ARG_PARAM1 = "param1";
+-    private static final String ARG_PARAM2 = "param2";
++
++
++
+ 
+-    // TODO: Rename and change types of parameters
+-    private String mParam1;
+-    private String mParam2;
++
+ 
+     public Leaderboard_Fragment() {
+         // Required empty public constructor
+     }
+ 
+-    /**
+-     * Use this factory method to create a new instance of
+-     * this fragment using the provided parameters.
+-     *
+-     * @param param1 Parameter 1.
+-     * @param param2 Parameter 2.
+-     * @return A new instance of fragment Leaderboard_Fragment.
+-     */
+-    // TODO: Rename and change types and number of parameters
+-    public static Leaderboard_Fragment newInstance(String param1, String param2) {
+-        Leaderboard_Fragment fragment = new Leaderboard_Fragment();
+-        Bundle args = new Bundle();
+-        args.putString(ARG_PARAM1, param1);
+-        args.putString(ARG_PARAM2, param2);
+-        fragment.setArguments(args);
+-        return fragment;
+-    }
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
+-            mParam1 = getArguments().getString(ARG_PARAM1);
+-            mParam2 = getArguments().getString(ARG_PARAM2);
+-        }
+-    }
++
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+         // Inflate the layout for this fragment
+-        return inflater.inflate(R.layout.fragment_leaderboard, container, false);
++        View view= inflater.inflate(R.layout.fragment_leaderboard, container, false);
++
++        return view;
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/streaks_card.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    >\n\n    <androidx.cardview.widget.CardView\n        android:id=\"@+id/type1\"\n        android:layout_width=\"145dp\"\n        android:layout_height=\"160dp\"\n        android:layout_marginTop=\"10dp\"\n        android:layout_margin=\"10dp\"\n        android:backgroundTint=\"#98C1D9\"\n        >\n        <androidx.constraintlayout.widget.ConstraintLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:background=\"@drawable/streaks_bkg\">\n\n            <TextView\n                android:id=\"@+id/streaks\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Streaks\"\n                android:textColor=\"#ffffff\"\n                android:textStyle=\"bold\"\n                android:textSize=\"22dp\"\n\n                android:layout_marginRight=\"20dp\"\n                app:layout_constraintLeft_toLeftOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:layout_constraintRight_toRightOf=\"parent\"\n                android:layout_marginTop=\"10dp\">\n\n            </TextView>\n\n            <TextView\n                android:id=\"@+id/streak_number\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"x\"\n                android:textColor=\"#ffffff\"\n                android:textStyle=\"bold\"\n                android:textSize=\"50dp\"\n\n                app:layout_constraintRight_toLeftOf=\"@id/bolt\"\n                app:layout_constraintTop_toBottomOf=\"@+id/streaks\"\n                app:layout_constraintLeft_toLeftOf=\"parent\"\n                android:layout_marginLeft=\"20dp\">\n\n            </TextView>\n\n            <ImageView\n                android:id=\"@+id/bolt\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:src=\"@drawable/bolt\"\n\n                app:layout_constraintLeft_toRightOf=\"@+id/streak_number\"\n                app:layout_constraintBottom_toTopOf=\"@id/visit\"\n                android:layout_marginBottom=\"8dp\"\n                app:layout_constraintTop_toBottomOf=\"@id/streaks\"\n                android:layout_marginLeft=\"5dp\"\n                android:layout_marginTop=\"30dp\">\n\n            </ImageView>\n\n            <TextView\n                android:id=\"@+id/visit\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Visit everyday to\"\n                android:textColor=\"#ffffff\"\n                android:textSize=\"15dp\"\n\n                app:layout_constraintTop_toBottomOf=\"@id/streak_number\"\n                app:layout_constraintBottom_toTopOf=\"@+id/continue_streak\"\n                app:layout_constraintLeft_toLeftOf=\"parent\"\n                android:paddingStart=\"5dp\"\n                >\n\n            </TextView>\n\n            <TextView\n                android:id=\"@+id/continue_streak\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"continue your streak\"\n                android:textColor=\"#ffffff\"\n                android:textSize=\"15dp\"\n\n                app:layout_constraintTop_toBottomOf=\"@id/visit\"\n                app:layout_constraintLeft_toLeftOf=\"parent\"\n                app:layout_constraintRight_toRightOf=\"parent\"\n                >\n\n            </TextView>\n\n        </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n    </androidx.cardview.widget.CardView>\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/streaks_card.xml b/app/src/main/res/layout/streaks_card.xml
+--- a/app/src/main/res/layout/streaks_card.xml	(revision 05a484a84d3e3aa6a3693131fa86cf461bdfe6dc)
++++ b/app/src/main/res/layout/streaks_card.xml	(date 1721867746181)
+@@ -13,7 +13,7 @@
+         android:layout_marginTop="10dp"
+         android:layout_margin="10dp"
+         android:backgroundTint="#98C1D9"
+-        >
++        tools:ignore="MissingConstraints">
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+Index: .idea/other.xml
+===================================================================
+diff --git a/.idea/other.xml b/.idea/other.xml
+deleted file mode 100644
+--- a/.idea/other.xml	(revision 05a484a84d3e3aa6a3693131fa86cf461bdfe6dc)
++++ /dev/null	(revision 05a484a84d3e3aa6a3693131fa86cf461bdfe6dc)
+@@ -1,263 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="direct_access_persist.xml">
+-    <option name="deviceSelectionList">
+-      <list>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="27" />
+-          <option name="brand" value="DOCOMO" />
+-          <option name="codename" value="F01L" />
+-          <option name="id" value="F01L" />
+-          <option name="manufacturer" value="FUJITSU" />
+-          <option name="name" value="F-01L" />
+-          <option name="screenDensity" value="360" />
+-          <option name="screenX" value="720" />
+-          <option name="screenY" value="1280" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="28" />
+-          <option name="brand" value="DOCOMO" />
+-          <option name="codename" value="SH-01L" />
+-          <option name="id" value="SH-01L" />
+-          <option name="manufacturer" value="SHARP" />
+-          <option name="name" value="AQUOS sense2 SH-01L" />
+-          <option name="screenDensity" value="480" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2160" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="a51" />
+-          <option name="id" value="a51" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy A51" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="akita" />
+-          <option name="id" value="akita" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="b0q" />
+-          <option name="id" value="b0q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S22 Ultra" />
+-          <option name="screenDensity" value="600" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3088" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="32" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="bluejay" />
+-          <option name="id" value="bluejay" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 6a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="29" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="crownqlteue" />
+-          <option name="id" value="crownqlteue" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Note9" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2220" />
+-          <option name="screenY" value="1080" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="dm3q" />
+-          <option name="id" value="dm3q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S23 Ultra" />
+-          <option name="screenDensity" value="600" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3088" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="felix" />
+-          <option name="id" value="felix" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Fold" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2208" />
+-          <option name="screenY" value="1840" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="felix_camera" />
+-          <option name="id" value="felix_camera" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Fold (Camera-enabled)" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2208" />
+-          <option name="screenY" value="1840" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="gts8uwifi" />
+-          <option name="id" value="gts8uwifi" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Tab S8 Ultra" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="1848" />
+-          <option name="screenY" value="2960" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="husky" />
+-          <option name="id" value="husky" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8 Pro" />
+-          <option name="screenDensity" value="390" />
+-          <option name="screenX" value="1008" />
+-          <option name="screenY" value="2244" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="motorola" />
+-          <option name="codename" value="java" />
+-          <option name="id" value="java" />
+-          <option name="manufacturer" value="Motorola" />
+-          <option name="name" value="G20" />
+-          <option name="screenDensity" value="280" />
+-          <option name="screenX" value="720" />
+-          <option name="screenY" value="1600" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="lynx" />
+-          <option name="id" value="lynx" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 7a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="oriole" />
+-          <option name="id" value="oriole" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 6" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="panther" />
+-          <option name="id" value="panther" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 7" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="q2q" />
+-          <option name="id" value="q2q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Z Fold3" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1768" />
+-          <option name="screenY" value="2208" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="q5q" />
+-          <option name="id" value="q5q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Z Fold5" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1812" />
+-          <option name="screenY" value="2176" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="r11" />
+-          <option name="id" value="r11" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Watch" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="384" />
+-          <option name="screenY" value="384" />
+-          <option name="type" value="WEAR_OS" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="redfin" />
+-          <option name="id" value="redfin" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 5" />
+-          <option name="screenDensity" value="440" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2340" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="shiba" />
+-          <option name="id" value="shiba" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="tangorpro" />
+-          <option name="id" value="tangorpro" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Tablet" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="1600" />
+-          <option name="screenY" value="2560" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="29" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="x1q" />
+-          <option name="id" value="x1q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S20" />
+-          <option name="screenDensity" value="480" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3200" />
+-        </PersistentDeviceSelectionData>
+-      </list>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/CardAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/CardAdapter.java b/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/CardAdapter.java
+new file mode 100644
+--- /dev/null	(date 1721833385058)
++++ b/app/src/main/java/com/codexnovas/bhealthy/LeaderboardFragment/CardAdapter.java	(date 1721833385058)
+@@ -0,0 +1,114 @@
++package com.codexnovas.bhealthy.LeaderboardFragment;
++
++import android.content.ClipData;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.codexnovas.bhealthy.R;
++
++import java.util.List;
++
++public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
++    private List<ClipData.Item> dataList;
++
++    public static final int TYPE_STREAK = 0;
++    public static final int TYPE_PROGRESS = 1;
++    public static final int TYPE_REWARD = 2;
++    public static final int TYPE_BADGES = 3;
++
++    public CardAdapter(List<ClipData.Item> dataList) {
++        this.dataList = dataList;
++    }
++
++    @Override
++    public int getItemViewType(int position) {
++        ClipData.Item item = dataList.get(position);
++        return item.getType();
++    }
++
++    @NonNull
++    @Override
++    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View view;
++        switch (viewType) {
++            case TYPE_STREAK:
++                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.streaks_card, parent, false);
++                return new StreakViewHolder(view);
++            case TYPE_PROGRESS:
++                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_card, parent, false);
++                return new ProgressViewHolder(view);
++            case TYPE_REWARD:
++                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rewards_card, parent, false);
++                return new RewardViewHolder(view);
++            case TYPE_BADGES:
++                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.badges_card, parent, false);
++                return new BadgesViewHolder(view);
++            default:
++                throw new IllegalArgumentException("Invalid view type");
++        }
++    }
++
++    @Override
++    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
++        Item item = dataList.get(position);
++        switch (item.getType()) {
++            case TYPE_STREAK:
++                ((StreakViewHolder) holder).streakText.setText(item.getContent());
++                break;
++            case TYPE_PROGRESS:
++                ((ProgressViewHolder) holder).progressText.setText(item.getContent());
++                break;
++            case TYPE_REWARD:
++                ((RewardViewHolder) holder).rewardText.setText(item.getContent());
++                break;
++            case TYPE_BADGES:
++                ((BadgesViewHolder) holder).badgesText.setText(item.getContent());
++                break;
++        }
++    }
++
++    @Override
++    public int getItemCount() {
++        return dataList.size();
++    }
++
++    public static class StreakViewHolder extends RecyclerView.ViewHolder {
++        TextView streakText;
++
++        public StreakViewHolder(@NonNull View itemView) {
++            super(itemView);
++            streakText = itemView.findViewById(R.id.streakText);
++        }
++    }
++
++    public static class ProgressViewHolder extends RecyclerView.ViewHolder {
++        TextView progressText;
++
++        public ProgressViewHolder(@NonNull View itemView) {
++            super(itemView);
++            progressText = itemView.findViewById(R.id.progressText);
++        }
++    }
++
++    public static class RewardViewHolder extends RecyclerView.ViewHolder {
++        TextView rewardText;
++
++        public RewardViewHolder(@NonNull View itemView) {
++            super(itemView);
++            rewardText = itemView.findViewById(R.id.rewardText);
++        }
++    }
++
++    public static class BadgesViewHolder extends RecyclerView.ViewHolder {
++        TextView badgesText;
++
++        public BadgesViewHolder(@NonNull View itemView) {
++            super(itemView);
++            badgesText = itemView.findViewById(R.id.badgesText);
++        }
++    }
++}
